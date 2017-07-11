@@ -1,11 +1,19 @@
-.btn{
-	border-radius: 10px;
+.btn-account{
+	border-radius: 5px;
 	margin-left: 10px ;
 	margin-right: 10px ;
 	width: 100px;
 }
-.btn-success{
+
+.btn-account .btn-warning {
+	margin-right: 10px;
+}
+.btn-account .btn-success{
 	width: 220px ;
+}
+
+.form-account, .form-control   {
+	border-radius: 6px;
 }
 
 .form-inline .form-control {
@@ -26,6 +34,21 @@
 	padding-right: 20px;
 }
 
-button #btn_insert{
-	width: 200px;
+#btn_insert{
+	width: 220px;
+	border-radius: 5px;
 }
+
+#btn-return {
+	width: 150px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+#btn-save {
+	width: 200px;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+

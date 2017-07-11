@@ -7,7 +7,7 @@
 					<input class="form-control" type="text" name=""   placeholder="キーワード">
 				</div>
 				<div class="form-group">
-					<button id="btn-search" class="btn btn-info" type="submit">検索</button>
+					<button id="btn-search" class="btn btn-info btn-account" type="submit">検索</button>
 				</div>
 			</form>
 		</div>
@@ -53,18 +53,18 @@
 						<td>システム管理者</td>
 						<td>
 							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<button class="btn btn-info">編集</button>
+								<button class="btn btn-info btn-account">編集</button>
 
-								<button class="btn btn-warning">削除</button>
+								<button class="btn btn-warning btn-account">削除</button>
 							</div>
 						</td>
 					</tr>
 						<td>user1</td>
 						<td>一般ユーザー</td>
 						<td><div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<button class="btn btn-info">編集</button>
+								<button class="btn btn-info btn-account">編集</button>
 
-								<button class="btn btn-warning">削除</button>
+								<button class="btn btn-warning btn-account">削除</button>
 							</div></td>
 					</tr>
 					<tr>
@@ -72,9 +72,9 @@
 						<td >一般ユーザー</td>
 						<td>
 							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-									<button class="btn btn-info">編集</button>
+									<button class="btn btn-info btn-account">編集</button>
 
-									<button class="btn btn-warning">削除</button>
+									<button class="btn btn-warning btn-account">削除</button>
 								</div>
 						</td>
 					</tr>
