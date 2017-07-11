@@ -3,7 +3,9 @@
 
 | branch | service |
 | :-- | :-- |
-| master | フォーム管理システム |
+| master | do not push and pull request |
+| production management system
+ | main branch |
 
 開発ブランチプレフィックス
 
