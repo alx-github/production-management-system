@@ -4,8 +4,7 @@
 | branch | service |
 | :-- | :-- |
 | master | do not push and pull request |
-| production management system
- | main branch |
+| production management system | main branch |
 
 開発ブランチプレフィックス
 
