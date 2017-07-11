@@ -9,12 +9,13 @@
 
 | branch | service |
 | :-- | :-- |
-| feature-form-manager/xxxxxxxx | フォーム管理システム |
+| design/xxxxxxxx | for layout |
+| dev/xxxxxxxx | for php |
 
 ex)
 
-feature-form-manager/19-customerList
+design/19-customerList
 
-feature-form-manager/23-inquiryEntry
+design/23-inquiryEntry
 
-feature-form-manager/9-loginScreen
+dev/9-loginScreen
