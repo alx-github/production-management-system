@@ -53,29 +53,40 @@
 						<td>システム管理者</td>
 						<td>
 							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<button class="btn btn-info btn-account">編集</button>
+								<a href="<?= site_url('/master/account/edit')?>">
+									<button class="btn btn-info btn-account" >編集</button>
+									</a>
 
-								<button class="btn btn-warning btn-account">削除</button>
+									
+									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
 							</div>
 						</td>
 					</tr>
 						<td>user1</td>
 						<td>一般ユーザー</td>
-						<td><div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<button class="btn btn-info btn-account">編集</button>
+						<td>
+							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
+								<a href="<?= site_url('/master/account/edit')?>">
+									<button class="btn btn-info btn-account" >編集</button>
+									</a>
 
-								<button class="btn btn-warning btn-account">削除</button>
-							</div></td>
+									
+									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td>user2</td>
 						<td >一般ユーザー</td>
 						<td>
 							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-									<button class="btn btn-info btn-account">編集</button>
+								<a href="<?= site_url('/master/account/edit')?>">
+									<button class="btn btn-info btn-account" >編集</button>
+								</a>
 
-									<button class="btn btn-warning btn-account">削除</button>
-								</div>
+									
+									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
+							</div>
 						</td>
 					</tr>
 				</tbody>
@@ -107,5 +118,27 @@
 					</tr>
 				</thead>
 			</table>
+		</div>
+	<!-- Modal -->
+	
+		<div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">削除確認</h4>
+					</div>
+					<div class="modal-body">
+						削除してよろしいですか。<br>
+						<!-- 一度削除したアカウントは元に戻すことはできません。 -->
+					</div>
+					<form class="form-horizontal" method="post" action="<?= site_url('/master/account/delete') ?>">
+						<input type="hidden" name="id" value="">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+							<button type="submit" class="btn btn-danger">削除する</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 </div>

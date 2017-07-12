@@ -3,14 +3,28 @@
 	<br>
 	<br>
 	<div class="row">
-		<div class="">
+		<div class="col-md-offset-3 ">
+			<?php 
+				if($this->session->flashdata('error_message')):
+			 ?>
+			<div class="alert alert-dismissable alert-danger">
+				
+				<h4>エラー</h4>
+				<p>
+					<?= $this->session->flashdata('error_message')?>	
+				</p>
+				<?php $this->session->unmark_flash('error_message') ?>
+
+			</div>
+
+		<?php endif; ?>
 			<form class="form-horizontal">
 				<div class="form-group">
 					<div class="col-md-3">
 							<label for="login_id" class="col-md-offset-6 control-label">ユーザーID</label>
 					</div>
 					<div class="col-md-5">
-						<input class="form-control" type="text" name="" id="login_id" placeholder="英数字記号">
+						<input class="form-account form-control" type="text" name="" id="login_id" placeholder="英数字記号">
 					</div>	
 				</div>
 				<div class="form-group">
@@ -19,8 +33,8 @@
 					</div>
 					<div class="col-md-6">
 						<div class="input-group">
-						  <input class=" form-account form-control " type="password" name="" id="password" placeholder="英数字記号">
-						  <span class=" btn input-group-addon form-account" id="">ランダム</span>
+						  <input class="form-account form-control " type="text" name="password" id="password" placeholder="英数字記号">
+						  <span class="btn input-group-addon form-account" id="generate-password" data-url="<?= site_url('/api/generate_password') ?>">ランダム</span>
 						</div>
 						
 					</div>	

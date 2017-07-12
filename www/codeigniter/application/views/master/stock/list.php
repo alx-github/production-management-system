@@ -5,25 +5,25 @@
 			<form class="form-inline" method="GET" action="">
 				<div class="form-group col-md-4">
 					<label class="label-stock"><h3><strong>取引先</strong></h3></label>
-					<select class="form-control stock-select" style="width: 70%;">
-						<option>瀧本</op tion>
+					<select class="form-control form-stock stock-select" style="width: 70%;">
+						<option>瀧本</option>
 					</select>
 				</div>
 				<div class="form-group col-md-4">
 					<label class="label-stock"><h3><strong>発注先</strong></h3></label>
-					<select class="form-control stock-select" style="width: 70%;">
+					<select class="form-control form-stock stock-select" style="width: 70%;">
 						<option>瀧本</option>
 					</select>
 				</div>
 				
 				<div class="form-group col-md-3">
 				<h3>
-					<input class="form-control " type="text" name=""   placeholder="キーワード" style="width: 100%;">
+					<input class="form-control stock-select form-stock" type="text" name=""   placeholder="キーワード" style="width: 100%; margin-top: -5px;">
 					</h3>
 				</div>
 				<div class="form-group col-md-1">
 				<h3 class="pull-right"> 
-						<button id="btn-search" class="btn btn-info btn-account" type="submit" style="margin-right: -25px;">検索</button>
+						<button id="btn-search" class="btn btn-info btn-account" type="submit" style="margin-right: -25px; height: 50px; margin-top: -5px;">検索</button>
 				</h3>
 				
 				</div>		
@@ -77,9 +77,12 @@
 						<td>2017/06/30</td>
 						<td>
 							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<button class="btn btn-info btn-account">編集</button>
+								<a href="<?= site_url('/master/stock/edit')?>">
+									<button class="btn btn-info btn-account" >編集</button>
+									</a>
 
-								<button class="btn btn-warning btn-account">削除</button>
+									
+									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
 							</div>
 						</td>
 					</tr>
@@ -89,9 +92,11 @@
 						<td>巾: 13</td>
 						<td>2017/07/07</td>
 						<td><div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<button class="btn btn-info btn-account">編集</button>
-
-								<button class="btn btn-warning btn-account">削除</button>
+								<a href="<?= site_url('/master/stock/edit')?>">
+									<button class="btn btn-info btn-account" >編集</button>
+									</a>
+	
+									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
 							</div></td>
 					</tr>
 					<tr>
@@ -102,9 +107,10 @@
 						<td>2017/07/20</td>
 						<td>
 							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-									<button class="btn btn-info btn-account">編集</button>
-
-									<button class="btn btn-warning btn-account">削除</button>
+									<a href="<?= site_url('/master/stock/edit')?>">
+									<button class="btn btn-info btn-account" >編集</button>
+									</a>
+									<div class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</div>
 								</div>
 						</td>
 					</tr>
@@ -138,4 +144,29 @@
 				</thead>
 			</table>
 		</div>
+
+	<!-- Modal -->
+	
+		<div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">削除確認</h4>
+					</div>
+					<div class="modal-body">
+						削除してよろしいですか。<br>
+						<!-- 一度削除したアカウントは元に戻すことはできません。 -->
+					</div>
+					<form class="form-horizontal" method="post" action="<?= site_url('/master/stock/delete') ?>">
+						<input type="hidden" name="id" value="">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+							<button type="submit" class="btn btn-danger">削除する</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	
+
 </div>

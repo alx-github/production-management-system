@@ -21,6 +21,14 @@ class Account extends MY_Controller
 		$this->load->view('footer');
 	}
 
+	public function edit()
+	{
+		$this->load->view('header');
+		$this->render_menu('');
+		$this->load->view('master/account/form');
+		$this->load->view('footer');
+	}
+
 	private function render_list_account()
 	{
 		$this->load->view('header');

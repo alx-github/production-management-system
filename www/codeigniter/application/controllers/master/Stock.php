@@ -20,6 +20,13 @@ class Stock extends MY_Controller
 		$this->load->view('master/stock/form');
 		$this->load->view('footer');
 	}
+	public function edit()
+	{
+		$this->load->view('header');
+		$this->render_menu('');
+		$this->load->view('master/stock/form');
+		$this->load->view('footer');
+	}
 
 	private function render_list_stock()
 	{
