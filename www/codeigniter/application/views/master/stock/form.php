@@ -1,5 +1,5 @@
-<div class="container">
-	<h1><strong>在庫登録・編集</strong></h1>
+<div class="container-fluid">
+	<h1>在庫登録・編集</h1>
 	<div class="row">
 		<div class="col-md-offset-3">
 		<?php 
@@ -16,14 +16,15 @@
 			</div>
 
 		<?php endif; ?>
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="POST" action="<?= site_url('/master/stock/insert') ?>">
 				<div class="form-group">
 					<div class="col-md-3">
 							<label for="" class="col-md-offset-6 control-label">取引先名</label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control stock-select" style="width: 70%;">
-						<option>瀧本</option>
+						<select class="form-control ">
+						<option>指定なし</option>
+						<option selected>瀧本</option>
 					</select>	
 					</div>
 				</div>
@@ -32,8 +33,9 @@
 							<label for="" class="col-md-offset-6 control-label">在庫カテコリ</label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control stock-select" style="width: 70%;">
-							<option>パイピング</option>
+						<select class="form-control ">
+							<option>指定なし</option>
+							<option selected>パイピング</option>
 						</select>	
 					</div>
 				</div>
@@ -43,7 +45,7 @@
 							<label for="" class="col-md-offset-6 control-label">品番</label>
 					</div>
 					<div class="col-md-6">
-						  <input class=" form-account form-control " type="text" name="" id="" placeholder="">
+						  <input class="  form-control " type="text" name="" id="" placeholder="">
 						
 					</div>
 				</div>
@@ -52,10 +54,10 @@
 							<label for="" class="col-md-offset-6 control-label">色番</label>
 					</div>
 					<div class="col-md-3">
-						 <input class=" form-account form-control " type="text" name="" id="" placeholder="コード（例：GL）">	
+						 <input class="  form-control " type="text" name="" id="" placeholder="コード（例：GL）">	
 					</div>
 					<div class="col-md-4">
-						 <input class=" form-account form-control" type="text" name="" id="" placeholder="色合い（例：ゴールド）">	
+						 <input class="  form-control" type="text" name="" id="" placeholder="色合い（例：ゴールド）">	
 					</div>	
 				</div>
 				<div class="form-group">
@@ -63,8 +65,9 @@
 							<label for="" class="col-md-offset-6 control-label">単位</label>
 					</div>
 					<div class="col-md-6">
-						 <select class="form-control stock-select" style="width: 50%;">
-							<option>反</option>
+						 <select class="form-control ">
+						 	<option>指定なし</option>
+							<option selected="true">反</option>
 						</select>	
 					</div>
 				</div>
@@ -73,29 +76,21 @@
 							<label for="" class="col-md-offset-6 control-label">仕様</label>
 					</div>
 					<div class="col-md-7">
-						 <input class=" form-account form-control " type="text" name="" id="" placeholder="巾：10.0、巻m：50.0">	
+						 <input class="  form-control " type="text" name="" id="" placeholder="巾：10.0、巻m：50.0">	
 					</div>
 				</div>
-				<!-- <div class="form-group">
-					<div class="col-md-3">
-							<label for="password" class="col-md-offset-6 control-label">パスワード</label>
-					</div>
-					<div class="col-md-6">
-						<div class="input-group">
-						  <input class=" form-account form-control " type="password" name="" id="password" placeholder="英数字記号">
-						  <span class=" btn input-group-addon form-account" id="">ランダム</span>
-						</div>
-						
-					</div>	
-				</div> -->
 				<div class="form-group">
 					<div class="col-md-3">
 							<label for="" class="col-md-offset-6 control-label">表示区分</label>
 					</div>
 					<div class="col-md-9">
-						<div class="btn-group" role="group" aria-label="Basic example">
-						  <button type="button" class="btn btn-default stock-select">表示しない</button>
-						  <button type="button" class="btn btn-default stock-select">表示する</button>
+						<div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option1" autocomplete="off" checked> 表示しない
+						  </label>
+						  <label class="btn btn-default">
+						    <input type="radio" name="options" id="option2" autocomplete="off">表示する
+						  </label>
 						</div>
 					</div>	
 				</div>
@@ -104,20 +99,28 @@
 							<label for="" class="col-md-offset-6 control-label">発注先</label>
 					</div>
 					<div class="col-md-6">
-						<select class="form-control stock-select" style="width: 70%;">
-							<option>瀧本</option>
+						<select class="form-control ">
+							<option>指定なし</option>
+							<option selected="true">瀧本</option>
 						</select>	
 					</div>
 				</div>
 				<br>
 				<br>
 				<div class="form-group">
-					<div class="col-md-3">
-						<button id="btn-return" class="col-md-offset-6 btn btn-default">戻る</button>
-							
+					<div class="col-md-2">
+						<div class="col-md-offset-6">
+							<a href="<?= site_url('/master/account') ?>">
+							<div id="btn-return" class="col-md-offset-6 btn btn-default btn-block">戻る</div>
+						</a>
+						</div>	
 					</div>
-					<div class="col-md-3">
-						<button type="submit" id="btn-save" class="col-md-offset-6 btn btn-success">保存する</button>
+					<div class="col-md-4">
+						<div class="col-md-6">
+							<button type="submit" id="btn-save" class="col-md-offset-9 btn btn-success btn-block">保存する</button>
+						</div>	
+					</div>
+					<div class="col-md-1">
 						
 					</div>	
 				</div>
@@ -125,3 +128,5 @@
 		</div>
 	</div>
 </div>
+<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>

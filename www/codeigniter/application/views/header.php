@@ -14,8 +14,6 @@
 		<link href="<?= base_url('assets/umi/css/jquery-ui.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery.timepicker.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery-ui-timepicker-addon.min.css'); ?>" rel="stylesheet">
-		<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
-		<!-- <link href="<?= base_url('assets/css/stock.css'); ?>" rel="stylesheet"> -->
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -31,7 +29,5 @@
 		<script src="<?= base_url('assets/umi/js/jquery.timepicker.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-addon.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-ja.js'); ?>"></script>
-
-		<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>
 	</head>
 	<body>

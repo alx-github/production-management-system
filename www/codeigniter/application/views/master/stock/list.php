@@ -1,31 +1,46 @@
-<div class="container">
-	<h1><strong>在庫一覧</strong></h1>
+<div class="container-fluid">
+	<h1>在庫一覧</h1>
 	<div class="row">
-		<div class="col-md-12">
-			<form class="form-inline" method="GET" action="">
+		<div>
+			<form class="form-horizontal" method="GET" action="">
 				<div class="form-group col-md-4">
-					<label class="label-stock"><h3><strong>取引先</strong></h3></label>
-					<select class="form-control form-stock stock-select" style="width: 70%;">
-						<option>瀧本</option>
-					</select>
+					<div class="col-md-3">
+						<label>取引先</label>
+					</div>
+					<div class="col-md-9">
+						<select class="form-control">
+							<option>指定なし</option>
+							<option selected>瀧本</option>
+							<option>A株式会社</option>
+							<option>△△</option>
+							<option>△△△△</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group col-md-4">
-					<label class="label-stock"><h3><strong>発注先</strong></h3></label>
-					<select class="form-control form-stock stock-select" style="width: 70%;">
-						<option>瀧本</option>
-					</select>
+					<div class="col-md-3">
+						<label>発注先</label>
+					</div>
+					<div class="col-md-9">
+						<select class="form-control">
+							<option>指定なし</option>
+							<option selected>瀧本</option>
+							<option>A株式会社</option>
+							<option>△△</option>
+							<option>△△△△</option>
+						</select>
+					</div>
 				</div>
-				
-				<div class="form-group col-md-3">
-				<h3>
-					<input class="form-control stock-select form-stock" type="text" name=""   placeholder="キーワード" style="width: 100%; margin-top: -5px;">
-					</h3>
+				<div class="form-group col-md-4">
+					<div class="col-md-9">
+						<input class="form-control" type="text" name=""   placeholder="キーワード">
+					</div>
+					<div class="col-md-3">
+						<button id="btn-search" class="btn btn-info" type="submit">検索</button>
+					</div>
+					
 				</div>
 				<div class="form-group col-md-1">
-				<h3 class="pull-right"> 
-						<button id="btn-search" class="btn btn-info btn-account" type="submit" style="margin-right: -25px; height: 50px; margin-top: -5px;">検索</button>
-				</h3>
-				
 				</div>		
 			</form>
 		</div>
@@ -35,11 +50,13 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th colspan="4">
-							<ul class="pagination" style="margin-bottom:0%;">
-								<li><a href=""><<</a></li>
-									<li class="active"><a href="">1</a></li>
-									<li><a href="">2</a></li>
+						<td colspan="5">
+							<ul class="pagination">
+								<li><a href="#" aria-label="Previous">
+							        <span aria-hidden="true">&laquo;</span>
+							      </a></li>
+									<li><a href="">1</a></li>
+									<li  class="active"><a href="">2</a></li>
 									<li><a href="">3</a></li>
 									<li><a href="">4</a></li>
 									<li><a href="">5</a></li>
@@ -47,26 +64,29 @@
 									<li><a href="">7</a></li>
 									<li><a href="">8</a></li>
 									<li><a href="">9</a></li>
-									<li><a href="">>></a></li>
+									<li><a href="#" aria-label="Previous">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a></li>
 							</ul>
-						</th>
+						</td>
 						<th colspan="2">
-							<ul class="pull-right">
+							<ul class="">
 									<a href="<?= site_url('/master/stock/create') ?> ">
-									<button id="btn_insert" class="btn btn-success" >新規登録</button>
+									<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
 									  </a>
 									
 							</ul>
 						</th>
 					</tr>
 				</thead>
-				<tbody style="background-color: white; ">
+				<tbody>
 					<tr>
 						<td><strong>在庫カテコリ</strong></td>
 						<td><strong>品番</strong></td>
 						<td><strong>色番</strong></td>
 						<td><strong>仕様</strong></td>
 						<td><strong>更新日</strong></td>
+						<td></td>
 						<td></td>
 					</tr>
 					<tr>
@@ -76,14 +96,12 @@
 						<td>巾: 18</td>
 						<td>2017/06/30</td>
 						<td>
-							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<a href="<?= site_url('/master/stock/edit')?>">
-									<button class="btn btn-info btn-account" >編集</button>
-									</a>
-
-									
-									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
-							</div>
+							<a href="<?= site_url('/master/stock/edit')?>">
+								<button class="btn btn-info btn-block " >編集</button>
+								</a>	
+						</td>
+						<td>
+							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
 						</td>
 					</tr>
 						<td>ライン</td>
@@ -91,13 +109,14 @@
 						<td>S: サッワス</td>
 						<td>巾: 13</td>
 						<td>2017/07/07</td>
-						<td><div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-								<a href="<?= site_url('/master/stock/edit')?>">
-									<button class="btn btn-info btn-account" >編集</button>
-									</a>
-	
-									<button class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</button>
-							</div></td>
+						<td>
+							<a href="<?= site_url('/master/stock/edit')?>">
+								<button class="btn btn-info btn-block " >編集</button>
+								</a>	
+						</td>
+						<td>
+							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+						</td>
 					</tr>
 					<tr>
 						<td>パイ匕ング</td>
@@ -106,29 +125,25 @@
 						<td>巾: 10.0、巻m: 50.0</td>
 						<td>2017/07/20</td>
 						<td>
-							<div class="btn-toolbar pull-right" aria-label="Toolbar with button groups">
-									<a href="<?= site_url('/master/stock/edit')?>">
-									<button class="btn btn-info btn-account" >編集</button>
-									</a>
-									<div class="btn btn-warning btn-account" data-toggle="modal" data-target="#delete-modal">削除</div>
-								</div>
+							<a href="<?= site_url('/master/stock/edit')?>">
+								<button class="btn btn-info btn-block " >編集</button>
+								</a>	
+						</td>
+						<td>
+							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
 						</td>
 					</tr>
+
 				</tbody>
-			</table>
-		</div>
-		<br>
-		<br>
-		<div>
-			<table class="table">
-				<thead>
+				<tfoot>
 					<tr>
-						<th colspan="2" style="border-bottom: 0; padding-left: 2%;">
+						<td colspan="6">
 							<ul class="pagination">
-						
-									<li><a href=""><<</a></li>
-									<li  class="active"><a href="">1</a></li>
-									<li><a href="">2</a></li>
+									<li><a href="#" aria-label="Previous">
+							        <span aria-hidden="true">&laquo;</span>
+							      </a></li>
+									<li><a href="">1</a></li>
+									<li  class="active"><a href="">2</a></li>
 									<li><a href="">3</a></li>
 									<li><a href="">4</a></li>
 									<li><a href="">5</a></li>
@@ -136,15 +151,17 @@
 									<li><a href="">7</a></li>
 									<li><a href="">8</a></li>
 									<li><a href="">9</a></li>
-									<li><a href="">>></a></li>
-								
+									<li><a href="#" aria-label="Next">
+							        <span aria-hidden="true">&raquo;</span>
+							      </a></li>
 							</ul>
-						</th>
+						</td>
 					</tr>
-				</thead>
+				</tfoot>
 			</table>
 		</div>
-
+		<br>
+		<br>
 	<!-- Modal -->
 	
 		<div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
@@ -170,3 +187,5 @@
 	
 
 </div>
+<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>

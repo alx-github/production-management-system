@@ -1,5 +1,5 @@
-<div class="container">
-	<h1><strong>アカウント登録・編集</strong></h1>
+<div class="container-fluid">
+	<h1>アカウント登録・編集</h1>
 	<br>
 	<br>
 	<div class="row">
@@ -18,12 +18,12 @@
 			</div>
 
 		<?php endif; ?>
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="POST" action="<?=site_url('/master/account/insert') ?>">
 				<div class="form-group">
 					<div class="col-md-3">
 							<label for="login_id" class="col-md-offset-6 control-label">ユーザーID</label>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-3">
 						<input class="form-account form-control" type="text" name="" id="login_id" placeholder="英数字記号">
 					</div>	
 				</div>
@@ -31,9 +31,9 @@
 					<div class="col-md-3">
 							<label for="password" class="col-md-offset-6 control-label">パスワード</label>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="input-group">
-						  <input class="form-account form-control " type="text" name="password" id="password" placeholder="英数字記号">
+						  <input class="form-account form-control " type="text" name="" id="password" placeholder="英数字記号">
 						  <span class="btn input-group-addon form-account" id="generate-password" data-url="<?= site_url('/api/generate_password') ?>">ランダム</span>
 						</div>
 						
@@ -44,25 +44,44 @@
 							<label for="" class="col-md-offset-6 control-label">権限</label>
 					</div>
 					<div class="col-md-9 col-xl-9">
-						<div class="btn-group" role="group" aria-label="Basic example">
-						  <button type="button" class="btn btn-default">指定なし</button>
-						  <button type="button" class="btn btn-default">管理者ユーザー</button>
-						  <button type="button" class="btn btn-default">受発注ユーザー</button>
-						  <button type="button" class="btn btn-default">裁断ユーザー</button>
-						  <button type="button" class="btn btn-default">縫製ユーザー</button>
-						  <button type="button" class="btn btn-default">出荷ユーザー</button>
+						<div class="btn-group" data-toggle="buttons">
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option1" autocomplete="off" checked>指定なし
+						  </label>
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option2" autocomplete="off" checked>管理者ユーザー
+						  </label>
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option3" autocomplete="off" checked>受発注ユーザー
+						  </label>
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option4" autocomplete="off" checked>裁断ユーザー
+						  </label>
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option5" autocomplete="off" checked>縫製ユーザー
+						  </label>
+						  <label class="btn btn-default active">
+						    <input type="radio" name="options" id="option6" autocomplete="off" checked>出荷ユーザー
+						  </label>
 						</div>
 					</div>	
 				</div>
 				<br>
 				<br>
 				<div class="form-group">
-					<div class="col-md-3">
-						<button id="btn-return" class="col-md-offset-6 btn btn-default">戻る</button>
-							
+					<div class="col-md-2">
+						<div class="col-md-offset-6">
+							<a href="<?= site_url('/master/account') ?>">
+							<div id="btn-return" class="col-md-offset-6 btn btn-default btn-block">戻る</div>
+						</a>
+						</div>	
 					</div>
-					<div class="col-md-3">
-						<button type="submit" id="btn-save" class="col-md-offset-6 btn btn-success">保存する</button>
+					<div class="col-md-4">
+						<div class="col-md-6">
+							<button type="submit" id="btn-save" class="col-md-offset-9 btn btn-success btn-block">保存する</button>
+						</div>	
+					</div>
+					<div class="col-md-1">
 						
 					</div>	
 				</div>
@@ -70,3 +89,5 @@
 		</div>
 	</div>
 </div>
+<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>
