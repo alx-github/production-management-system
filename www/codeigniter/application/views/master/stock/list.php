@@ -143,28 +143,25 @@
 			</nav>
 		</div>
 	</div>
-	<!-- Modal -->
-	
-		<div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">削除確認</h4>
-					</div>
-					<div class="modal-body">
-						削除してよろしいですか。<br>
-						<!-- 一度削除したアカウントは元に戻すことはできません。 -->
-					</div>
-					<form class="form-horizontal" method="post" action="<?= site_url('/master/stock/delete') ?>">
-						<input type="hidden" name="id" value="">
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
-							<button type="submit" class="btn btn-danger">削除する</button>
-						</div>
-					</form>
-				</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">削除確認</h4>
 			</div>
+			<div class="modal-body">
+				削除してよろしいですか。<br>
+				<!-- 一度削除したアカウントは元に戻すことはできません。 -->
+			</div>
+			<form class="form-horizontal" method="post" action="<?= site_url('/master/stock/delete') ?>">
+				<input type="hidden" name="id" value="">
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+					<button type="submit" class="btn btn-danger">削除する</button>
+				</div>
+			</form>
 		</div>
-	
-
+	</div>
 </div>
