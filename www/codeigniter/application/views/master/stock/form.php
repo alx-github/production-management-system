@@ -39,19 +39,17 @@
 						</select>	
 					</div>
 				</div>
-				
 				<div class="form-group">
 					<div class="col-sm-3">
 							<label for="" class="col-sm-offset-6 control-label">品番</label>
 					</div>
 					<div class="col-sm-3">
-						  <input class="  form-control " type="text" name="" id="" placeholder="">
-						
+						  <input class="form-control" type="text" name="" id="" placeholder="">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="" class="col-sm-offset-6 control-label">色番</label>
+						<label for="" class="col-sm-offset-6 control-label">色番</label>
 					</div>
 					<div>
 						<div class="col-sm-2">
