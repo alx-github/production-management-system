@@ -39,35 +39,22 @@
 						  <input class="form-account form-control " type="text" name="" id="password" placeholder="英数字記号">
 						  <span class="btn input-group-addon form-account" id="generate-password" data-url="<?= site_url('/api/generate_password') ?>">ランダム</span>
 						</div>
-						
 					</div>	
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="" class="col-sm-offset-6 control-label">権限</label>
+						<label for="" class="col-sm-offset-6 control-label">権限</label>
 					</div>
-					<div class="col-sm-9 col-xl-9">
-						<div class="btn-group" data-toggle="buttons">
-						  <label class="btn btn-default">
-						    <input type="radio" name="options" id="option1" autocomplete="off" checked>指定なし
-						  </label>
-						  <label class="btn btn-default">
-						    <input type="radio" name="options" id="option2" autocomplete="off" checked>管理者ユーザー
-						  </label>
-						  <label class="btn btn-default">
-						    <input type="radio" name="options" id="option3" autocomplete="off" checked>受発注ユーザー
-						  </label>
-						  <label class="btn btn-default">
-						    <input type="radio" name="options" id="option4" autocomplete="off" checked>裁断ユーザー
-						  </label>
-						  <label class="btn btn-default">
-						    <input type="radio" name="options" id="option5" autocomplete="off" checked>縫製ユーザー
-						  </label>
-						  <label class="btn btn-default">
-						    <input type="radio" name="options" id="option6" autocomplete="off" checked>出荷ユーザー
-						  </label>
-						</div>
-					</div>	
+					<div class="col-sm-2">
+						<select class="form-control">
+							<option>指定なし</option>
+							<option selected>管理者ユーザー</option>
+							<option>受発注ユーザー</option>
+							<option>裁断ユーザー</option>
+							<option>縫製ユーザー</option>
+							<option>出荷ユーザー</option>
+						</select>
+					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
