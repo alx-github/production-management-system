@@ -1,0 +1,563 @@
+﻿# A5:ER FORMAT:11
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  http://www.wind.sannet.ne.jp/m_matsu/developer/a5m2/
+
+[Manager]
+ProjectName=生産管理システム
+Author=eyemovic
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",4,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=4
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=メイリオ
+FontSize=10
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+RDBMSType=5
+RDBMSTypeName=MySQL
+GenerateDropTableStatement=1
+DropTableIfExists=1
+ForceQuoteIdentifier=1
+GenerateCommentStatement_Comment=0
+DefaultPkName=%0:s_pkc
+DefaultPkIndexName=%0:s_pki
+DefaultIndexName=%0:s_idx_%1:d
+DefaultFkName=%0:s_fk_%1:d
+SqlSeparator=0
+ShowTag=1
+ShowCommonAttributes=0
+
+[Relation]
+Entity1=send_order_details
+Entity2=stocks
+RelationType1=1
+RelationType2=3
+Fields1=send_order_detail_id
+Fields2=in_out_order_detail_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3490,6510,6580,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711164333
+LineMode=0
+Bar1=349
+Bar2=651
+Bar3=658
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=receive_order_details
+Entity2=stocks
+RelationType1=1
+RelationType2=3
+Fields1=receive_order_detail_id
+Fields2=in_out_order_detail_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3490,6510,2176,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711164314
+LineMode=0
+Bar1=349
+Bar2=651
+Bar3=218
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=receive_order_details
+Entity2=send_order_details
+RelationType1=2
+RelationType2=2
+Fields1=receive_order_detail_id
+Fields2=receive_order_detail_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,6450,3550,6481,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711162642
+LineMode=0
+Bar1=645
+Bar2=355
+Bar3=648
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=customers
+Entity2=materials
+RelationType1=1
+RelationType2=3
+Fields1=customer_id
+Fields2=receive_order_customer_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,6987,7128,5489,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711144514
+LineMode=0
+Bar1=699
+Bar2=713
+Bar3=549
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=customers
+Entity2=products
+RelationType1=1
+RelationType2=3
+Fields1=customer_id
+Fields2=receive_order_customer_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,3261,7181,5617,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711144427
+LineMode=0
+Bar1=326
+Bar2=718
+Bar3=562
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=customers
+Entity2=send_orders
+RelationType1=1
+RelationType2=3
+Fields1=customer_id
+Fields2=receive_order_customer_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,7058,7411,2351,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711144328
+LineMode=0
+Bar1=706
+Bar2=741
+Bar3=235
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=customers
+Entity2=receive_orders
+RelationType1=1
+RelationType2=3
+Fields1=customer_id
+Fields2=receive_order_customer_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1745,5017,2307,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711144237
+LineMode=0
+Bar1=174
+Bar2=502
+Bar3=231
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=stocks
+LName=在庫
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=3350
+Top=1050
+Field="在庫ID","stock_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="取引先ID","customeri_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="材料ID","material_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="入出庫区分","in_out_type","TINYINT UNSIGNED","NOT NULL",,"","1：入庫\n2：出庫",$FFFFFFFF,""
+Field="入出庫日","in_out_date","DATE","NOT NULL",,"","",$FFFFFFFF,""
+Field="入出庫数","in_out_number","FLOAT",,,"","",$FFFFFFFF,""
+Field="在庫数","stock_number","FLOAT",,,"","",$FFFFFFFF,""
+Field="理由","reason","TINYINT UNSIGNED",,,"","100：発注\n101：入荷\n102：転送\n103：棚卸し\n104：返却\n199：その他\n200：仮押さえ\n201：製造\n202：転送\n203：棚卸し\n299：その他",$FFFFFFFF,""
+Field="受発注明細ID","in_out_order_detail_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="備考","note","TEXT",,,"","",$FFFFFFFF,""
+Index==0,stock_id,customeri_id,material_id,in_out_type,in_out_date
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162207
+Position="MAIN",3350,1050
+
+[Relation]
+Entity1=send_orders
+Entity2=send_order_details
+RelationType1=1
+RelationType2=3
+Fields1=send_order_id
+Fields2=send_order_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5355,4645,4837,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711133200
+LineMode=0
+Bar1=536
+Bar2=464
+Bar3=484
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=receive_orders
+Entity2=send_orders
+RelationType1=1
+RelationType2=3
+Fields1=receive_order_id
+Fields2=receive_order_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5511,8865,6174,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711132930
+LineMode=0
+Bar1=551
+Bar2=886
+Bar3=617
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=send_order_details
+LName=発注明細
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=2500
+Top=1400
+Field="発注明細ID","send_order_detail_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="発注ID","send_order_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="受注明細ID","receive_order_detail_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="商品区分","product_type","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="指図No","instruction_no","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="品番","part_number","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="商品ID","product_id","BIGINT UNSIGNED",,,"","定番商品時のみ",$FFFFFFFF,""
+Field="品名","product_name","VARCHAR(50)",,,"","スポット商品時のい",$FFFFFFFF,""
+Field="アイテム名","item_name","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="サイズ","size","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="数量","quantity","MEDIUMINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="メモ","note","TEXT",,,"","",$FFFFFFFF,""
+Field="ステータス","status","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Index==0,send_order_detail_id,deleted_at,send_order_id,receive_order_detail_id,part_number,product_id,status,size
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162110
+Position="MAIN",2500,1400
+
+[Entity]
+PName=send_orders
+LName=発注
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=1700
+Top=1400
+Field="発注ID","send_order_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="受注ID","receive_order_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="取引先ID","receive_order_customer_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="ステータス","status","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Index==0,send_order_id,deleted_at,receive_order_id,receive_order_customer_id,status
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713161938
+Position="MAIN",1700,1400
+
+[Relation]
+Entity1=receive_orders
+Entity2=receive_order_details
+RelationType1=1
+RelationType2=3
+Fields1=receive_order_id
+Fields2=receive_order_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,2279,7721,1183,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711132306
+LineMode=0
+Bar1=228
+Bar2=772
+Bar3=118
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=receive_order_details
+LName=受注明細
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=2500
+Top=100
+Field="受注明細ID","receive_order_detail_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="受注ID","receive_order_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="商品区分","product_type","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="指図No","instruction_no","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="品番","part_number","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="商品ID","product_id","BIGINT UNSIGNED",,,"","定番商品時のみ",$FFFFFFFF,""
+Field="品名","product_name","VARCHAR(50)",,,"","スポット商品時のい",$FFFFFFFF,""
+Field="アイテム名","item_name","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="サイズ","size","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="指図数量","instruction_quantity","MEDIUMINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="実数量","cutting_quantity","MEDIUMINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="出荷予定日","estimated_shipping_date","DATE",,,"","",$FFFFFFFF,""
+Field="加工費","processing_fee","MEDIUMINT",,,"","",$FFFFFFFF,""
+Field="請求金額","billing_amount","INT",,,"","",$FFFFFFFF,""
+Field="運送料","freight_fee","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="メモ","note","TEXT",,,"","",$FFFFFFFF,""
+Field="進捗状況.入荷","progress_arrival","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="進捗状況.裁断","progress_cutting","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="進捗状況.中断","progress_interruption","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="進捗状況.縫製","progress_sewing","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="進捗状況.出荷","progress_shipment","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="進捗状況.請求","proguress_claim","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Index==0,receive_order_detail_id,deleted_at,receive_order_id,part_number,product_id,size,estimated_shipping_date,progress_arrival,progress_cutting,progress_interruption,progress_sewing,progress_shipment,proguress_claim
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162038
+Position="MAIN",2500,100
+
+[Entity]
+PName=receive_orders
+LName=受注
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=1700
+Top=100
+Field="受注ID","receive_order_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="取引先ID","receive_order_customer_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="依頼日","requested_date","DATE",,,"","",$FFFFFFFF,""
+Field="ステータス","status","TINYINT UNSIGNED",,,"","0：未受注\n1:受注\n2：発送済み\n3：請求済み",$FFFFFFFF,""
+Field="消費税","consumption_tax","TINYINT",,,"","",$FFFFFFFF,""
+Index==0,receive_order_id,deleted_at,receive_order_customer_id,requested_date,status
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713161912
+Position="MAIN",1700,100
+
+[Relation]
+Entity1=materials
+Entity2=product_materials
+RelationType1=1
+RelationType2=3
+Fields1=material_id
+Fields2=material_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5858,4142,6387,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711113249
+LineMode=0
+Bar1=586
+Bar2=414
+Bar3=639
+TermPos1=R
+TermPos2=R
+
+[Relation]
+Entity1=products
+Entity2=product_materials
+RelationType1=1
+RelationType2=3
+Fields1=product_id
+Fields2=product_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,5858,4657,2085,R,R
+Dependence=0
+Caption=
+PName=
+ModifiedDateTime=20170711113229
+LineMode=0
+Bar1=586
+Bar2=466
+Bar3=208
+TermPos1=R
+TermPos2=R
+
+[Entity]
+PName=product_materials
+LName=商品に紐づく材料
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=400
+Top=2450
+Field="商品に紐づく材料ID","product_material_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="商品ID","product_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="材料ID","material_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="要尺","required_scale","FLOAT","NOT NULL",,"","",$FFFFFFFF,""
+Index==0,product_material_id,deleted_at,product_id,material_id
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162309
+Position="MAIN",400,2450
+
+[Entity]
+PName=customers
+LName=取引先
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=550
+Top=350
+Field="取引先ID","customer_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="取引先名","name","VARCHAR(100)","NOT NULL",,"","",$FFFFFFFF,""
+Field="郵便番号","postal_code","VARCHAR(7)",,,"","",$FFFFFFFF,""
+Field="住所1","address_1","VARCHAR(100)",,,"","",$FFFFFFFF,""
+Field="住所2","address_2","VARCHAR(100)",,,"","",$FFFFFFFF,""
+Field="電話番号","phone_number","VARCHAR(20)",,,"","",$FFFFFFFF,""
+Field="メールアドレス1","email_1","VARCHAR(255)",,,"","",$FFFFFFFF,""
+Field="メールアドレス2","email_2","VARCHAR(255)",,,"","",$FFFFFFFF,""
+Field="表示区分","display_type","TINYINT UNSIGNED",,,"","0:表示しない\n1:受注先のみ\n2:発注先のみ\n3:両方",$FFFFFFFF,""
+Index==0,deleted_at,display_type
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713161825
+Position="MAIN",550,350
+
+[Entity]
+PName=products
+LName=商品
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=50
+Top=1400
+Field="商品ID","product_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="取引先ID","receive_order_customer_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="カテゴリー","category","SMALLINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="品名","name","VARCHAR(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="品番","part_number","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="表示区分","display_type","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="単位","unit","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="加工賃","processing_fee","MEDIUMINT",,,"","",$FFFFFFFF,""
+Index==0,product_id,deleted_at,receive_order_customer_id,name,part_number,display_type
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162243
+Position="MAIN",50,1400
+
+[Entity]
+PName=materials
+LName=材料
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=800
+Top=1400
+Field="材料ID","material_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="取引先ID","receive_order_customer_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="カテゴリー","category","SMALLINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="品番","part_number","VARCHAR(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="色番.コード","color_number_code","VARCHAR(20)",,,"","",$FFFFFFFF,""
+Field="色番.色合い","color_number_tint","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="単位","unit","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="仕様","spec","VARCHAR(100)",,,"","",$FFFFFFFF,""
+Field="表示区分","display_typ","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="発注先ID","send_order_customer_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Index==0,material_id,deleted_at,receive_order_customer_id,part_number,color_number_code,color_number_tint,display_typ
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162258
+Position="MAIN",800,1400
+
+[Entity]
+PName=accounts
+LName=アカウント
+Comment=
+TableOption=ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
+Page=MAIN
+Left=3300
+Top=2300
+Field="アカウントID","account_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIMARY KEY AUTO_INCREMENT"
+Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
+Field="ユーザー名","username","VARCHAR(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="パスワード","password","VARCHAR(255)","NOT NULL",,"","",$FFFFFFFF,""
+Field="権限","auth","TINYINT UNSIGNED",,,"","0:指定なし\n10:裁断\n20:縫製\n30:出荷\n80:事務\n100:管理者",$FFFFFFFF,""
+Index==0,account_id,deleted_at
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20170713162217
+Position="MAIN",3300,2300
