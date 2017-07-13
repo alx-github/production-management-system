@@ -1,13 +1,13 @@
 <div class="container-fluid">
 	<h1>アカウント一覧</h1>
 	<div class="row">
-		<div class="col-sm-5">
-			<form class="form-inline" method="GET" action="">
-				<div class="form-group">
-					<input class="form-control" type="text" name=""   placeholder="キーワード">
+		<div class="col-sm-12">
+			<form class="" method="GET" action="">
+				<div class="form-group col-sm-2">
+					<input class="form-control" type="text" name="" placeholder="キーワード">
 				</div>
-				<div class="form-group">
-					<button id="btn-search" class="btn btn-info " type="submit">検索</button>
+				<div class="form-group col-sm-1">
+					<button id="btn-search" class="btn btn-info btn-block" type="submit">検索</button>
 				</div>
 			</form>
 		</div>
@@ -120,6 +120,3 @@
 		</div>
 	</div>
 </div>
-
-<link href="<?= site_url('assets/css/account.css'); ?>" rel="stylesheet">
-<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

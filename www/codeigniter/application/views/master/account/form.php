@@ -90,5 +90,4 @@
 		</div>
 	</div>
 </div>
-<link href="<?= site_url('assets/css/account.css'); ?>" rel="stylesheet">
 <script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>
