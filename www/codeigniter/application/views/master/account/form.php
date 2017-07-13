@@ -1,7 +1,10 @@
 <div class="container-fluid">
 	<h1>アカウント登録・編集</h1>
-	<br>
-	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<br/>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-offset-3 ">
 			<?php 
@@ -17,7 +20,7 @@
 
 			</div>
 
-		<?php endif; ?>
+			<?php endif; ?>
 			<form class="form-horizontal" method="POST" action="<?=site_url('/master/account/insert') ?>">
 				<div class="form-group">
 					<div class="col-sm-3">
@@ -45,38 +48,41 @@
 					</div>
 					<div class="col-sm-9 col-xl-9">
 						<div class="btn-group" data-toggle="buttons">
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option1" autocomplete="off" checked>指定なし
 						  </label>
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option2" autocomplete="off" checked>管理者ユーザー
 						  </label>
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option3" autocomplete="off" checked>受発注ユーザー
 						  </label>
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option4" autocomplete="off" checked>裁断ユーザー
 						  </label>
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option5" autocomplete="off" checked>縫製ユーザー
 						  </label>
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option6" autocomplete="off" checked>出荷ユーザー
 						  </label>
 						</div>
 					</div>	
 				</div>
-				<br>
-				<br>
 				<div class="form-group">
-					<div class="col-sm-2">
+					<div class="col-sm-3">
+						<br/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3">
 						<div class="col-sm-offset-6">
-							<a href="<?= site_url('/master/account') ?>" class="col-sm-offset-6 btn btn-default btn-block">戻る</a>
+							<a href="<?= site_url('/master/account') ?>" class="btn btn-default btn-block">戻る</a>
 						</div>	
 					</div>
-					<div class="col-sm-2">
-						<div class="col-sm-offset-6">
-							<button type="submit" id="btn-save" class="col-sm-offset-9 btn btn-success btn-block">保存する</button>
+					<div class="col-sm-3">
+						<div class="col-sm-offset-1 col-sm-7">
+							<button type="submit" id="btn-save" class="btn btn-success btn-block">保存する</button>
 						</div>	
 					</div>
 				</div>

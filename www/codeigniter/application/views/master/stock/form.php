@@ -88,7 +88,7 @@
 					</div>
 					<div class="col-sm-9">
 						<div class="btn-group" data-toggle="buttons">
-						  <label class="btn btn-default active">
+						  <label class="btn btn-default">
 						    <input type="radio" name="options" id="option1" autocomplete="off" checked> 表示しない
 						  </label>
 						  <label class="btn btn-default">
@@ -108,18 +108,21 @@
 						</select>	
 					</div>
 				</div>
-				<br>
-				<br>
 				<div class="form-group">
-					<div class="col-sm-2">
+					<div class="col-sm-3">
+						<br/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3">
 						<div class="col-sm-offset-6">
-							<a href="<?= site_url('/master/stock') ?>"class="col-sm-offset-6 btn btn-default btn-block">戻る</a>
+							<a href="<?= site_url('/master/stock') ?>" class="btn btn-default btn-block">戻る</a>
 						</div>	
 					</div>
-					<div class="col-sm-2">
-						<div class="col-sm-offset-6">
-							<button type="submit" id="btn-save" class="col-sm-offset-9 btn btn-success btn-block">保存する</button>
-						</div>
+					<div class="col-sm-3">
+						<div class="col-sm-offset-1 col-sm-7">
+							<button type="submit" id="btn-save" class="btn btn-success btn-block">保存する</button>
+						</div>	
 					</div>
 				</div>
 			</form>
