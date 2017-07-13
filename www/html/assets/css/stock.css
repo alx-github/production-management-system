@@ -1,0 +1,12 @@
+.form-horizontal .control-label {
+	text-align: left;
+}
+
+.table > thead {
+	border-top: 1px solid #ddd;
+}
+
+hr {
+	background-color: #fff;
+	border-top: 2px dashed #8c8b8b;
+}

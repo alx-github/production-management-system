@@ -1,0 +1,13 @@
+.input-group-addon {
+	background-color: inherit;
+}
+
+.addon-to {
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.modal .table {
+	margin-top: 24px;
+	margin-bottom: 0px;
+}

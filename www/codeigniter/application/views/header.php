@@ -7,13 +7,12 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<title>生産管理システム</title>
 
-
 		<!-- Bootstrap -->
-		
 		<link href="<?= base_url('assets/umi/css/bootstrap.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery-ui.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery.timepicker.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery-ui-timepicker-addon.min.css'); ?>" rel="stylesheet">
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -29,5 +28,10 @@
 		<script src="<?= base_url('assets/umi/js/jquery.timepicker.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-addon.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-ja.js'); ?>"></script>
+		
+		<!-- Include Date Range Picker -->
+		<script src="<?= base_url('assets/js/moment.js'); ?>"></script>
+		<script src="<?= base_url('assets/js/daterangepicker.js'); ?>"></script>
+		<link href="<?= base_url('assets/css/daterangepicker.css'); ?>" rel="stylesheet">
 	</head>
 	<body>
