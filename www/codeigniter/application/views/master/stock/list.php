@@ -3,11 +3,11 @@
 	<div class="row">
 		<div>
 			<form class="form-horizontal" method="GET" action="">
-				<div class="form-group col-md-4">
-					<div class="col-md-3 text-right">
+				<div class="form-group col-sm-4">
+					<div class="col-sm-3 text-right">
 						<label class="control-label">取引先</label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-sm-9">
 						<select class="form-control">
 							<option>指定なし</option>
 							<option selected>瀧本</option>
@@ -17,11 +17,11 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group col-md-4">
-					<div class="col-md-3 text-right">
+				<div class="form-group col-sm-4">
+					<div class="col-sm-3 text-right">
 						<label class="control-label">発注先</label>
 					</div>
-					<div class="col-md-9">
+					<div class="col-sm-9">
 						<select class="form-control">
 							<option>指定なし</option>
 							<option selected>瀧本</option>
@@ -31,11 +31,11 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group col-md-4">
-					<div class="col-md-9">
+				<div class="form-group col-sm-4">
+					<div class="col-sm-9">
 						<input class="form-control" type="text" name=""   placeholder="キーワード">
 					</div>
-					<div class="col-md-3">
+					<div class="col-sm-3">
 						<button id="btn-search" class="btn btn-info" type="submit">検索</button>
 					</div>
 				</div>		
@@ -44,7 +44,7 @@
 	</div>
 	<div class="row">
 		<div>
-			<div class="col-md-10">
+			<div class="col-sm-10">
 				<ul class="pagination">
 					<li><a href="#" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
@@ -63,7 +63,7 @@
 				      </a></li>
 				</ul>
 			</div>
-			<div class="col-md-2">
+			<div class="col-sm-2">
 				<ul class="pagination">
 						<a href="<?= site_url('/master/stock/create') ?> ">
 									<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
@@ -116,7 +116,7 @@
 
 				</tbody>
 			</table>
-			<div class="col-md-10">
+			<div class="col-sm-10">
 				<ul class="pagination">
 					<li><a href="#" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>

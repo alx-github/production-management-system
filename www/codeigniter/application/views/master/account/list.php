@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<h1>アカウント一覧</h1>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-sm-5">
 			<form class="form-inline" method="GET" action="">
 				<div class="form-group">
 					<input class="form-control" type="text" name=""   placeholder="キーワード">
@@ -14,7 +14,7 @@
 	</div>
 	<div class="row">
 		<div>
-			<div class="col-md-10">
+			<div class="col-sm-10">
 				<ul class="pagination">
 					<li><a href="#" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
@@ -33,7 +33,7 @@
 				      </a></li>
 				</ul>
 			</div>
-			<div class="col-md-2">
+			<div class="col-sm-2">
 				<ul class="pagination">
 					<a href="<?= site_url('/master/account/create') ?> ">
 					<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
@@ -78,7 +78,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="col-md-10">
+			<div class="col-sm-10">
 				<ul class="pagination">
 					<li><a href="#" aria-label="Previous">
 				        <span aria-hidden="true">&laquo;</span>
