@@ -13,117 +13,90 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div>
+			<div class="col-md-10">
+				<ul class="pagination">
+					<li><a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a></li>
+						<li><a href="">1</a></li>
+						<li  class="active"><a href="">2</a></li>
+						<li><a href="">3</a></li>
+						<li><a href="">4</a></li>
+						<li><a href="">5</a></li>
+						<li><a href="">6</a></li>
+						<li><a href="">7</a></li>
+						<li><a href="">8</a></li>
+						<li><a href="">9</a></li>
+						<li><a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<ul class="pagination">
+					<a href="<?= site_url('/master/account/create') ?> ">
+					<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
+					  </a>
+
+				</ul>
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<td colspan="3">
-							<ul class="pagination">
-								<li><a href="#" aria-label="Previous">
-							        <span aria-hidden="true">&laquo;</span>
-							      </a></li>
-									<li><a href="">1</a></li>
-									<li  class="active"><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="">4</a></li>
-									<li><a href="">5</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">9</a></li>
-									<li><a href="#" aria-label="Previous">
-							        <span aria-hidden="true">&raquo;</span>
-							      </a></li>
-							</ul>
-						</td>
-						<td colspan="2">
-							<ul class="">
-									<a href="<?= site_url('/master/account/create') ?> ">
-									<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
-									  </a>
-									
-							</ul>
-						</td>
+						<th>ロクインID</th>
+						<th>権限</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><strong>ロクインID</strong></td>
-						<td colspan="3"><strong>権限</strong></td>
-					</tr>
-					<tr>
 						<td>admin</td>
 						<td>システム管理者</td>
-						<td colspan="1"></td>
-						<td>		
-							<a href="<?= site_url('/master/account/edit')?>">
-							<button class="btn btn-info btn-block">編集</button>
-							</a>			
-						</td>
 						<td>
-							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+								<a href="<?= site_url('/master/account/edit')?>" class="btn btn-info">
+									編集</a>	
+								<button class="btn btn-warning " data-toggle="modal" data-target="#delete-modal">削除</button>						
 						</td>
 					</tr>
 						<td>user1</td>
 						<td>一般ユーザー</td>
-						<td colspan="1"></td>
 						<td>
-							<a href="<?= site_url('/master/account/edit')?>"
-								class="btn btn-info btn-block" >編集
-								</a>	
-						</td>
-						<td>
-							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+								<a href="<?= site_url('/master/account/edit')?>" class="btn btn-info">
+									編集</a>	
+								<button class="btn btn-warning " data-toggle="modal" data-target="#delete-modal">削除</button>						
 						</td>
 					</tr>
 					<tr>
 						<td>user2</td>
 						<td>一般ユーザー</td>
-						<td colspan="1"></td>
 						<td>
-						
-								<a href="<?= site_url('/master/account/edit')?>">
-									<button class="btn btn-info btn-block" >編集</button>
-								</a>							
-						</td>
-						<td>
-							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+								<a href="<?= site_url('/master/account/edit')?>" class="btn btn-info">
+									編集</a>	
+								<button class="btn btn-warning " data-toggle="modal" data-target="#delete-modal">削除</button>						
 						</td>
 					</tr>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3">
-							<ul class="pagination">
-									<li><a href="#" aria-label="Previous">
-							        <span aria-hidden="true">&laquo;</span>
-							      </a></li>
-									<li><a href="">1</a></li>
-									<li  class="active"><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="">4</a></li>
-									<li><a href="">5</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">9</a></li>
-									<li><a href="#" aria-label="Next">
-							        <span aria-hidden="true">&raquo;</span>
-							      </a></li>
-							</ul>
-						</td>
-					</tr>
-				</tfoot>
 			</table>
-		</div>
-		<br>
-		<br>
-		<div>
-			<table class="table">
-				<thead>
-					
-				</thead>
-			</table>
+			<div class="col-md-10">
+				<ul class="pagination">
+					<li><a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a></li>
+						<li><a href="">1</a></li>
+						<li  class="active"><a href="">2</a></li>
+						<li><a href="">3</a></li>
+						<li><a href="">4</a></li>
+						<li><a href="">5</a></li>
+						<li><a href="">6</a></li>
+						<li><a href="">7</a></li>
+						<li><a href="">8</a></li>
+						<li><a href="">9</a></li>
+						<li><a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a></li>
+				</ul>
+			</div>
 		</div>
 	<!-- Modal -->
 	
@@ -148,5 +121,5 @@
 			</div>
 		</div>
 </div>
-<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
-<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>
+<link href="<?= site_url('assets/css/account.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

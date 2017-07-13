@@ -71,23 +71,18 @@
 				<div class="form-group">
 					<div class="col-md-2">
 						<div class="col-md-offset-6">
-							<a href="<?= site_url('/master/account') ?>">
-							<div id="btn-return" class="col-md-offset-6 btn btn-default btn-block">戻る</div>
-						</a>
+							<a href="<?= site_url('/master/account') ?>" class="col-md-offset-6 btn btn-default btn-block">戻る</a>
 						</div>	
 					</div>
-					<div class="col-md-4">
-						<div class="col-md-6">
+					<div class="col-md-2">
+						<div class="col-md-offset-6">
 							<button type="submit" id="btn-save" class="col-md-offset-9 btn btn-success btn-block">保存する</button>
 						</div>	
 					</div>
-					<div class="col-md-1">
-						
-					</div>	
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
-<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
-<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>
+<link href="<?= site_url('assets/css/account.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

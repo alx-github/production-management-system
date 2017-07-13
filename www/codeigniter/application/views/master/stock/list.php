@@ -4,8 +4,8 @@
 		<div>
 			<form class="form-horizontal" method="GET" action="">
 				<div class="form-group col-md-4">
-					<div class="col-md-3">
-						<label>取引先</label>
+					<div class="col-md-3 text-right">
+						<label class="control-label">取引先</label>
 					</div>
 					<div class="col-md-9">
 						<select class="form-control">
@@ -18,8 +18,8 @@
 					</div>
 				</div>
 				<div class="form-group col-md-4">
-					<div class="col-md-3">
-						<label>発注先</label>
+					<div class="col-md-3 text-right">
+						<label class="control-label">発注先</label>
 					</div>
 					<div class="col-md-9">
 						<select class="form-control">
@@ -38,57 +38,49 @@
 					<div class="col-md-3">
 						<button id="btn-search" class="btn btn-info" type="submit">検索</button>
 					</div>
-					
-				</div>
-				<div class="form-group col-md-1">
 				</div>		
 			</form>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div>
+			<div class="col-md-10">
+				<ul class="pagination">
+					<li><a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a></li>
+						<li><a href="">1</a></li>
+						<li  class="active"><a href="">2</a></li>
+						<li><a href="">3</a></li>
+						<li><a href="">4</a></li>
+						<li><a href="">5</a></li>
+						<li><a href="">6</a></li>
+						<li><a href="">7</a></li>
+						<li><a href="">8</a></li>
+						<li><a href="">9</a></li>
+						<li><a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a></li>
+				</ul>
+			</div>
+			<div class="col-md-2">
+				<ul class="pagination">
+						<a href="<?= site_url('/master/stock/create') ?> ">
+									<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
+					   </a>
+				</ul>
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<td colspan="5">
-							<ul class="pagination">
-								<li><a href="#" aria-label="Previous">
-							        <span aria-hidden="true">&laquo;</span>
-							      </a></li>
-									<li><a href="">1</a></li>
-									<li  class="active"><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="">4</a></li>
-									<li><a href="">5</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">9</a></li>
-									<li><a href="#" aria-label="Previous">
-							        <span aria-hidden="true">&raquo;</span>
-							      </a></li>
-							</ul>
-						</td>
-						<th colspan="2">
-							<ul class="">
-									<a href="<?= site_url('/master/stock/create') ?> ">
-									<button id="btn_insert" class="btn btn-success btn-block" >新規登録</button>
-									  </a>
-									
-							</ul>
-						</th>
+						<th>在庫カテコリ</th>
+						<th>品番</th>
+						<th>色番</th>
+						<th>仕様</th>
+						<th>更新日</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><strong>在庫カテコリ</strong></td>
-						<td><strong>品番</strong></td>
-						<td><strong>色番</strong></td>
-						<td><strong>仕様</strong></td>
-						<td><strong>更新日</strong></td>
-						<td></td>
-						<td></td>
-					</tr>
 					<tr>
 						<td>ライン</td>
 						<td>KNT18</td>
@@ -96,12 +88,8 @@
 						<td>巾: 18</td>
 						<td>2017/06/30</td>
 						<td>
-							<a href="<?= site_url('/master/stock/edit')?>">
-								<button class="btn btn-info btn-block " >編集</button>
-								</a>	
-						</td>
-						<td>
-							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+							<a href="<?= site_url('/master/stock/edit')?>" class="btn btn-info" >編集</a>	
+								<button class="btn btn-warning" data-toggle="modal" data-target="#delete-modal">削除</button>
 						</td>
 					</tr>
 						<td>ライン</td>
@@ -110,12 +98,8 @@
 						<td>巾: 13</td>
 						<td>2017/07/07</td>
 						<td>
-							<a href="<?= site_url('/master/stock/edit')?>">
-								<button class="btn btn-info btn-block " >編集</button>
-								</a>	
-						</td>
-						<td>
-							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+							<a href="<?= site_url('/master/stock/edit')?>" class="btn btn-info" >編集</a>	
+								<button class="btn btn-warning" data-toggle="modal" data-target="#delete-modal">削除</button>
 						</td>
 					</tr>
 					<tr>
@@ -125,40 +109,32 @@
 						<td>巾: 10.0、巻m: 50.0</td>
 						<td>2017/07/20</td>
 						<td>
-							<a href="<?= site_url('/master/stock/edit')?>">
-								<button class="btn btn-info btn-block " >編集</button>
-								</a>	
-						</td>
-						<td>
-							<button class="btn btn-warning btn-block" data-toggle="modal" data-target="#delete-modal">削除</button>
+							<a href="<?= site_url('/master/stock/edit')?>" class="btn btn-info" >編集</a>	
+								<button class="btn btn-warning" data-toggle="modal" data-target="#delete-modal">削除</button>
 						</td>
 					</tr>
 
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="6">
-							<ul class="pagination">
-									<li><a href="#" aria-label="Previous">
-							        <span aria-hidden="true">&laquo;</span>
-							      </a></li>
-									<li><a href="">1</a></li>
-									<li  class="active"><a href="">2</a></li>
-									<li><a href="">3</a></li>
-									<li><a href="">4</a></li>
-									<li><a href="">5</a></li>
-									<li><a href="">6</a></li>
-									<li><a href="">7</a></li>
-									<li><a href="">8</a></li>
-									<li><a href="">9</a></li>
-									<li><a href="#" aria-label="Next">
-							        <span aria-hidden="true">&raquo;</span>
-							      </a></li>
-							</ul>
-						</td>
-					</tr>
-				</tfoot>
 			</table>
+			<div class="col-md-10">
+				<ul class="pagination">
+					<li><a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a></li>
+					<li><a href="">1</a></li>
+					<li  class="active"><a href="">2</a></li>
+					<li><a href="">3</a></li>
+					<li><a href="">4</a></li>
+					<li><a href="">5</a></li>
+					<li><a href="">6</a></li>
+					<li><a href="">7</a></li>
+					<li><a href="">8</a></li>
+					<li><a href="">9</a></li>
+					<li><a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a></li>
+				</ul>
+			</div>
 		</div>
 		<br>
 		<br>
@@ -187,5 +163,5 @@
 	
 
 </div>
-<link href="<?= base_url('assets/css/account.css'); ?>" rel="stylesheet">
-<script type="text/javascript" src="<?= base_url('assets/js/account.js'); ?>"></script>
+<link href="<?= site_url('assets/css/account.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>
