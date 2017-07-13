@@ -28,5 +28,10 @@
 		<script src="<?= base_url('assets/umi/js/jquery.timepicker.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-addon.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-ja.js'); ?>"></script>
+		
+		<!-- Include Date Range Picker -->
+		<script src="<?= base_url('assets/js/moment.js'); ?>"></script>
+		<script src="<?= base_url('assets/js/daterangepicker.js'); ?>"></script>
+		<link href="<?= base_url('assets/css/daterangepicker.css'); ?>" rel="stylesheet">
 	</head>
 	<body>
