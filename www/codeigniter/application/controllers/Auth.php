@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends MY_Controller {
-	protected $data = ['login_id' => NULL];
+	protected $data = ['username' => NULL];
 
 	public function __construct()
 	{
@@ -13,7 +13,7 @@ class Auth extends MY_Controller {
 		$action  = $this->uri->segment(2);
 		if ($action !== 'logout')
 		{
-			if ($this->session->userdata('login_id'))
+			if ($this->session->userdata('username'))
 			{
 				redirect('/production', 'refresh');
 			}
@@ -44,7 +44,7 @@ class Auth extends MY_Controller {
 	{
 		try
 		{
-			$this->form_validation->set_rules('login_id', 'ログインID', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
+			$this->form_validation->set_rules('username', 'ユーザー名', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
 			$this->form_validation->set_rules('password', 'パスワード', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
 			if (!$this->form_validation->run())
 			{
@@ -53,18 +53,18 @@ class Auth extends MY_Controller {
 				return;
 			}
 			
-			$login_id = $this->input->post('login_id');
+			$username = $this->input->post('username');
 			$password = $this->input->post('password');
-			$this->data['login_id'] = $login_id;
+			$this->data['username'] = $username;
 			$message = '';
 			
 			$this->load->model('accounts_model');
 			$password_hash = hash_password($password);
-			$result = $this->accounts_model->login($login_id, $password_hash);
+			$result = $this->accounts_model->login($username, $password_hash);
 			if ($result !== FALSE)
 			{
-				$this->session->set_userdata('login_id', $login_id);
-				$this->session->set_userdata('account_id', $result->id);
+				$this->session->set_userdata('username', $username);
+				$this->session->set_userdata('account_id', $result->account_id);
 				if ($this->is_admin())
 				{
 					redirect('/receive');
@@ -89,7 +89,7 @@ class Auth extends MY_Controller {
 	 */
 	public function logout()
 	{
-		$this->session->unset_userdata('login_id');
+		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('account_id');
 		$this->session->sess_destroy();
 		redirect('/auth');

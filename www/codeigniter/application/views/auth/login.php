@@ -15,8 +15,8 @@
 						</div>
 					<?php endif; ?>
 					<div class="form-group">
-						<input id="login_id" name="login_id" class="form-control" 
-							placeholder="ユーザー名" value="<?= isset($login_id) ? $login_id : '' ?>" required autofocus>
+						<input id="username" name="username" class="form-control" 
+							placeholder="ユーザー名" value="<?= isset($username) ? $username : '' ?>" required autofocus>
 					</div>
 					<div class="form-group">
 						<input type="password" id="password" name="password" class="form-control" placeholder="パスワード" required>

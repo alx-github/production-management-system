@@ -1,21 +1,22 @@
 -- ----------------------------
 -- Table structure for accounts
 -- ----------------------------
-DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE `accounts` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `login_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_login` datetime DEFAULT NULL COMMENT '最終ログイン日時',
-  `type` int(11) DEFAULT '0' COMMENT '0:指定なし、1:管理者、2:受発注ユーザー、3:裁断ユーザー、4:縫製ユーザー、5:出荷ユーザー',
-  `created_at` datetime DEFAULT NULL COMMENT '作成日時',
-  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日時',
-  `deleted_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='';
-SET FOREIGN_KEY_CHECKS=1;
+drop table if exists `accounts` cascade;
+
+create table `accounts` (
+  `account_id` BIGINT UNSIGNED not null PRIMARY KEY AUTO_INCREMENT comment 'アカウントID'
+  , `created_at` DATETIME comment '作成日時'
+  , `updated_at` DATETIME comment '更新日時'
+  , `deleted_at` DATETIME comment '削除日時'
+  , `username` VARCHAR(50) not null comment 'ユーザー名'
+  , `password` VARCHAR(255) not null comment 'パスワード'
+  , `auth` TINYINT UNSIGNED comment '権限'
+) comment 'アカウント' ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+create index `accounts_idx_1`
+  on `accounts`(`account_id`,`deleted_at`);
 
 -- admin/admin
-INSERT INTO `accounts` (`login_id`, `password`, `type`) VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '1');
+INSERT INTO `accounts` (`username`, `password`, `auth`) VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '100');
 -- user/test
-INSERT INTO `accounts` (`login_id`, `password`, `type`) VALUES ('user', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '0');
+INSERT INTO `accounts` (`username`, `password`, `auth`) VALUES ('user', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '10');
