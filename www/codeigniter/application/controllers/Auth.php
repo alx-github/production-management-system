@@ -44,7 +44,7 @@ class Auth extends MY_Controller {
 	{
 		try
 		{
-			$this->form_validation->set_rules('username', 'ログインID', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
+			$this->form_validation->set_rules('username', 'ユーザー名', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
 			$this->form_validation->set_rules('password', 'パスワード', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
 			if (!$this->form_validation->run())
 			{

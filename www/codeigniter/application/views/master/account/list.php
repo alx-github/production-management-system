@@ -42,7 +42,7 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>ロクインID</th>
+						<th>ユーザー名</th>
 						<th>権限</th>
 						<th class="col-sm-2"></th>
 					</tr>

@@ -32,16 +32,13 @@ class MY_Controller extends CI_Controller
 				$this->account_type = $account_type;
 			}
 		}
-		if($controller === 'master')
+	}
+
+	protected function force_admin()
+	{
+		if(!$this->is_admin())
 		{
-			$path_account = $this->uri->segment(2);
-			if($path_account === 'account')
-			{
-				if(!$this->is_admin())
-				{
-					redirect('');
-				}
-			}
+			redirect('/');
 		}
 	}
 
