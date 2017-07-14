@@ -15,11 +15,10 @@ class MY_Controller extends CI_Controller
 		$this->load->model([
 				'accounts_model', 
 		]);
-		
 		$controller  = $this->uri->segment(1);
 		if ($controller !== 'auth')
 		{
-			if (!$this->session->userdata('login_id'))
+			if (!$this->session->userdata('username'))
 			{
 				redirect('/auth', 'refresh');
 			}
@@ -31,6 +30,17 @@ class MY_Controller extends CI_Controller
 					redirect('/auth/logout', 'refresh');
 				}
 				$this->account_type = $account_type;
+			}
+		}
+		if($controller === 'master')
+		{
+			$path_account = $this->uri->segment(2);
+			if($path_account === 'account')
+			{
+				if(!$this->is_admin())
+				{
+					redirect('');
+				}
 			}
 		}
 	}

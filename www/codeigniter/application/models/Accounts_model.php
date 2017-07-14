@@ -13,22 +13,15 @@ class Accounts_model extends Base_model
 
 	public function get_type()
 	{
-		$login_id = $this->session->userdata('login_id');
+		$username = $this->session->userdata('username');
 		$this->db->select('*');
 		$this->db->from($this->table_name);
-		$this->db->where('login_id', $login_id);
+		$this->db->where('username', $username);
 		$this->db->where('deleted_at', NULL);
 		$query = $this->db->get();
 		$account = $query->first_row();
-		return ($account === NULL ? NULL : $account->type);
+		return ($account === NULL ? NULL : $account->auth);
 	}
-
-	public function update_last_login($id)
-	{
-		$this->db->where('id', $id);
-		return $this->db->update($this->table_name, ['last_login' => date('Y-m-d H:i:s')]);
-	}
-
 	public function update_password($id, $password)
 	{
 		$this->db->where('id', $id);
@@ -38,15 +31,15 @@ class Accounts_model extends Base_model
 	/**
      * ログインする
      *
-     * @param $login_id
+     * @param $username
      * @param $password
      */
-	public function login($login_id, $password)
+	public function login($username, $password)
 	{
 		$this->db->select('*');
 		$this->db->from($this->table_name);
 
-		$this->db->where('login_id', $login_id);
+		$this->db->where('username', $username);
 		$this->db->where('password', $password);
 		$this->db->where('deleted_at', NULL);
 
@@ -62,19 +55,14 @@ class Accounts_model extends Base_model
 		{
 			return FALSE;
 		}
-		$update_result = $this->update_last_login($result->result()[0]->id);
-		if (! $update_result)
-		{
-			return FALSE;
-		}
 		return $result->result()[0];
 	}
 
-	public function check_login_id_exists($login_id)
+	public function check_username_exists($username)
 	{
-		$this->db->select('id');
+		$this->db->select('account_id');
 		$this->db->from($this->table_name);
-		$this->db->where('login_id', $login_id);
+		$this->db->where('username', $username);
 		$query = $this->db->get();
 
 		return (count($query->result_array()) > 0);

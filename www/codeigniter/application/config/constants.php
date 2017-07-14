@@ -86,13 +86,13 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 // アカウント - 権限
-// 0:指定なし、1:管理者、2:受発注ユーザー、3:裁断ユーザー、4:縫製ユーザー、5:出荷ユーザー
+//0:指定なし、 10:裁断 20:縫製 30:出荷 80:事務 100:管理者
 defined('UNASSIGN_USER')		OR define('UNASSIGN_USER', '0');
-defined('ACCOUNT_ADMIN')		OR define('ACCOUNT_ADMIN', '1');
-defined('RECEIVE_ORDER_USER')	OR define('RECEIVE_ORDER_USER', '2');
-defined('CUTTING_USER')			OR define('CUTTING_USER', '3');
-defined('SEWING_USER')			OR define('SEWING_USER', '4');
-defined('SHIPPING_USER')		OR define('SHIPPING_USER', '5');
+defined('CUTTING_USER')			OR define('CUTTING_USER', '10');
+defined('SEWING_USER')			OR define('SEWING_USER', '20');
+defined('SHIPPING_USER')		OR define('SHIPPING_USER', '30');
+defined('CLERICAL_USER')		OR define('CLERICAL_USER', '80');
+defined('ACCOUNT_ADMIN')		OR define('ACCOUNT_ADMIN', '100');
 
 defined('FORM_MODE_UPDATE')		OR define('FORM_MODE_UPDATE', '1');
 defined('FORM_MODE_INSERT')		OR define('FORM_MODE_INSERT', '0');
