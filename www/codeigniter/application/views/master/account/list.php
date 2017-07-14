@@ -1,10 +1,28 @@
 <div class="container-fluid">
 	<h1>アカウント一覧</h1>
 	<div class="row">
-		<div class="col-sm-12">
-			<form class="" method="GET" action="">
+		<?php if ($this->session->flashdata('message')): ?>
+				<div class="alert alert-dismissible alert-info col-sm-3">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									<strong>メッセージ</strong>
+									<p><?= $this->session->flashdata('message') ?></p>
+								</div>
+			<?php $this->session->unmark_flash('message'); ?>
+			<?php endif; ?>
+			<?php if ($this->session->flashdata('error_message')): ?>
+				<div class="alert alert-dismissible alert-danger col-sm-3">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>エラー</strong>
+					<p><?= $this->session->flashdata('error_message') ?></p>
+				</div>
+				<?php $this->session->unmark_flash('error_message'); ?>
+			<?php endif; ?>
+	</div>
+	<div class="row">
+		<div>
+			<form class="" method="GET" action="<?= site_url('/master/account/search')?>">
 				<div class="form-group col-sm-2">
-					<input class="form-control" type="text" name="" placeholder="キーワード">
+					<input class="form-control" type="text" name="username" placeholder="キーワード" value="<?=(empty($keyword))? '':$keyword ?>">
 				</div>
 				<div class="form-group col-sm-1">
 					<button id="btn-search" class="btn btn-info btn-block" type="submit">検索</button>
@@ -14,91 +32,64 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-10">
-			<ul class="pagination">
-				<li><a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li><a href="">1</a></li>
-					<li  class="active"><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">4</a></li>
-					<li><a href="">5</a></li>
-					<li><a href="">6</a></li>
-					<li><a href="">7</a></li>
-					<li><a href="">8</a></li>
-					<li><a href="">9</a></li>
-					<li><a href="#" aria-label="Previous">
-					<span aria-hidden="true">&raquo;</span>
-					</a></li>
-			</ul>
+			<?php echo $pagination ?>
 		</div>
 		<div class="col-sm-2">
 			<a href="<?= site_url('/master/account/create') ?>" class="btn btn-success btn-block pagination">新規登録</a>
 		</div>
 	</div>
-	
 	<div class="row">
 		<div class="col-sm-12">
+		<?php if ($list_accounts): ?>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>ロクインID</th>
+						<th>ユーザー名</th>
 						<th>権限</th>
 						<th class="col-sm-2"></th>
 					</tr>
 				</thead>
 				<tbody>
+				<?php foreach ($list_accounts as $account): ?>
 					<tr>
-						<td>admin</td>
-						<td>システム管理者</td>
+						<td><?=$account['username']?></td>
+						<?php if ($account['auth'] === ACCOUNT_UNASSIGN): ?>
+							<td>指定なし</td>
+						<?php endif ?>
+						<?php if ($account['auth'] === ACCOUNT_CUTTING): ?>
+							<td>裁断ユーザー</td>
+						<?php endif ?>
+						<?php if ($account['auth'] === ACCOUNT_SEWING): ?>
+							<td>縫製ユーザー</td>
+						<?php endif ?>
+						<?php if ($account['auth'] === ACCOUNT_SHIPPING): ?>
+							<td>出荷ユーザー</td>
+						<?php endif ?>
+						<?php if ($account['auth'] === ACCOUNT_CLERICAL): ?>
+							<td>事務ユーザー</td>
+						<?php endif ?>
+						<?php if ($account['auth'] === ACCOUNT_ADMIN): ?>
+							<td>管理者ユーザー</td>
+						<?php endif ?>
 						<td>
-							<a href="<?= site_url('/master/account/edit/1') ?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>
+							<a href="<?= site_url('/master/account/edit')?>?id=<?=$account['account_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
+
+							<a href="#" id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
+
 						</td>
 					</tr>
-						<td>user1</td>
-						<td>一般ユーザー</td>
-						<td>
-							<a href="<?= site_url('/master/account/edit/1') ?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>					
-						</td>
-					</tr>
-					<tr>
-						<td>user2</td>
-						<td>一般ユーザー</td>
-						<td>
-							<a href="<?= site_url('/master/account/edit/1') ?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>
-						</td>
-					</tr>
+				<?php endforeach ?>
 				</tbody>
 			</table>
+		<?php endif ?>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<ul class="pagination">
-				<li><a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li><a href="">1</a></li>
-					<li  class="active"><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">4</a></li>
-					<li><a href="">5</a></li>
-					<li><a href="">6</a></li>
-					<li><a href="">7</a></li>
-					<li><a href="">8</a></li>
-					<li><a href="">9</a></li>
-					<li><a href="#" aria-label="Previous">
-					<span aria-hidden="true">&raquo;</span>
-					</a></li>
-			</ul>
+			<?php echo $pagination ?>
 		</div>
 	</div>
 </div>
-
-
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
 	<div class="modal-dialog" role="document">
@@ -111,7 +102,7 @@
 				<!-- 一度削除したアカウントは元に戻すことはできません。 -->
 			</div>
 			<form class="form-horizontal" method="post" action="<?= site_url('/master/account/delete') ?>">
-				<input type="hidden" name="id" value="">
+				<input id="deleted_id" type="hidden" name="id" value="">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
 					<button type="submit" class="btn btn-danger">削除する</button>
@@ -120,3 +111,4 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

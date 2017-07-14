@@ -32,18 +32,26 @@ class MY_Controller extends CI_Controller
 				$this->account_type = $account_type;
 			}
 		}
-		if($controller === 'master')
+	}
+
+	protected function force_admin()
+	{
+		if(!$this->is_admin())
 		{
-			$path_account = $this->uri->segment(2);
-			if($path_account === 'account')
-			{
-				if(!$this->is_admin())
-				{
-					redirect('');
-				}
-			}
+			redirect('/');
 		}
 	}
+
+	protected function check_expired_account()
+	{
+		$id = $this->session->userdata('account_id');
+		$userinfo = $this->accounts_model->get_account_by_id($id);
+		if(!$userinfo)
+		{
+			redirect('auth/logout');
+			return ;
+		}
+    }  
 
 	protected function is_admin()
 	{
@@ -58,12 +66,13 @@ class MY_Controller extends CI_Controller
 		]);
 	}
 	
-	protected function load_pagination($url, $count)
+	protected function load_pagination($url, $count,$per_page)
 	{
 		$this->load->library('pagination');
 		$this->pagination->initialize([
 			'base_url' 		=> $url,
-			'total_rows' 	=> $count
+			'total_rows' 	=> $count,
+			'per_page'      => $per_page
 		]);
 	}
 }

@@ -6,29 +6,31 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-offset-3 ">
-			<?php 
-				if($this->session->flashdata('error_message')):
-			 ?>
+		<div class="col-sm-offset-3 col-sm-6">
+			<?php if($this->session->flashdata('error_message')): ?>
 			<div class="alert alert-dismissable alert-danger">
-				
 				<h4>エラー</h4>
 				<p>
 					<?= $this->session->flashdata('error_message')?>	
 				</p>
 				<?php $this->session->unmark_flash('error_message') ?>
-
 			</div>
-
 			<?php endif; ?>
-			<form class="form-horizontal" method="POST" action="<?=site_url('/master/account/insert') ?>">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-offset-3 ">
+			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
+				<div>
+					<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
+				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="login_id" class="col-sm-offset-6 control-label">ユーザーID</label>
+							<label for="login_id" class="col-sm-offset-6 control-label">ユーザー名</label>
 					</div>
 					<div class="col-sm-3">
-						<input class="form-account form-control" type="text" name="" id="login_id" placeholder="英数字記号">
-					</div>	
+						<input class="form-account form-control" type="text" name="username" id="username" placeholder="英数字記号" required="true" <?=(empty($account['account_id']))? '': 'readonly';?> value="<?= (empty($account['username'])) ? '' : $account['username'] ?>" >
+					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
@@ -36,23 +38,32 @@
 					</div>
 					<div class="col-sm-4">
 						<div class="input-group">
-						  <input class="form-account form-control " type="text" name="" id="password" placeholder="英数字記号">
+						  <input class="form-account form-control " type="text" name="password" id="password" placeholder="英数字記号" <?=(empty($account['account_id']))? 'required': '' ;?> >
 						  <span class="btn input-group-addon form-account" id="generate-password" data-url="<?= site_url('/api/generate_password') ?>">ランダム</span>
 						</div>
 					</div>	
 				</div>
 				<div class="form-group">
-					<div class="col-sm-3">
-						<label for="" class="col-sm-offset-6 control-label">権限</label>
+					<div class="col-sm-3 col-x">
+						<label for="" class="col-sm-offset-6  control-label">権限</label>
 					</div>
 					<div class="col-sm-2">
-						<select class="form-control">
-							<option>指定なし</option>
-							<option selected>管理者ユーザー</option>
-							<option>受発注ユーザー</option>
-							<option>裁断ユーザー</option>
-							<option>縫製ユーザー</option>
-							<option>出荷ユーザー</option>
+						<select class="form-control" name="auth">
+						<?php if (($account['auth']) === null): ?>
+							<option value="<?=ACCOUNT_UNASSIGN?>">指定なし</option>
+							<option value="<?=ACCOUNT_CUTTING?>" selected>裁断ユーザー</option>
+							<option value="<?=ACCOUNT_SEWING?>">縫製ユーザー</option>
+							<option value="<?=ACCOUNT_SHIPPING?>">出荷ユーザー</option>
+							<option value="<?=ACCOUNT_CLERICAL?>">受発注ユーザー</option>
+							<option value="<?=ACCOUNT_ADMIN?>">管理者ユーザー</option>
+						<?php else: ?>
+							<option value="<?=ACCOUNT_UNASSIGN?>" <?=($account['auth'] == ACCOUNT_UNASSIGN )? 'selected': '' ;?> >指定なし</option>
+							<option value="<?=ACCOUNT_CUTTING?>" <?=($account['auth'] === ACCOUNT_CUTTING )? 'selected': '' ;?> >裁断ユーザー</option>
+							<option value="<?=ACCOUNT_SEWING?>" <?=($account['auth'] === ACCOUNT_SEWING )? 'selected': '' ;?> >縫製ユーザー</option>
+							<option value="<?=ACCOUNT_SHIPPING?>" <?=($account['auth'] === ACCOUNT_SHIPPING )? 'selected': '' ;?> >出荷ユーザー</option>
+							<option value="<?=ACCOUNT_CLERICAL?>" <?=($account['auth'] === ACCOUNT_CLERICAL )? 'selected': '' ;?> >受発注ユーザー</option>
+							<option value="<?=ACCOUNT_ADMIN?>"" <?=($account['auth'] === ACCOUNT_ADMIN )? 'selected': '' ;?> >管理者ユーザー</option>
+						<?php endif ?>
 						</select>
 					</div>
 				</div>

@@ -6,8 +6,13 @@ $(document).ready(function(){
 			isGettingPassword = true;
 			$.getJSON($(this).data('url'), function(response){
 				$('#password').val(response.password);
-				isGettingPassword = false;
+				isGettsingPassword = false;
 			});		
 		}
+	});
+	$('.delete-account').each(function(){
+		$(this).click(function(event){
+			$('#deleted_id').val(event.target.id);
+		});
 	});
 });
