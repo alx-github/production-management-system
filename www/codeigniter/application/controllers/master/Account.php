@@ -12,14 +12,14 @@ class Account extends MY_Controller
 
 	public function index()
 	{
-		$keyword = null;
-		if($this->input->get('keyword'))
-		{
-			$keyword =  $this->input->get('keyword');
-		}
+		$keyword =  $this->input->get('keyword');
 		$count_by_keyword = $this->accounts_model->count_by_keyword($keyword);
 		$this->load_pagination('/master/account?keyword='.$keyword,$count_by_keyword);
-		$start = $this->pagination->get_last_page_start($this->input->get('start'),$count_by_keyword);
+		$start = $this->input->get('start');
+		if($start > $this->pagination->get_last_page_start())
+		{
+			$start = $this->pagination->get_last_page_start();	
+		}
 		$this->data['list_accounts'] = $this->accounts_model->get_list($this->pagination->per_page, $start, $keyword);
 		$this->data['keyword'] = $keyword;
 		$this->render_list_account();
@@ -34,7 +34,7 @@ class Account extends MY_Controller
 	public function insert()
 	{
 		$this->data['account'] =  $this->input->post();
-		if($this->validate_form(null) !== TRUE)
+		if($this->validate_form(NULL) !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -132,9 +132,9 @@ class Account extends MY_Controller
 
 	private function create_empty_account()
 	{
-		return ['account_id'=> null,
-				'username'=> null,
-				'auth'=> null
+		return ['account_id'=> NULL,
+				'username'=> NULL,
+				'auth'=> NULL
 				];
 	}
 

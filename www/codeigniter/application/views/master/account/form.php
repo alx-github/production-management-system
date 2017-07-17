@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<?php if($this->session->flashdata('error_message')): ?>
+			<?php if($this->session->flashdata('error_message')){ ?>
 			<div class="alert alert-dismissable alert-danger">
 				<h4>エラー</h4>
 				<p>
@@ -15,7 +15,7 @@
 				</p>
 				<?php $this->session->unmark_flash('error_message') ?>
 			</div>
-			<?php endif; ?>
+			<?php }?>
 		</div>
 	</div>
 	<div class="row">
@@ -49,9 +49,9 @@
 					</div>
 					<div class="col-sm-2">
 						<select class="form-control" name="auth">
-							<?php foreach ($this->config->item('account_auth') as $key => $value):?>
+							<?php foreach ($this->config->item('account_auth') as $key => $value){?>
 								<option value="<?=$key?>" <?=($account['auth'] == $key )? 'selected': '' ;?> > <?= $value?></option>
-							<?php endforeach;?>
+							<?php }?>
 						</select>
 					</div>
 				</div>

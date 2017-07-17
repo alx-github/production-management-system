@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<h1>アカウント一覧</h1>
 	<div class="row">
-		<?php if ($this->session->flashdata('message')): ?>
+		<?php if ($this->session->flashdata('message')) { ?>
 			<div class="col-sm-12">
 				<div class="alert alert-dismissible alert-info">
 					<button type="button" class="close" data-dismiss="alert">×</button>
@@ -10,8 +10,8 @@
 				</div>
 			</div>
 			<?php $this->session->unmark_flash('message'); ?>
-		<?php endif; ?>
-		<?php if ($this->session->flashdata('error_message')): ?>
+		<?php } ?>
+		<?php if ($this->session->flashdata('error_message')){ ?>
 			<div class="col-sm-12">	
 				<div class="alert alert-dismissible alert-danger">
 					<button type="button" class="close" data-dismiss="alert">×</button>
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 			<?php $this->session->unmark_flash('error_message'); ?>
-		<?php endif; ?>
+		<?php } ?>
 	</div>
 	<div class="row">
 		<div>
@@ -44,7 +44,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-		<?php if ($list_accounts): ?>
+		<?php if ($list_accounts){  ?>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -54,7 +54,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<?php foreach ($list_accounts as $account): ?>
+				<?php foreach ($list_accounts as $account){ ?>
 					<tr>
 						<td><?=$account['username']?></td>
 							<td><?= $this->config->item('account_auth')[$account['auth']] ?></td>
@@ -63,10 +63,10 @@
 							<a href="#" id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
 						</td>
 					</tr>
-				<?php endforeach ?>
+				<?php } ?>
 				</tbody>
 			</table>
-		<?php endif ?>
+		<?php }?>
 		</div>
 	</div>
 	<div class="row">

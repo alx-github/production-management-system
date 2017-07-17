@@ -22,7 +22,7 @@ class Base_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from($this->table_name);
 		$this->db->where($this->primary_key_name, $id);
-		$this->db->where('deleted_at',null);
+		$this->db->where('deleted_at',NULL);
 		$query = $this->db->get();
 		return $query->result_array()[0];
 	}

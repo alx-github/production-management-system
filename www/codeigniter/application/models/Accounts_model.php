@@ -65,7 +65,7 @@ class Accounts_model extends Base_model
 
 	public function count_by_keyword($keyword = NULL)
 	{
-		$this->db->where('deleted_at',null);
+		$this->db->where('deleted_at',NULL);
 		$this->db->like('username',$keyword);
 		$this->db->from($this->table_name);
 		return $this->db->count_all_results();
@@ -74,7 +74,7 @@ class Accounts_model extends Base_model
 	public function get_list($limit,$start,$keyword = NULL)
 	{
 		$this->db->limit($limit,$start);
-		$this->db->where('deleted_at',null);
+		$this->db->where('deleted_at',NULL);
 		$this->db->like('username',$keyword);
 		$result = $this->db->get($this->table_name);
 		if ( ! $result)

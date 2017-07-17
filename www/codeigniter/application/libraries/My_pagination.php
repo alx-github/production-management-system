@@ -49,7 +49,7 @@ class My_Pagination extends CI_Pagination {
 	 *
 	 * @var	int
 	 */
-	public $per_page = 10;
+	public $per_page = 2;
 
 	/**
 	 * Current page
@@ -268,24 +268,9 @@ class My_Pagination extends CI_Pagination {
 	 */
 	protected $data_page_attr = 'data-ci-pagination-page';
 
-	public function get_last_page_start($input, $count_by_keyword)
+	public function get_last_page_start()
 	{
-		$start = $input;
-		if( $start > $count_by_keyword)
-		{
-			if($count_by_keyword < $this->per_page)
-			{
-				$start = 0;
-			}
-			else 
-			{
-				$start = $count_by_keyword - $this->per_page;
-			}
-		}
-		if( ($start % $this->per_page) !== 0 )
-		{
-			$start -=($start % $this->per_page);
-		}
-		return $start;
+		$remainder = $this->total_rows % $this->per_page;
+		return $this->total_rows - $remainder;
 	}
 }
