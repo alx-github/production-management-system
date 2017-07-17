@@ -49,7 +49,7 @@ class My_Pagination extends CI_Pagination {
 	 *
 	 * @var	int
 	 */
-	public $per_page = 10;
+	public $per_page = 1;
 
 	/**
 	 * Current page
@@ -286,5 +286,6 @@ class My_Pagination extends CI_Pagination {
 		{
 			$start -=($start % $this->per_page);
 		}
+		return $start;
 	}
 }

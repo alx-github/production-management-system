@@ -50,7 +50,7 @@
 					<div class="col-sm-2">
 						<select class="form-control" name="auth">
 							<?php foreach ($this->config->item('account_auth') as $key => $value):?>
-								<option value="<?=$key?>" <?=($account['auth'] == $key )?> 'selected': '' ;?><?= $value?></option>
+								<option value="<?=$key?>" <?=($account['auth'] == $key )? 'selected': '' ;?> > <?= $value?></option>
 							<?php endforeach;?>
 						</select>
 					</div>
