@@ -5,6 +5,7 @@ class Base_model extends CI_Model
 {
 
 	protected $table_name = '';
+	protected $primary_key_name = '';
 
 	public function __construct()
 	{
@@ -20,9 +21,10 @@ class Base_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->from($this->table_name);
-		$this->db->where('id', $id);
+		$this->db->where($this->primary_key_name, $id);
+		$this->db->where('deleted_at',null);
 		$query = $this->db->get();
-		return $query->first_row();
+		return $query->result_array()[0];
 	}
 	
 	public function get_all($limit = NULL, $offset = NULL, $has_delete_column = TRUE)
@@ -41,7 +43,6 @@ class Base_model extends CI_Model
 		{
 			$this->db->offset($offset);
 		}
-
 		$result = $this->db->get();
 		return $result->result_array();
 	}
@@ -55,6 +56,7 @@ class Base_model extends CI_Model
 	 */
 	public function insert_data($data)
 	{
+		$data['created_at'] = date('Y-m-d H:i:s');
 		$query = $this->db->insert_string($this->table_name, $data);
 		$result = $this->db->query($query);
 		if ( ! $result)
@@ -70,30 +72,20 @@ class Base_model extends CI_Model
 	 * @param $id
 	 * @param $update_data
 	 */
-	public function update_data($id_column_name = "id",$id, $update_data)
+	public function update_data($id, $update_data)
 	{
-		$this->db->trans_start();
-		$this->db->where($id_column_name, $id);
-		$this->db->update($this->table_name, $update_data);
-		
-		$this->db->trans_complete();
-		
-		return $this->db->trans_status();
+		$update_data['updated_at'] = date('Y-m-d H:i:s');
+		$this->db->where($this->primary_key_name, $id);
+		return $this->db->update($this->table_name, $update_data);
 	}
 
 	/**
 	 *
 	 * @param $id
 	 */
-	public function delete($id_column_name, $id)
+	public function delete($id)
 	{
-		$this->db->trans_start();
-		
-		$this->db->where($id_column_name, $id);
-		$this->db->update($this->table_name, ['deleted_at' => date('Y-m-d H:i:s')]);
-
-		$this->db->trans_complete();
-
-		return $this->db->trans_status();
+		$this->db->where($this->primary_key_name, $id);
+		return $this->db->update($this->table_name, ['deleted_at' => date('Y-m-d H:i:s')]);
 	}
 }

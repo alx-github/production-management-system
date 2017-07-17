@@ -46,7 +46,7 @@ class MY_Controller extends CI_Controller
 	protected function check_expired_account()
 	{
 		$id = $this->session->userdata('account_id');
-		$userinfo = $this->accounts_model->get_account_by_id($id);
+		$userinfo = $this->accounts_model->get_by_id($id);
 		if(!$userinfo)
 		{
 			redirect('auth/logout');

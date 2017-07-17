@@ -40,7 +40,7 @@ class Account extends MY_Controller
 			return;
 		}
 		$this->data['account']['password'] = hash_password($this->input->post('password'));
-		$new_account_id = $this->accounts_model->insert_account($this->data['account']);
+		$new_account_id = $this->accounts_model->insert_data($this->data['account']);
 		if($new_account_id)
 		{
 			$this->session->set_flashdata('message', "アカウントを作成しました");
@@ -59,7 +59,7 @@ class Account extends MY_Controller
 		{
 			redirect('/master/account');
 		}
-		$this->data['account'] = $this->accounts_model->get_account_by_id($account_id);
+		$this->data['account'] = $this->accounts_model->get_by_id($account_id);
 		if($this->data['account'])
 		{
 			$this->render_form_account();
@@ -82,7 +82,7 @@ class Account extends MY_Controller
 		{
 			$this->data['account']['password'] = hash_password($this->input->post('password'));
 		}
-		$update_result = $this->accounts_model->update_account($this->data['account']);
+		$update_result = $this->accounts_model->update_data($this->data['account']['account_id'],$this->data['account']);
 		if($update_result)
 		{
 			$this->session->set_flashdata('message', "アカウント情報を更新しました");
@@ -101,7 +101,7 @@ class Account extends MY_Controller
 		{
 			redirect('/master/account');
 		}
-		$result = $this->accounts_model->delete_account($delete_id);
+		$result = $this->accounts_model->delete($delete_id);
 		if($result)
 		{
 			$this->session->set_flashdata('message','ユーザーを削除しました');
@@ -132,7 +132,7 @@ class Account extends MY_Controller
 
 	private function create_empty_account()
 	{
-		return ['account_id'=>null,
+		return ['account_id'=> null,
 				'username'=> null,
 				'auth'=> null
 				];

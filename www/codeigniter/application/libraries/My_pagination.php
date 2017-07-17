@@ -49,7 +49,7 @@ class My_Pagination extends CI_Pagination {
 	 *
 	 * @var	int
 	 */
-	public $per_page = 1;
+	public $per_page = 10;
 
 	/**
 	 * Current page
