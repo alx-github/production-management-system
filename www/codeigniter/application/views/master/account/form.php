@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-offset-3 col-sm-12">
+		<div class="col-sm-12">
 			<?php if($this->session->flashdata('error_message')): ?>
 			<div class="alert alert-dismissable alert-danger">
 				<h4>エラー</h4>
@@ -19,8 +19,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-offset-3 ">
-			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
+		<div class="col-sm-offset-3">
+			<form class="form-horizontal col-sm-12" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
 				<div>
 					<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
 				</div>
@@ -44,14 +44,14 @@
 					</div>	
 				</div>
 				<div class="form-group">
-					<div class="col-sm-3 col-x">
+					<div class="col-sm-3">
 						<label for="" class="col-sm-offset-6  control-label">権限</label>
 					</div>
 					<div class="col-sm-2">
 						<select class="form-control" name="auth">
 						<?php if (($account['auth']) === null): ?>
-							<option value="<?=ACCOUNT_UNASSIGN?>">指定なし</option>
-							<option value="<?=ACCOUNT_CUTTING?>" selected>裁断ユーザー</option>
+							<option value="<?=ACCOUNT_UNASSIGN?> selected>">指定なし</option>
+							<option value="<?=ACCOUNT_CUTTING?>"裁断ユーザー</option>
 							<option value="<?=ACCOUNT_SEWING?>">縫製ユーザー</option>
 							<option value="<?=ACCOUNT_SHIPPING?>">出荷ユーザー</option>
 							<option value="<?=ACCOUNT_CLERICAL?>">受発注ユーザー</option>
@@ -65,11 +65,6 @@
 							<option value="<?=ACCOUNT_ADMIN?>" <?=($account['auth'] === ACCOUNT_ADMIN )? 'selected': '' ;?> >管理者ユーザー</option>
 						<?php endif ?>
 						</select>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-3">
-						<br/>
 					</div>
 				</div>
 				<div class="form-group">
