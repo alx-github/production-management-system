@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Base_model extends CI_Model
 {
 
-	private $table_name = '';
+	protected $table_name = '';
 
 	public function __construct()
 	{
@@ -70,11 +70,10 @@ class Base_model extends CI_Model
 	 * @param $id
 	 * @param $update_data
 	 */
-	public function update_data($id, $update_data)
+	public function update_data($id_column_name = "id",$id, $update_data)
 	{
 		$this->db->trans_start();
-		
-		$this->db->where('id', $id);
+		$this->db->where($id_column_name, $id);
 		$this->db->update($this->table_name, $update_data);
 		
 		$this->db->trans_complete();
@@ -86,11 +85,11 @@ class Base_model extends CI_Model
 	 *
 	 * @param $id
 	 */
-	public function delete($id)
+	public function delete($id_column_name, $id)
 	{
 		$this->db->trans_start();
 		
-		$this->db->where('id', $id);
+		$this->db->where($id_column_name, $id);
 		$this->db->update($this->table_name, ['deleted_at' => date('Y-m-d H:i:s')]);
 
 		$this->db->trans_complete();

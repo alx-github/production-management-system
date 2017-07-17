@@ -3,13 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Account extends MY_Controller 
 {	
-	protected $per_page = 2;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->force_admin();
-		$this->check_expired_account();
 	}
 
 	public function index()
@@ -20,30 +18,9 @@ class Account extends MY_Controller
 			$keyword =  $this->input->get('keyword');
 		}
 		$count_by_keyword = $this->accounts_model->count_by_keyword($keyword);
-		if($keyword == "")
-		{
-				$this->load_pagination('/master/account',$count_by_keyword, $this->per_page);
-		}
-		$this->load_pagination('/master/account?keyword='.$keyword,$count_by_keyword, $this->per_page);
-		$page_links = $this->pagination->create_links();
-		$this->data['pagination'] = $page_links;
-		$start = $this->input->get('start');
-		if( $start > $count_by_keyword)
-		{
-			if($count_by_keyword < $this->per_page)
-			{
-				$start = 0;
-			}
-			else 
-			{
-				$start = $count_by_keyword - $this->per_page;
-			}
-		}
-		if( ($start % $this->per_page) !== 0 )
-		{
-			$start -=($start % $this->per_page);
-		}
-		$this->data['list_accounts'] = $this->accounts_model->get_list($this->per_page, $start,$keyword);
+		$this->load_pagination('/master/account?keyword='.$keyword,$count_by_keyword);
+		$start = $this->pagination->get_last_page_start($this->input->get('start'),$count_by_keyword);
+		$this->data['list_accounts'] = $this->accounts_model->get_list($this->pagination->per_page, $start, $keyword);
 		$this->data['keyword'] = $keyword;
 		$this->render_list_account();
 	}
@@ -56,8 +33,7 @@ class Account extends MY_Controller
 
 	public function insert()
 	{
-		$form = $this->input->post();
-		$this->data['account'] = $form;
+		$this->data['account'] =  $this->input->post();
 		if($this->validate_form(null) !== TRUE)
 		{
 			$this->render_form_account();
@@ -67,11 +43,11 @@ class Account extends MY_Controller
 		$new_account_id = $this->accounts_model->insert_account($this->data['account']);
 		if($new_account_id)
 		{
-			$this->session->set_flashdata('message', "アカウント情報を更新しました");
+			$this->session->set_flashdata('message', "アカウントを作成しました");
 		}
 		else
 		{
-			$this->session->set_flashdata('error_message', 'アカウント情報を更新することができません');
+			$this->session->set_flashdata('error_message', 'アカウントを作成することができません');
 		}
 		redirect('master/account');
 	}
@@ -83,9 +59,9 @@ class Account extends MY_Controller
 		{
 			redirect('/master/account');
 		}
-		if($this->accounts_model->get_account_by_id($account_id))
+		$this->data['account'] = $this->accounts_model->get_account_by_id($account_id);
+		if($this->data['account'])
 		{
-			$this->data['account'] = $this->accounts_model->get_account_by_id($account_id);
 			$this->render_form_account();
 		}
 		else
@@ -96,9 +72,8 @@ class Account extends MY_Controller
 
 	public function update()
 	{
-		$form = $this->input->post();
-		$this->data['account'] = $form;
-		if($this->validate_form($this->data['account']['account_id']) !== TRUE)
+		$this->data['account'] = $this->create_updated_data($this->input->post());
+		if($this->validate_form($this->data['account']) !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -107,12 +82,6 @@ class Account extends MY_Controller
 		{
 			$this->data['account']['password'] = hash_password($this->input->post('password'));
 		}
-		else
-		{
-			$old_info = $this->accounts_model->get_account_by_id($this->data['account']['account_id']);
-			$this->data['account']['password'] = $old_info['password'];
-		}
-
 		$update_result = $this->accounts_model->update_account($this->data['account']);
 		if($update_result)
 		{
@@ -165,8 +134,14 @@ class Account extends MY_Controller
 	{
 		return ['account_id'=>null,
 				'username'=> null,
-				'password'=> null,
 				'auth'=> null
+				];
+	}
+
+	private function create_updated_data($input)
+	{
+		return ['account_id'=> $input['account_id'],
+				'auth'      => $input['auth']
 				];
 	}
 
@@ -187,5 +162,14 @@ class Account extends MY_Controller
             return false;
         }
         return true;
+	}
+
+	public function username_check($str)
+	{
+		if($this->accounts_model->check_username_exists($str))
+		{
+			return false;
+		}
+		return true;
 	}
 }

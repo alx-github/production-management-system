@@ -68,14 +68,7 @@ class Accounts_model extends Base_model
 		return (count($query->result_array()) > 0);
 	}
 
-	public function count_all()
-	{
-		$this->db->where('deleted_at',null);
-		$this->db->from($this->table_name);
-		return $this->db->count_all_results();
-	}
-
-	public function count_by_keyword($keyword)
+	public function count_by_keyword($keyword = NULL)
 	{
 		$this->db->where('deleted_at',null);
 		$this->db->like('username',$keyword);
@@ -83,7 +76,7 @@ class Accounts_model extends Base_model
 		return $this->db->count_all_results();
 	}
 
-	public function get_list($limit,$start,$keyword)
+	public function get_list($limit,$start,$keyword = NULL)
 	{
 		$this->db->limit($limit,$start);
 		$this->db->where('deleted_at',null);
@@ -124,31 +117,17 @@ class Accounts_model extends Base_model
 	public function insert_account($account)
 	{
 		$account['created_at'] = date('Y-m-d H:i:s');
-		$query = $this->db->insert_string($this->table_name,$account);
-		$result = $this->db->query($query);
-		if ( ! $result)
-		{
-			throw new Exception($this->db->error()['message']);
-		}
-		return $this->db->insert_id();
+		return $this->insert_data($account);
 	}
 
 	public function update_account($account)
 	{
 		$account['updated_at'] = date('Y-m-d H:i:s');
-		$this->db->trans_start();
-		$this->db->where('account_id', $account['account_id']);
-		$this->db->update($this->table_name, $account);
-		$this->db->trans_complete();
-		return $this->db->trans_status();
+		return $this->update_data('account_id',$account['account_id'],$account);
 	}
 
 	public function delete_account($delete_id)
 	{
-		$this->db->trans_start();
-		$this->db->where('account_id', $delete_id);
-		$this->db->update($this->table_name, ['deleted_at'=>date('Y-m-d H:i:s')]);
-		$this->db->trans_complete();
-		return $this->db->trans_status();
+		return $this->delete('account_id',$delete_id);
 	}
 }

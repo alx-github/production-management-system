@@ -49,21 +49,9 @@
 					</div>
 					<div class="col-sm-2">
 						<select class="form-control" name="auth">
-						<?php if (($account['auth']) === null): ?>
-							<option value="<?=ACCOUNT_UNASSIGN?> selected>">指定なし</option>
-							<option value="<?=ACCOUNT_CUTTING?>">裁断ユーザー</option>
-							<option value="<?=ACCOUNT_SEWING?>">縫製ユーザー</option>
-							<option value="<?=ACCOUNT_SHIPPING?>">出荷ユーザー</option>
-							<option value="<?=ACCOUNT_CLERICAL?>">受発注ユーザー</option>
-							<option value="<?=ACCOUNT_ADMIN?>">管理者ユーザー</option>
-						<?php else: ?>
-							<option value="<?=ACCOUNT_UNASSIGN?>" <?=($account['auth'] == ACCOUNT_UNASSIGN )? 'selected': '' ;?> >指定なし</option>
-							<option value="<?=ACCOUNT_CUTTING?>" <?=($account['auth'] === ACCOUNT_CUTTING )? 'selected': '' ;?> >裁断ユーザー</option>
-							<option value="<?=ACCOUNT_SEWING?>" <?=($account['auth'] === ACCOUNT_SEWING )? 'selected': '' ;?> >縫製ユーザー</option>
-							<option value="<?=ACCOUNT_SHIPPING?>" <?=($account['auth'] === ACCOUNT_SHIPPING )? 'selected': '' ;?> >出荷ユーザー</option>
-							<option value="<?=ACCOUNT_CLERICAL?>" <?=($account['auth'] === ACCOUNT_CLERICAL )? 'selected': '' ;?> >受発注ユーザー</option>
-							<option value="<?=ACCOUNT_ADMIN?>" <?=($account['auth'] === ACCOUNT_ADMIN )? 'selected': '' ;?> >管理者ユーザー</option>
-						<?php endif ?>
+							<?php foreach ($this->config->item('account_auth') as $key => $value):?>
+								<option value="<?=$key?>" <?=($account['auth'] == $key )?> 'selected': '' ;?><?= $value?></option>
+							<?php endforeach;?>
 						</select>
 					</div>
 				</div>

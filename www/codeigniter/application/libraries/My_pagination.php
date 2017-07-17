@@ -267,4 +267,24 @@ class My_Pagination extends CI_Pagination {
 	 * @var	string
 	 */
 	protected $data_page_attr = 'data-ci-pagination-page';
+
+	public function get_last_page_start($input, $count_by_keyword)
+	{
+		$start = $input;
+		if( $start > $count_by_keyword)
+		{
+			if($count_by_keyword < $this->per_page)
+			{
+				$start = 0;
+			}
+			else 
+			{
+				$start = $count_by_keyword - $this->per_page;
+			}
+		}
+		if( ($start % $this->per_page) !== 0 )
+		{
+			$start -=($start % $this->per_page);
+		}
+	}
 }

@@ -30,6 +30,7 @@ class MY_Controller extends CI_Controller
 					redirect('/auth/logout', 'refresh');
 				}
 				$this->account_type = $account_type;
+				$this->check_expired_account();
 			}
 		}
 	}
@@ -66,22 +67,12 @@ class MY_Controller extends CI_Controller
 		]);
 	}
 	
-	protected function load_pagination($url, $count,$per_page)
+	protected function load_pagination($url, $count)
 	{
 		$this->load->library('pagination');
 		$this->pagination->initialize([
 			'base_url' 		=> $url,
-			'total_rows' 	=> $count,
-			'per_page'      => $per_page
+			'total_rows' 	=> $count
 		]);
-	}
-
-	public function username_check($str)
-	{
-		if($this->accounts_model->check_username_exists($str))
-		{
-			return false;
-		}
-		return true;
 	}
 }

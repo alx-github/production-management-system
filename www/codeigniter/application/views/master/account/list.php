@@ -10,15 +10,17 @@
 				</div>
 			</div>
 			<?php $this->session->unmark_flash('message'); ?>
-			<?php endif; ?>
-			<?php if ($this->session->flashdata('error_message')): ?>
-				<div class="alert alert-dismissible alert-danger col-sm-3">
+		<?php endif; ?>
+		<?php if ($this->session->flashdata('error_message')): ?>
+			<div class="col-sm-12">	
+				<div class="alert alert-dismissible alert-danger">
 					<button type="button" class="close" data-dismiss="alert">×</button>
 					<strong>エラー</strong>
 					<p><?= $this->session->flashdata('error_message') ?></p>
 				</div>
-				<?php $this->session->unmark_flash('error_message'); ?>
-			<?php endif; ?>
+			</div>
+			<?php $this->session->unmark_flash('error_message'); ?>
+		<?php endif; ?>
 	</div>
 	<div class="row">
 		<div>
@@ -34,7 +36,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-10">
-			<?php echo $pagination ?>
+			<?php echo $this->pagination->create_links() ?>
 		</div>
 		<div class="col-sm-2">
 			<a href="<?= site_url('/master/account/create') ?>" class="btn btn-success btn-block pagination">新規登録</a>
@@ -55,29 +57,10 @@
 				<?php foreach ($list_accounts as $account): ?>
 					<tr>
 						<td><?=$account['username']?></td>
-						<?php if ($account['auth'] === ACCOUNT_UNASSIGN): ?>
-							<td>指定なし</td>
-						<?php endif ?>
-						<?php if ($account['auth'] === ACCOUNT_CUTTING): ?>
-							<td>裁断ユーザー</td>
-						<?php endif ?>
-						<?php if ($account['auth'] === ACCOUNT_SEWING): ?>
-							<td>縫製ユーザー</td>
-						<?php endif ?>
-						<?php if ($account['auth'] === ACCOUNT_SHIPPING): ?>
-							<td>出荷ユーザー</td>
-						<?php endif ?>
-						<?php if ($account['auth'] === ACCOUNT_CLERICAL): ?>
-							<td>事務ユーザー</td>
-						<?php endif ?>
-						<?php if ($account['auth'] === ACCOUNT_ADMIN): ?>
-							<td>管理者ユーザー</td>
-						<?php endif ?>
+							<td><?= $this->config->item('account_auth')[$account['auth']] ?></td>
 						<td>
 							<a href="<?= site_url('/master/account/edit')?>?id=<?=$account['account_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-
 							<a href="#" id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
-
 						</td>
 					</tr>
 				<?php endforeach ?>
@@ -88,7 +71,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<?php echo $pagination ?>
+			<?php echo $this->pagination->create_links() ?>
 		</div>
 	</div>
 </div>
