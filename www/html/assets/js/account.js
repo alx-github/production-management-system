@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	$('.delete-account').each(function(){
+		$(this).click(function(event){
+			$('#deleted_id').val(event.target.id);
+		});
+	});
 	var isGettingPassword = false;
 	$('#generate-password').click(function(e){
 		e.preventDefault();		
@@ -6,13 +11,8 @@ $(document).ready(function(){
 			isGettingPassword = true;
 			$.getJSON($(this).data('url'), function(response){
 				$('#password').val(response.password);
-				isGettsingPassword = false;
+				isGettingPassword = false;
 			});		
 		}
-	});
-	$('.delete-account').each(function(){
-		$(this).click(function(event){
-			$('#deleted_id').val(event.target.id);
-		});
 	});
 });

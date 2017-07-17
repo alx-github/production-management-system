@@ -135,6 +135,7 @@ class Accounts_model extends Base_model
 
 	public function update_account($account)
 	{
+		$account['updated_at'] = date('Y-m-d H:i:s');
 		$this->db->trans_start();
 		$this->db->where('account_id', $account['account_id']);
 		$this->db->update($this->table_name, $account);

@@ -51,7 +51,7 @@ class MY_Controller extends CI_Controller
 			redirect('auth/logout');
 			return ;
 		}
-    }  
+    }
 
 	protected function is_admin()
 	{
@@ -74,5 +74,14 @@ class MY_Controller extends CI_Controller
 			'total_rows' 	=> $count,
 			'per_page'      => $per_page
 		]);
+	}
+
+	public function username_check($str)
+	{
+		if($this->accounts_model->check_username_exists($str))
+		{
+			return false;
+		}
+		return true;
 	}
 }

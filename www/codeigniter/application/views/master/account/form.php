@@ -6,7 +6,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-offset-3 col-sm-6">
+		<div class="col-sm-offset-3 col-sm-12">
 			<?php if($this->session->flashdata('error_message')): ?>
 			<div class="alert alert-dismissable alert-danger">
 				<h4>エラー</h4>
@@ -29,7 +29,7 @@
 							<label for="login_id" class="col-sm-offset-6 control-label">ユーザー名</label>
 					</div>
 					<div class="col-sm-3">
-						<input class="form-account form-control" type="text" name="username" id="username" placeholder="英数字記号" required="true" <?=(empty($account['account_id']))? '': 'readonly';?> value="<?= (empty($account['username'])) ? '' : $account['username'] ?>" >
+						<input class="form-account form-control" type="text" name="username" id="username" placeholder="英数字記号" required="true" <?=(empty($account['account_id']))? '': 'disabled';?> value="<?= (empty($account['username'])) ? '' : $account['username'] ?>" >
 					</div>
 				</div>
 				<div class="form-group">
@@ -62,7 +62,7 @@
 							<option value="<?=ACCOUNT_SEWING?>" <?=($account['auth'] === ACCOUNT_SEWING )? 'selected': '' ;?> >縫製ユーザー</option>
 							<option value="<?=ACCOUNT_SHIPPING?>" <?=($account['auth'] === ACCOUNT_SHIPPING )? 'selected': '' ;?> >出荷ユーザー</option>
 							<option value="<?=ACCOUNT_CLERICAL?>" <?=($account['auth'] === ACCOUNT_CLERICAL )? 'selected': '' ;?> >受発注ユーザー</option>
-							<option value="<?=ACCOUNT_ADMIN?>"" <?=($account['auth'] === ACCOUNT_ADMIN )? 'selected': '' ;?> >管理者ユーザー</option>
+							<option value="<?=ACCOUNT_ADMIN?>" <?=($account['auth'] === ACCOUNT_ADMIN )? 'selected': '' ;?> >管理者ユーザー</option>
 						<?php endif ?>
 						</select>
 					</div>

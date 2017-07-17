@@ -14,39 +14,17 @@ class Account extends MY_Controller
 
 	public function index()
 	{
-		$count_all = $this->accounts_model->count_all();
-		$this->load_pagination('/master/account',$count_all, $this->per_page);
-		$page_links = $this->pagination->create_links();
-		$this->data['pagination'] = $page_links;
-		$start = $this->input->get('start');
-		if( $start > $count_all)
-		{
-			if($count_all < $this->per_page)
-			{
-				$start = 0;
-			}
-			else 
-			{
-				$start = $count_all - $this->per_page;
-			}
-		}
-		if( ($start % $this->per_page) !== 0 )
-		{
-			$start -=($start % $this->per_page);
-		}
-		$this->data['list_accounts'] = $this->accounts_model->get_list($this->per_page, $start,"");
-		$this->render_list_account();
-	}
-
-	public function search()
-	{
 		$keyword = null;
-		if($this->input->get('username'))
+		if($this->input->get('keyword'))
 		{
-			$keyword =  $this->input->get('username');
+			$keyword =  $this->input->get('keyword');
 		}
 		$count_by_keyword = $this->accounts_model->count_by_keyword($keyword);
-		$this->load_pagination('/master/account/search?username='.$keyword,$count_by_keyword, $this->per_page);
+		if($keyword == "")
+		{
+				$this->load_pagination('/master/account',$count_by_keyword, $this->per_page);
+		}
+		$this->load_pagination('/master/account?keyword='.$keyword,$count_by_keyword, $this->per_page);
 		$page_links = $this->pagination->create_links();
 		$this->data['pagination'] = $page_links;
 		$start = $this->input->get('start');
@@ -196,13 +174,8 @@ class Account extends MY_Controller
 	{
 		if(!$account_id)
 		{
-			$this->form_validation->set_rules('username','ユーザー名','trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
+			$this->form_validation->set_rules('username','ユーザー名','trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]|callback_username_check');
 			$this->form_validation->set_rules('password','パスワード','trim|required|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
-			if($this->accounts_model->check_username_exists($this->input->post('username')))
-	        {
-	        	$this->session->set_flashdata('error_message','username exists');
-	            return false;
-	        }
 		}
 		else
 		{

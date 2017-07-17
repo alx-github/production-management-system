@@ -2,11 +2,13 @@
 	<h1>アカウント一覧</h1>
 	<div class="row">
 		<?php if ($this->session->flashdata('message')): ?>
-				<div class="alert alert-dismissible alert-info col-sm-3">
-									<button type="button" class="close" data-dismiss="alert">×</button>
-									<strong>メッセージ</strong>
-									<p><?= $this->session->flashdata('message') ?></p>
-								</div>
+			<div class="col-sm-12">
+				<div class="alert alert-dismissible alert-info">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>メッセージ</strong>
+					<p><?= $this->session->flashdata('message') ?></p>
+				</div>
+			</div>
 			<?php $this->session->unmark_flash('message'); ?>
 			<?php endif; ?>
 			<?php if ($this->session->flashdata('error_message')): ?>
@@ -20,9 +22,9 @@
 	</div>
 	<div class="row">
 		<div>
-			<form class="" method="GET" action="<?= site_url('/master/account/search')?>">
+			<form class="" method="GET" action="<?= site_url('/master/account')?>">
 				<div class="form-group col-sm-2">
-					<input class="form-control" type="text" name="username" placeholder="キーワード" value="<?=(empty($keyword))? '':$keyword ?>">
+					<input class="form-control" type="text" name="keyword" placeholder="キーワード" value="<?=(empty($keyword))? '':$keyword ?>">
 				</div>
 				<div class="form-group col-sm-1">
 					<button id="btn-search" class="btn btn-info btn-block" type="submit">検索</button>

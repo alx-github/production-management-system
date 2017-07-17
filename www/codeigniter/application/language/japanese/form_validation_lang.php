@@ -38,4 +38,4 @@ $lang['form_validation_greater_than']			= '{field}は{param}より大きい値�
 $lang['form_validation_greater_than_equal_to']	= '{field}は{param}以上の値でなければいけません。';
 $lang['form_validation_error_message_not_set']	= '{field}に適切なエラーメッセージがありません';
 $lang['form_validation_in_list']				= '{field}は{param}のいずれかでなければなりません';
-$lang['form_validation_login_id_check'] 		= '{field}はユニークな値でなければなりません';
+$lang['form_validation_username_check'] 		= '{field}はユニークな値でなければなりません';
