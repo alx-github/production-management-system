@@ -51,7 +51,7 @@
 						<select class="form-control" name="auth">
 						<?php if (($account['auth']) === null): ?>
 							<option value="<?=ACCOUNT_UNASSIGN?> selected>">指定なし</option>
-							<option value="<?=ACCOUNT_CUTTING?>"裁断ユーザー</option>
+							<option value="<?=ACCOUNT_CUTTING?>">裁断ユーザー</option>
 							<option value="<?=ACCOUNT_SEWING?>">縫製ユーザー</option>
 							<option value="<?=ACCOUNT_SHIPPING?>">出荷ユーザー</option>
 							<option value="<?=ACCOUNT_CLERICAL?>">受発注ユーザー</option>
