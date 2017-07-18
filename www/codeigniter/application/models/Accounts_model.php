@@ -9,6 +9,7 @@ class Accounts_model extends Base_model
 	{
 		parent::__construct();
 		$this->table_name = 'accounts';
+		$this->primary_key_name = 'account_id';
 	}
 
 	public function get_type()
@@ -22,12 +23,6 @@ class Accounts_model extends Base_model
 		$account = $query->first_row();
 		return ($account === NULL ? NULL : $account->auth);
 	}
-	public function update_password($id, $password)
-	{
-		$this->db->where('id', $id);
-		return $this->db->update($this->table_name, ['password' => $password]);
-	}
-	
 	/**
      * ログインする
      *
@@ -66,5 +61,31 @@ class Accounts_model extends Base_model
 		$query = $this->db->get();
 
 		return (count($query->result_array()) > 0);
+	}
+
+	public function count_by_keyword($keyword = NULL)
+	{
+		$this->db->where('deleted_at',NULL);
+		$this->db->like('username',$keyword);
+		$this->db->from($this->table_name);
+		return $this->db->count_all_results();
+	}
+
+	public function get_list($limit,$start,$keyword = NULL)
+	{
+		$this->db->limit($limit,$start);
+		$this->db->where('deleted_at',NULL);
+		$this->db->like('username',$keyword);
+		$result = $this->db->get($this->table_name);
+		if ( ! $result)
+		{
+			log_message('error', $this->db->error()['message']);
+			return FALSE;
+		}
+		if (count($result->result()) === 0)
+		{
+			return FALSE;
+		}
+		return $result->result_array();
 	}
 }

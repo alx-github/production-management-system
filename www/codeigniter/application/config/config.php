@@ -521,3 +521,19 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Config Account authority
+|--------------------------------------------------------------------------
+|
+| 
+*/
+$config['account_auth'] =  [ 
+    ACCOUNT_UNASSIGN => '指定なし',
+    ACCOUNT_CUTTING  => '裁断ユーザー',
+    ACCOUNT_SEWING   => '縫製ユーザー',
+    ACCOUNT_SHIPPING => '出荷ユーザー',
+    ACCOUNT_CLERICAL => '受発注ユーザー',
+    ACCOUNT_ADMIN    => '管理者ユーザー'
+];

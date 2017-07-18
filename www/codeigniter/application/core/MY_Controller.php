@@ -30,6 +30,7 @@ class MY_Controller extends CI_Controller
 					redirect('/auth/logout', 'refresh');
 				}
 				$this->account_type = $account_type;
+				$this->check_expired_account();
 			}
 		}
 	}
@@ -41,6 +42,17 @@ class MY_Controller extends CI_Controller
 			redirect('/');
 		}
 	}
+
+	protected function check_expired_account()
+	{
+		$id = $this->session->userdata('account_id');
+		$userinfo = $this->accounts_model->get_by_id($id);
+		if(!$userinfo)
+		{
+			redirect('auth/logout');
+			return ;
+		}
+    }
 
 	protected function is_admin()
 	{

@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	$('.delete-account').each(function(){
+		$(this).click(function(event){
+			$('#deleted_id').val(event.target.id);
+		});
+	});
 	var isGettingPassword = false;
 	$('#generate-password').click(function(e){
 		e.preventDefault();		
