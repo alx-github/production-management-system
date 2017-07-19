@@ -15,10 +15,7 @@ class Stock extends MY_Controller
 
 	public function create()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/stock/form');
-		$this->load->view('footer');
+		$this->load_view('master/stock/form', $this->data);
 	}
 
 	public function insert()
@@ -28,10 +25,7 @@ class Stock extends MY_Controller
 
 	public function edit()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/stock/form');
-		$this->load->view('footer');
+		$this->load_view('master/stock/form', $this->data);
 	}
 
 	public function delete()
@@ -41,9 +35,6 @@ class Stock extends MY_Controller
 
 	private function render_list_stock()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/stock/list');
-		$this->load->view('footer');
+		$this->load_view('master/stock/list', $this->data);
 	}
 }

@@ -1,4 +1,35 @@
-<div class="navbar navbar-inverse">
+<?php
+$current_url = current_url();
+if (strpos($current_url, '/master') !== false)
+{
+	$current = 'master';
+}
+if (strpos($current_url, '/production') !== false)
+{
+	$current = 'production';
+}
+if (strpos($current_url, '/receive') !== false)
+{
+	$current = 'receive';
+}
+if (strpos($current_url, '/request') !== false)
+{
+	$current = 'request';
+}
+if (strpos($current_url, 'stock') !== false)
+{
+	$current = 'stock';
+}
+if (strpos($current_url, 'master/stock') !== false)
+{
+	$current = 'master';
+}
+if (strpos($current_url, '/order') !== false)
+{
+	$current = 'order';
+}
+?>
+<div class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a href="<?= site_url('production') ?>" class="navbar-brand">生産管理システム</a>
@@ -52,9 +83,9 @@
 </div>
 
 <script>
-$('ul.nav li.dropdown').hover(function() {
-	$(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
-}, function() {
-	$(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
-});
+	$('ul.nav li.dropdown').hover(function () {
+		$(this).find('.dropdown-menu').stop(true, true).delay(100).fadeIn(100);
+	}, function () {
+		$(this).find('.dropdown-menu').stop(true, true).delay(100).fadeOut(100);
+	});
 </script>

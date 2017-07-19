@@ -36,7 +36,7 @@
 						<input class="form-control" type="text" name=""   placeholder="キーワード">
 					</div>
 					<div class="col-sm-3">
-						<button id="btn-search" class="btn btn-info btn-block" type="submit">検索</button>
+						<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
 					</div>
 				</div>		
 			</form>

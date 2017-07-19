@@ -12,6 +12,8 @@
 		<link href="<?= base_url('assets/umi/css/jquery-ui.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery.timepicker.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/umi/css/jquery-ui-timepicker-addon.min.css'); ?>" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" rel="stylesheet">
+		<link href="<?= base_url('assets/css/app.css'); ?>" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,10 +30,7 @@
 		<script src="<?= base_url('assets/umi/js/jquery.timepicker.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-addon.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/umi/js/jquery-ui-timepicker-ja.js'); ?>"></script>
-		
-		<!-- Include Date Range Picker -->
-		<script src="<?= base_url('assets/js/moment.js'); ?>"></script>
-		<script src="<?= base_url('assets/js/daterangepicker.js'); ?>"></script>
-		<link href="<?= base_url('assets/css/daterangepicker.css'); ?>" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/i18n/ja.js"></script>
 	</head>
 	<body>

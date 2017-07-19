@@ -97,8 +97,6 @@ class Auth extends MY_Controller {
 
 	private function render_login()
 	{
-		$this->load->view('header');
-		$this->load->view('/auth/login', $this->data);
-		$this->load->view('footer');
+		$this->load_view('auth/login', $this->data);
 	}
 }

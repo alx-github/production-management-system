@@ -5,9 +5,6 @@ class Stock extends MY_Controller
 {
 	public function index()
 	{
-		$this->load->view('header');
-		$this->render_menu('stock');
-		$this->load->view('stock/index', $this->data);
-		$this->load->view('footer');
+		$this->load_view('stock/index', $this->data);
 	}
 }

@@ -23,13 +23,13 @@
 		<?php } ?>
 	</div>
 	<div class="row">
-		<div>
-			<form class="" method="GET" action="<?= site_url('/master/account')?>">
+		<div class="col-sm-12">
+			<form class="" method="GET" action="">
 				<div class="form-group col-sm-2">
 					<input class="form-control" type="text" name="keyword" placeholder="キーワード" value="<?=(empty($keyword))? '':$keyword ?>">
 				</div>
 				<div class="form-group col-sm-1">
-					<button id="btn-search" class="btn btn-info btn-block" type="submit">検索</button>
+					<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
 				</div>
 			</form>
 		</div>
@@ -42,13 +42,13 @@
 			<a href="<?= site_url('/master/account/create') ?>" class="btn btn-success btn-block pagination">新規登録</a>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-sm-12">
-		<?php if ($list_accounts){  ?>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>ユーザー名</th>
+						<th>ログインID</th>
 						<th>権限</th>
 						<th class="col-sm-2"></th>
 					</tr>
@@ -66,7 +66,6 @@
 				<?php } ?>
 				</tbody>
 			</table>
-		<?php }?>
 		</div>
 	</div>
 	<div class="row">
@@ -75,6 +74,8 @@
 		</div>
 	</div>
 </div>
+
+
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" tabindex="0" role="dialog">
 	<div class="modal-dialog" role="document">
@@ -96,4 +97,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

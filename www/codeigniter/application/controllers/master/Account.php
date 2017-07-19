@@ -116,33 +116,29 @@ class Account extends MY_Controller
 
 	private function render_list_account()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/account/list',$this->data);
-		$this->load->view('footer');
+		$this->load_view('master/account/list',$this->data);
 	}
 
 	private function render_form_account()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/account/form',$this->data);
-		$this->load->view('footer');
+		$this->load_view('master/account/form', $this->data);
 	}
 
 	private function create_empty_account()
 	{
-		return ['account_id'=> NULL,
-				'username'=> NULL,
-				'auth'=> NULL
-				];
+		return [
+			'account_id'=> NULL,
+			'username'=> NULL,
+			'auth'=> NULL
+		];
 	}
 
 	private function create_updated_data($input)
 	{
-		return ['account_id'=> $input['account_id'],
-				'auth'      => $input['auth']
-				];
+		return [
+			'account_id'=> $input['account_id'],
+			'auth'      => $input['auth']
+		];
 	}
 
 	private function validate_form($account_id)

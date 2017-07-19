@@ -5,9 +5,6 @@ class Production extends MY_Controller
 {
 	public function index()
 	{
-		$this->load->view('header');
-		$this->render_menu('production');
-		$this->load->view('production/index', $this->data);
-		$this->load->view('footer');
+		$this->load_view('production/index', $this->data);
 	}
 }

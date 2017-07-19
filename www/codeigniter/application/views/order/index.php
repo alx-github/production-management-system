@@ -1,23 +1,26 @@
-<div class="container">
+<div class="container-fluid">
 	<h1>発注一覧</h1>
-	<div class="row">
-		<?php echo form_open("master/order/search", ["class" => "form-horizontal", "role" => "form"]); ?>
-			<div class="form-group col-xs-12">
-				<div class="col-sm-3">
+	<div class="form-group">
+		<?php echo form_open("order/search", ["class" => "form-horizontal", "role" => "form"]); ?>
+			<div class="row col-xs-12 col-sm-12">
+				<div class="col-sm-2">
 					<input type = "text" class="form-control input" placeholder="発注ID" 
 						id="" name="" value="">
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<input type = "text" class="form-control input" placeholder="キーワード" 
 						id="" name="" value="">
 				</div>
-				<div class="col-sm-4">
-					<input type = "text" class="form-control input" 
-						placeholder="発注日：2017/07/01 〜 2017/07/30" 
-						id="date_range" name="date_range" value="">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<div class="input-group-addon">発注日</div>
+						<input type="text" class="form-control date" id="date-start" size="10">
+						<div class="input-group-addon addon-to">～</div>
+						<input type="text" class="form-control date" id="date-end" size="10">
+					</div>
 				</div>
-				<div class="col-sm-2">
-					<input type="submit" class="btn btn-info btn-block" value="検索" />
+				<div class="col-sm-1">
+					<input type="submit" class="btn btn-primary" value="検索" />
 				</div>
 			</div>
         <?php echo form_close(); ?>
@@ -26,7 +29,7 @@
 	<div class="text-right">
 		<?= $this->pagination->create_links(); ?>
 	</div>
-	<div class="row">
+	<div class="row col-sm-12">
 		<ul class="pagination" style="margin-bottom:0%;">
 				<li><a href=""><<</a></li>
 				<li class="active"><a href="">1</a></li>
@@ -39,8 +42,8 @@
 				<li><a href="">8</a></li>
 				<li><a href="">>></a></li>
 		</ul>
-		<div class="table-responsive">
-			<table class="table table-striped table-hover">
+		<div class="col-sm-12 table-responsive">
+			<table class="table table-hover">
 	            <thead>
 	              <tr>
 	                <th class="col-sm-1">発注ID</th>
@@ -78,7 +81,7 @@
 	            </tbody>
 		  	</table>
 		 </div>
-		 <ul class="pagination" style="margin-bottom:0%;">
+		 <ul class="pagination col-sm-12" style="margin-bottom:0%;">
 				<li><a href=""><<</a></li>
 				<li class="active"><a href="">1</a></li>
 				<li><a href="">2</a></li>
@@ -108,7 +111,7 @@
 				削除してよろしいですか。
 			</div>
 
-			<form class="form-horizontal" method="post" action="<?= site_url('master/customer/delete') ?>">
+			<form class="form-horizontal" method="post" action="<?= site_url('order/delete') ?>">
 				<input type="hidden" name="id" value="0">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
@@ -120,14 +123,18 @@
 </div>
 
 <script type="text/javascript">
-	$('#date_range').daterangepicker({
-	    locale: {
-			format: 'YYYY/MM/DD',
-			separator: ' 〜 '
-	    },
+	$('#date-start').datepicker({
+		dateFormat: 'yy/mm/dd',
 	});
-	$('#date_range').on('cancel.daterangepicker', function(ev, picker) {
-		$(this).val('');
+	$('#date-end').datepicker({
+		dateFormat: 'yy/mm/dd',
+		useCurrent: false
+	});
+	$('#date-start').on('change', function () {
+		$('#date-end').datepicker('option', 'minDate', $('#date-start').val());
+	});
+	$('#date-end').on('change', function () {
+		$('#date-start').datepicker('option', 'maxDate', $('#date-end').val());
 	});
 </script>
-
+<link href="<?= site_url('assets/css/shipping.css'); ?>" rel="stylesheet">

@@ -6,10 +6,10 @@
 				<li class="list-inline-item">
 					<h3>表示対象</h3>
 				</li>
-				<li class="list-inline-item"><button type="button" class="btn btn-lg btn-info" data-toggle="button" aria-pressed="false" autocomplete="off">未裁断</button></li>
-				<li class="list-inline-item"><button type="button" class="btn btn-lg btn-info" data-toggle="button" aria-pressed="false" autocomplete="off">中断中</button></li>
-				<li class="list-inline-item"><button type="button" class="btn btn-lg btn-info" data-toggle="button" aria-pressed="false" autocomplete="off">未縫製</button></li>
-				<li class="list-inline-item"><button type="button" class="btn btn-lg btn-info" data-toggle="button" aria-pressed="false" autocomplete="off">未出荷</button></li>
+				<li class="list-inline-item"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">未裁断</button></li>
+				<li class="list-inline-item"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">中断中</button></li>
+				<li class="list-inline-item"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">未縫製</button></li>
+				<li class="list-inline-item"><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">未出荷</button></li>
 			</ul>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<form method="post">
-			<table class="table table-striped table-hover ">
+			<table class="table table-hover ">
 				<thead>
 				<tr>
 					<th>取引先</th>
@@ -92,7 +92,7 @@
 				<tr>
 					<td>A株式会社</td>
 					<td>商品名D</td>
-					<td>ユこフォーム</td>
+					<td>ユニフォーム</td>
 					<td>C-1112</td>
 					<td>98</td>
 					<td class="text-right">50</td>
@@ -108,7 +108,7 @@
 				<tr>
 					<td>△△</td>
 					<td>商品名E</td>
-					<td>Tシャッ</td>
+					<td>Tシャツ</td>
 					<td>D-1111</td>
 					<td>C333</td>
 					<td class="text-right">1000</td>
@@ -173,7 +173,7 @@
       	</div>
         <div class="row">
 			<div class="col-sm-12">
-				<table class="table table-striped table-hover ">
+				<table class="table table-hover ">
 					<thead>
 					<tr>
 						<th>品番・色番</th>
@@ -234,7 +234,7 @@
 		<div class="col-sm-offset-2 col-sm-3">
 		<form method="post" action="<?= site_url('production') ?>">
 			<input type="hidden" name="id" value="">
-			<button type="submit" class="btn btn-info btn-block">保存する</button>
+			<button type="submit" class="btn btn-success btn-block">保存する</button>
 		</form>
 		</div>
       </div>
@@ -285,7 +285,7 @@
       	</div>
         <div class="row">
 			<div class="col-sm-12">
-				<table class="table table-striped table-hover ">
+				<table class="table table-hover ">
 					<thead>
 					<tr>
 						<th>品番・色番</th>
@@ -346,7 +346,7 @@
 		<div class="col-sm-offset-2 col-sm-3">
 		<form method="post" action="<?= site_url('production') ?>">
 			<input type="hidden" name="id" value="">
-			<button type="submit" class="btn btn-info btn-block">保存する</button>
+			<button type="submit" class="btn btn-success btn-block">保存する</button>
 		</form>
 		</div>
       </div>
@@ -397,7 +397,7 @@
       	</div>
         <div class="row">
 			<div class="col-sm-12">
-				<table class="table table-striped table-hover ">
+				<table class="table table-hover ">
 					<thead>
 					<tr>
 						<th>品番・色番</th>
