@@ -45,6 +45,7 @@
 	
 	<div class="row">
 		<div class="col-sm-12">
+		<?php if ($list_accounts) { ?>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -66,6 +67,7 @@
 				<?php } ?>
 				</tbody>
 			</table>
+		<?php } ?>
 		</div>
 	</div>
 	<div class="row">
@@ -97,3 +99,4 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

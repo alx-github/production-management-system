@@ -22,6 +22,7 @@
 
 			<?php endif; ?>
 			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
+			<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
 				<div class="form-group">
 					<div class="col-sm-3">
 							<label for="username" class="col-sm-offset-6 control-label">ユーザー名</label>
