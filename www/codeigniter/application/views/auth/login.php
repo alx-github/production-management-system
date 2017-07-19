@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container-fluid">
 	<form class="form-signin" method="post" action="<?= site_url('/auth/login') ?>">
 		<h2 class="form-signin-heading text-center" style="margin: 20px 0 30px;">
 			生産管理システム
 		</h2>
 		<div class="row">
-			<div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6">
+			<div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
 				<div class="well">
 					<?php if ($this->session->has_userdata('error_message')): ?>
 						<div class="alert alert-dismissible alert-danger">

@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="row form-group">
+<div class="container-fluid">
+	<div class="form-group">
 		<?php echo form_open("master/customer/save", ["class" => "form-horizontal", "role" => "form"]); ?>
 			<h1>取引先登録・編集</h1>
 			
@@ -21,15 +21,21 @@
 			<?php endif; ?>
 			
 			<input type="hidden" name="id" value="0" />
-		    <div class="form-horizontal">   	 
-				<div class="form-group">
-					<label class="control-label col-sm-3">取引先名</label>
-					<div class="col-sm-4">
-						<input type = "text" class="form-control" id="" name="" 
-							value="">
-					</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">取引先名</label>
+				<div class="col-sm-4">
+					<input type = "text" class="form-control" id="" name="" 
+						value="">
 				</div>
+			</div>
 			
+			<div class="form-group">
+				<label class="control-label col-sm-3">担当者名</label>
+				<div class="col-sm-4">
+					<input type = "text" class="form-control" id="" name="" 
+						value="">
+				</div>
+			</div>
 				
 			<div class="form-group">
 				<label class="control-label col-sm-3">郵便番号</label>
@@ -82,23 +88,21 @@
 			<div class="form-group" data-toggle="buttons">
 				<label class="control-label col-sm-3">表示区分</label>
 				<div class="col-sm-9 btn-group" data-toggle="buttons">
-					<label class="btn btn-default active col-sm-2">
+					<label class="btn btn-default active col-sm-3">
 						<input type="radio" name="options" id="option1" autocomplete="off" checked> 表示しない
 					</label>
-					<label class="btn btn-default col-sm-2">
+					<label class="btn btn-default col-sm-3">
 						<input type="radio" name="options" id="option1" autocomplete="off" checked> 受注先のみ
 					</label>
-					<label class="btn btn-default col-sm-2">
+					<label class="btn btn-default col-sm-3">
 						<input type="radio" name="options" id="option1" autocomplete="off" checked> 発注先のみ
 					</label>
-					<label class="btn btn-default col-sm-2">
+					<label class="btn btn-default col-sm-3">
 						<input type="radio" name="options" id="option1" autocomplete="off" checked> 両方
 					</label>
 				</div>
 			</div>
 			
-			</div>
-
 			<div class="form-group">
 				<div class="col-sm-offset-4">
 					<div class="col-sm-3">
@@ -112,3 +116,4 @@
         <?php echo form_close(); ?>
 	</div>
 </div>
+<link href="<?= site_url('assets/css/common.css'); ?>" rel="stylesheet">

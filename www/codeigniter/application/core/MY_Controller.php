@@ -75,4 +75,12 @@ class MY_Controller extends CI_Controller
 			'total_rows' 	=> $count
 		]);
 	}
+	
+	protected function load_view($view, $data = NULL)
+	{
+		$this->load->view('template', [
+				'is_admin'	 => $this->is_admin(),
+				'content'	 => $this->load->view($view, $data, true)
+		]);
+	}
 }

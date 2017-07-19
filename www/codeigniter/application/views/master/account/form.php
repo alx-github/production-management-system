@@ -6,31 +6,30 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-12">
-			<?php if($this->session->flashdata('error_message')){ ?>
+		<div class="col-sm-offset-3 ">
+			<?php 
+				if($this->session->flashdata('error_message')):
+			 ?>
 			<div class="alert alert-dismissable alert-danger">
+				
 				<h4>エラー</h4>
 				<p>
 					<?= $this->session->flashdata('error_message')?>	
 				</p>
 				<?php $this->session->unmark_flash('error_message') ?>
+
 			</div>
-			<?php }?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-offset-3">
-			<form class="form-horizontal col-sm-12" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
-				<div>
-					<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
-				</div>
+
+			<?php endif; ?>
+			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
+			<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="login_id" class="col-sm-offset-6 control-label">ユーザー名</label>
+							<label for="username" class="col-sm-offset-6 control-label">ユーザー名</label>
 					</div>
 					<div class="col-sm-3">
 						<input class="form-account form-control" type="text" name="username" id="username" placeholder="英数字記号" required="true" <?=(empty($account['account_id']))? '': 'disabled';?> value="<?= (empty($account['username'])) ? '' : $account['username'] ?>" >
-					</div>
+					</div>	
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
@@ -41,11 +40,12 @@
 						  <input class="form-account form-control " type="text" name="password" id="password" placeholder="英数字記号" <?=(empty($account['account_id']))? 'required': '' ;?> >
 						  <span class="btn input-group-addon form-account" id="generate-password" data-url="<?= site_url('/api/generate_password') ?>">ランダム</span>
 						</div>
+						
 					</div>	
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
-						<label for="" class="col-sm-offset-6  control-label">権限</label>
+							<label for="" class="col-sm-offset-6 control-label">権限</label>
 					</div>
 					<div class="col-sm-2">
 						<select class="form-control" name="auth">

@@ -35,7 +35,7 @@
 				</div>
 				</div>
 				<div class="col-sm-1">
-					<button type="submit" class="btn btn-info form-control">検索</button>
+					<button type="submit" class="btn btn-primary">検索</button>
 				</div>
 			</div>
 			</form>
@@ -48,7 +48,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<table class="table table-striped table-hover ">
+			<table class="table table-hover ">
 				<thead>
 				<tr>
 					<th>出荷日付</th>
@@ -131,7 +131,7 @@
       	</div>
         <div class="row">
 			<div class="col-sm-12">
-				<table class="table table-striped table-hover ">
+				<table class="table table-hover ">
 					<thead>
 					<tr>
 						<th>品番・色番</th>

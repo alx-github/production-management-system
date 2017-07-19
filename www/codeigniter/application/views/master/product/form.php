@@ -1,4 +1,3 @@
-<div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
 			<h1>商品登録・編集</h1>
@@ -52,16 +51,10 @@
 				<label for="" class="col-sm-offset-2 col-sm-2 control-label">表示区分</label>
 				<div class="col-sm-8 btn-group" data-toggle="buttons">
 					<label class="btn btn-default">
-						<input type="radio" name="options" id="option1" autocomplete="off">発注表示しない
+						<input type="radio" name="options" id="option1" autocomplete="off">表示しない
 					</label>
 					<label class="btn btn-default">
-						<input type="radio" name="options" id="option2" autocomplete="off">受注先のみ
-					</label>
-					<label class="btn btn-default">
-						<input type="radio" name="options" id="option3" autocomplete="off">発注先のみ
-					</label>
-					<label class="btn btn-default">
-						<input type="radio" name="options" id="option4" autocomplete="off">両方
+						<input type="radio" name="options" id="option2" autocomplete="off">表示する
 					</label>
 				</div>
 			</div>
@@ -182,6 +175,5 @@
 			</form>
 		</div>
 	</div>
-</div>
 <script src="<?= site_url('assets/js/master-product.js'); ?>"></script>
 <link href="<?= site_url('assets/css/master-product.css'); ?>" rel="stylesheet">

@@ -1,4 +1,3 @@
-<div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>商品一覧</h1>
@@ -18,7 +17,7 @@
 				<input type="text" class="form-control" placeholder="キーワード" size="10">
 				</div>
 				<div class="col-sm-1">
-					<button type="submit" class="btn btn-info form-control">検索</button>
+					<button type="submit" class="btn btn-primary">検索</button>
 				</div>
 			</div>
 			</form>
@@ -57,7 +56,7 @@
 	
 	<div class="row">
 		<div class="col-sm-12">
-			<table class="table table-striped table-hover ">
+			<table class="table table-hover ">
 				<thead>
 				<tr>
 					<th>商品カテゴリ</th>
@@ -120,7 +119,6 @@
 			</nav>
 		</div>
 	</div>
-</div>
 
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">

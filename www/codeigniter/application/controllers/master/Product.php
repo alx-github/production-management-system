@@ -5,25 +5,16 @@ class Product extends MY_Controller
 {
 	public function index()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/product/list', $this->data);
-		$this->load->view('footer');
+		$this->load_view('master/product/list', $this->data);
 	}
 	
 	public function create()
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/product/form', $this->data);
-		$this->load->view('footer');
+		$this->load_view('master/product/form', $this->data);
 	}
 
 	public function edit($id)
 	{
-		$this->load->view('header');
-		$this->render_menu('master');
-		$this->load->view('master/product/form', $this->data);
-		$this->load->view('footer');
+		$this->load_view('master/product/form', $this->data);
 	}
 }

@@ -200,7 +200,7 @@ Field="在庫ID","stock_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF,"PRIM
 Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
 Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
 Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
-Field="取引先ID","customeri_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="取引先ID","customer_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
 Field="材料ID","material_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
 Field="入出庫区分","in_out_type","TINYINT UNSIGNED","NOT NULL",,"","1：入庫\n2：出庫",$FFFFFFFF,""
 Field="入出庫日","in_out_date","DATE","NOT NULL",,"","",$FFFFFFFF,""
@@ -209,11 +209,11 @@ Field="在庫数","stock_number","FLOAT",,,"","",$FFFFFFFF,""
 Field="理由","reason","TINYINT UNSIGNED",,,"","100：発注\n101：入荷\n102：転送\n103：棚卸し\n104：返却\n199：その他\n200：仮押さえ\n201：製造\n202：転送\n203：棚卸し\n299：その他",$FFFFFFFF,""
 Field="受発注明細ID","in_out_order_detail_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="備考","note","TEXT",,,"","",$FFFFFFFF,""
-Index==0,stock_id,customeri_id,material_id,in_out_type,in_out_date
+Index==0,stock_id,customer_id,material_id,in_out_type,in_out_date
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20170713162207
+ModifiedDateTime=20170717174543
 Position="MAIN",3350,1050
 
 [Relation]
@@ -303,12 +303,12 @@ Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
 Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
 Field="受注ID","receive_order_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="取引先ID","receive_order_customer_id","BIGINT UNSIGNED",,,"","",$FFFFFFFF,""
-Field="ステータス","status","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="ステータス","status","TINYINT UNSIGNED",,,"","0:未発注\n1:発注\n2:一部入荷\n3:入荷済み",$FFFFFFFF,""
 Index==0,send_order_id,deleted_at,receive_order_id,receive_order_customer_id,status
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20170713161938
+ModifiedDateTime=20170718100826
 Position="MAIN",1700,1400
 
 [Relation]
@@ -352,24 +352,26 @@ Field="商品ID","product_id","BIGINT UNSIGNED",,,"","定番商品時のみ",$FF
 Field="品名","product_name","VARCHAR(50)",,,"","スポット商品時のい",$FFFFFFFF,""
 Field="アイテム名","item_name","VARCHAR(50)",,,"","",$FFFFFFFF,""
 Field="サイズ","size","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
-Field="指図数量","instruction_quantity","MEDIUMINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="数量","instruction_quantity","MEDIUMINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
 Field="実数量","cutting_quantity","MEDIUMINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="出荷予定日","estimated_shipping_date","DATE",,,"","",$FFFFFFFF,""
 Field="加工費","processing_fee","MEDIUMINT",,,"","",$FFFFFFFF,""
 Field="請求金額","billing_amount","INT",,,"","",$FFFFFFFF,""
 Field="運送料","freight_fee","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
+Field="運送便","freight_service","VARCHAR(50)",,,"","",$FFFFFFFF,""
+Field="送り先","destination","VARCHAR(50)",,,"","",$FFFFFFFF,""
 Field="メモ","note","TEXT",,,"","",$FFFFFFFF,""
 Field="進捗状況.入荷","progress_arrival","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="進捗状況.裁断","progress_cutting","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="進捗状況.中断","progress_interruption","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="進捗状況.縫製","progress_sewing","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="進捗状況.出荷","progress_shipment","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
-Field="進捗状況.請求","proguress_claim","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
-Index==0,receive_order_detail_id,deleted_at,receive_order_id,part_number,product_id,size,estimated_shipping_date,progress_arrival,progress_cutting,progress_interruption,progress_sewing,progress_shipment,proguress_claim
+Field="進捗状況.請求","progress_claim","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Index==0,receive_order_detail_id,deleted_at,receive_order_id,part_number,product_id,size,estimated_shipping_date,progress_arrival,progress_cutting,progress_interruption,progress_sewing,progress_shipment,progress_claim
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20170713162038
+ModifiedDateTime=20170717174555
 Position="MAIN",2500,100
 
 [Entity]
@@ -471,7 +473,8 @@ Field="取引先ID","customer_id","BIGINT UNSIGNED","NOT NULL",0,"","",$FFFFFFFF
 Field="作成日時","created_at","DATETIME",,,"","",$FFFFFFFF,""
 Field="更新日時","updated_at","DATETIME",,,"","",$FFFFFFFF,""
 Field="削除日時","deleted_at","DATETIME",,,"","",$FFFFFFFF,""
-Field="取引先名","name","VARCHAR(100)","NOT NULL",,"","",$FFFFFFFF,""
+Field="取引先名","name","VARCHAR(50)","NOT NULL",,"","",$FFFFFFFF,""
+Field="担当者名","contact","VARCHAR(50)",,,"","",$FFFFFFFF,""
 Field="郵便番号","postal_code","VARCHAR(7)",,,"","",$FFFFFFFF,""
 Field="住所1","address_1","VARCHAR(100)",,,"","",$FFFFFFFF,""
 Field="住所2","address_2","VARCHAR(100)",,,"","",$FFFFFFFF,""
@@ -483,7 +486,7 @@ Index==0,deleted_at,display_type
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20170713161825
+ModifiedDateTime=20170718100941
 Position="MAIN",550,350
 
 [Entity]
@@ -502,14 +505,14 @@ Field="取引先ID","receive_order_customer_id","BIGINT UNSIGNED",,,"","",$FFFFF
 Field="カテゴリー","category","SMALLINT UNSIGNED",,,"","",$FFFFFFFF,""
 Field="品名","name","VARCHAR(50)","NOT NULL",,"","",$FFFFFFFF,""
 Field="品番","part_number","VARCHAR(50)",,,"","",$FFFFFFFF,""
-Field="表示区分","display_type","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="表示区分","display_type","TINYINT UNSIGNED",,,"","0:表示しない\n3:表示する",$FFFFFFFF,""
 Field="単位","unit","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
 Field="加工賃","processing_fee","MEDIUMINT",,,"","",$FFFFFFFF,""
 Index==0,product_id,deleted_at,receive_order_customer_id,name,part_number,display_type
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20170713162243
+ModifiedDateTime=20170718100959
 Position="MAIN",50,1400
 
 [Entity]
@@ -531,13 +534,13 @@ Field="色番.コード","color_number_code","VARCHAR(20)",,,"","",$FFFFFFFF,""
 Field="色番.色合い","color_number_tint","VARCHAR(50)",,,"","",$FFFFFFFF,""
 Field="単位","unit","TINYINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
 Field="仕様","spec","VARCHAR(100)",,,"","",$FFFFFFFF,""
-Field="表示区分","display_typ","TINYINT UNSIGNED",,,"","",$FFFFFFFF,""
+Field="表示区分","display_type","TINYINT UNSIGNED",,,"","0:表示しない\n3:表示する",$FFFFFFFF,""
 Field="発注先ID","send_order_customer_id","BIGINT UNSIGNED","NOT NULL",,"","",$FFFFFFFF,""
-Index==0,material_id,deleted_at,receive_order_customer_id,part_number,color_number_code,color_number_tint,display_typ
+Index==0,material_id,deleted_at,receive_order_customer_id,part_number,color_number_code,color_number_tint,display_type
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20170713162258
+ModifiedDateTime=20170718100422
 Position="MAIN",800,1400
 
 [Entity]
