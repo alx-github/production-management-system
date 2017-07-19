@@ -1,5 +1,5 @@
 ﻿-- Project Name : 生産管理システム
--- Date/Time    : 2017/07/13 16:23:28
+-- Date/Time    : 2017/07/18 10:15:41
 -- Author       : eyemovic
 -- RDBMS Type   : MySQL
 -- Application  : A5:SQL Mk-2
@@ -12,7 +12,7 @@ create table `stocks` (
   , `created_at` DATETIME comment '作成日時'
   , `updated_at` DATETIME comment '更新日時'
   , `deleted_at` DATETIME comment '削除日時'
-  , `customeri_id` BIGINT UNSIGNED not null comment '取引先ID'
+  , `customer_id` BIGINT UNSIGNED not null comment '取引先ID'
   , `material_id` BIGINT UNSIGNED not null comment '材料ID'
   , `in_out_type` TINYINT UNSIGNED not null comment '入出庫区分'
   , `in_out_date` DATE not null comment '入出庫日'
@@ -25,7 +25,7 @@ create table `stocks` (
 ) comment '在庫' ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create index `stocks_idx_1`
-  on `stocks`(`stock_id`,`customeri_id`,`material_id`,`in_out_type`,`in_out_date`);
+  on `stocks`(`stock_id`,`customer_id`,`material_id`,`in_out_type`,`in_out_date`);
 
 -- 発注明細
 drop table if exists `send_order_details` cascade;
@@ -86,24 +86,26 @@ create table `receive_order_details` (
   , `product_name` VARCHAR(50) comment '品名'
   , `item_name` VARCHAR(50) comment 'アイテム名'
   , `size` TINYINT UNSIGNED not null comment 'サイズ'
-  , `instruction_quantity` MEDIUMINT UNSIGNED not null comment '指図数量'
+  , `instruction_quantity` MEDIUMINT UNSIGNED not null comment '数量'
   , `cutting_quantity` MEDIUMINT UNSIGNED comment '実数量'
   , `estimated_shipping_date` DATE comment '出荷予定日'
   , `processing_fee` MEDIUMINT comment '加工費'
   , `billing_amount` INT comment '請求金額'
   , `freight_fee` TINYINT UNSIGNED not null comment '運送料'
+  , `freight_service` VARCHAR(50) comment '運送便'
+  , `destination` VARCHAR(50) comment '送り先'
   , `note` TEXT comment 'メモ'
   , `progress_arrival` TINYINT UNSIGNED comment '進捗状況.入荷'
   , `progress_cutting` TINYINT UNSIGNED comment '進捗状況.裁断'
   , `progress_interruption` TINYINT UNSIGNED comment '進捗状況.中断'
   , `progress_sewing` TINYINT UNSIGNED comment '進捗状況.縫製'
   , `progress_shipment` TINYINT UNSIGNED comment '進捗状況.出荷'
-  , `proguress_claim` TINYINT UNSIGNED comment '進捗状況.請求'
+  , `progress_claim` TINYINT UNSIGNED comment '進捗状況.請求'
   , constraint `receive_order_details_pkc` primary key (`receive_order_detail_id`)
 ) comment '受注明細' ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create index `receive_order_details_idx_1`
-  on `receive_order_details`(`receive_order_detail_id`,`deleted_at`,`receive_order_id`,`part_number`,`product_id`,`size`,`estimated_shipping_date`,`progress_arrival`,`progress_cutting`,`progress_interruption`,`progress_sewing`,`progress_shipment`,`proguress_claim`);
+  on `receive_order_details`(`receive_order_detail_id`,`deleted_at`,`receive_order_id`,`part_number`,`product_id`,`size`,`estimated_shipping_date`,`progress_arrival`,`progress_cutting`,`progress_interruption`,`progress_sewing`,`progress_shipment`,`progress_claim`);
 
 -- 受注
 drop table if exists `receive_orders` cascade;
@@ -148,7 +150,8 @@ create table `customers` (
   , `created_at` DATETIME comment '作成日時'
   , `updated_at` DATETIME comment '更新日時'
   , `deleted_at` DATETIME comment '削除日時'
-  , `name` VARCHAR(100) not null comment '取引先名'
+  , `name` VARCHAR(50) not null comment '取引先名'
+  , `contact` VARCHAR(50) comment '担当者名'
   , `postal_code` VARCHAR(7) comment '郵便番号'
   , `address_1` VARCHAR(100) comment '住所1'
   , `address_2` VARCHAR(100) comment '住所2'
@@ -198,13 +201,13 @@ create table `materials` (
   , `color_number_tint` VARCHAR(50) comment '色番.色合い'
   , `unit` TINYINT UNSIGNED not null comment '単位'
   , `spec` VARCHAR(100) comment '仕様'
-  , `display_typ` TINYINT UNSIGNED comment '表示区分'
+  , `display_type` TINYINT UNSIGNED comment '表示区分'
   , `send_order_customer_id` BIGINT UNSIGNED not null comment '発注先ID'
   , constraint `materials_pkc` primary key (`material_id`)
 ) comment '材料' ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
 create index `materials_idx_1`
-  on `materials`(`material_id`,`deleted_at`,`receive_order_customer_id`,`part_number`,`color_number_code`,`color_number_tint`,`display_typ`);
+  on `materials`(`material_id`,`deleted_at`,`receive_order_customer_id`,`part_number`,`color_number_code`,`color_number_tint`,`display_type`);
 
 -- アカウント
 drop table if exists `accounts` cascade;
