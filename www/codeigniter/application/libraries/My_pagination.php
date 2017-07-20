@@ -267,7 +267,12 @@ class My_Pagination extends CI_Pagination {
 	 * @var	string
 	 */
 	protected $data_page_attr = 'data-ci-pagination-page';
-
+	
+	/**
+	 * get start of last page
+	 *
+	 * @return int
+	 */
 	public function get_last_page_start()
 	{
 		$remainder = $this->total_rows % $this->per_page;

@@ -1,3 +1,4 @@
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>商品一覧</h1>
@@ -119,6 +120,7 @@
 			</nav>
 		</div>
 	</div>
+</div>
 
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">

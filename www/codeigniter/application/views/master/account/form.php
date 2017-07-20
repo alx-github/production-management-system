@@ -2,11 +2,6 @@
 	<h1>アカウント登録・編集</h1>
 	<div class="row">
 		<div class="col-lg-12">
-			<br/>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-offset-3 ">
 			<?php 
 				if($this->session->flashdata('error_message')):
 			 ?>
@@ -21,6 +16,10 @@
 			</div>
 
 			<?php endif; ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-offset-3 ">
 			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
 			<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
 				<div class="form-group">

@@ -64,7 +64,7 @@ class Auth extends MY_Controller {
 			if ($result !== FALSE)
 			{
 				$this->session->set_userdata('username', $username);
-				$this->session->set_userdata('account_id', $result->account_id);
+				$this->session->set_userdata('account_id', $result['account_id']);
 				if ($this->is_admin())
 				{
 					redirect('/receive');

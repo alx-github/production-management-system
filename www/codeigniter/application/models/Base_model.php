@@ -17,23 +17,75 @@ class Base_model extends CI_Model
 	 *
 	 * @param $id
 	 */
-	public function get_by_id($id)
+	public function get_by_id($id, $has_delete_column = TRUE)
+	{
+		return $this->get_one_by_condition([$this->primary_key_name => $id], $has_delete_column);
+	}
+
+	public function get_one_by_condition($where, $has_delete_column = TRUE)
 	{
 		$this->db->select('*');
 		$this->db->from($this->table_name);
-		$this->db->where($this->primary_key_name, $id);
-		$this->db->where('deleted_at',NULL);
+		$this->db->where($where);
+		if ($has_delete_column)
+		{
+			$this->db->where('deleted_at', NULL);
+		}
+		$this->db->limit(1);
 		$query = $this->db->get();
-		return $query->result_array()[0];
+		return $query->row_array();
+	}
+
+	public function get_by_condition($where, $order_by = NULL, $has_delete_column = TRUE)
+	{
+		$this->db->select('*');
+		$this->db->from($this->table_name);
+		$this->db->where($where);
+		if ($has_delete_column)
+		{
+			$this->db->where('deleted_at', NULL);
+		}
+		if ($order_by !== NULL)
+		{
+			$this->db->order_by($order_by);
+		}
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 	
-	public function get_all($limit = NULL, $offset = NULL, $has_delete_column = TRUE)
+	public function get_list_count($where = [], $like = [], $has_delete_column = TRUE)
+	{
+		$this->db->from($this->table_name);
+		if ($has_delete_column)
+		{
+			$this->db->where('deleted_at', NULL);
+		}
+		if ($where != NULL)
+		{
+			$this->db->where($where);
+		}
+		if ($like != NULL)
+		{
+			$this->db->like($like);
+		}
+		return $this->db->count_all_results();
+	}
+	
+	public function get_list($where = NULL, $like = NULL, $limit = NULL, $offset = NULL, $order_by = NULL, $has_delete_column = TRUE)
 	{
 		$this->db->select('*');
 		$this->db->from($this->table_name);
 		if ($has_delete_column)
 		{
 			$this->db->where('deleted_at', NULL);
+		}
+		if ($where != NULL)
+		{
+			$this->db->where($where);
+		}
+		if ($like != NULL)
+		{
+			$this->db->like($like);
 		}
 		if ($limit !== NULL)
 		{
@@ -42,6 +94,10 @@ class Base_model extends CI_Model
 		if ($offset !== NULL)
 		{
 			$this->db->offset($offset);
+		}
+		if ($order_by !== NULL)
+		{
+			$this->db->order_by($order_by);
 		}
 		$result = $this->db->get();
 		return $result->result_array();

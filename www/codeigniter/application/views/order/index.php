@@ -123,6 +123,7 @@
 </div>
 
 <script type="text/javascript">
+$(document).ready(function() {
 	$('#date-start').datepicker({
 		dateFormat: 'yy/mm/dd',
 	});
@@ -136,5 +137,6 @@
 	$('#date-end').on('change', function () {
 		$('#date-start').datepicker('option', 'maxDate', $('#date-end').val());
 	});
+});
 </script>
 <link href="<?= site_url('assets/css/shipping.css'); ?>" rel="stylesheet">

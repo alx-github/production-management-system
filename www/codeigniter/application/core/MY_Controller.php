@@ -4,16 +4,16 @@ class MY_Controller extends CI_Controller
 {
 	protected $data = [];
 	protected $account_type = NULL;
-
+	
 	public function __construct()
 	{
 		parent::__construct();
-
+		
 		$this->load->database();
 		$this->load->library(['session', 'form_validation', 'pagination']);
 		$this->load->helper(['url', 'language', 'common', 'array']);
 		$this->load->model([
-				'accounts_model', 
+				'accounts_model',
 		]);
 		$controller  = $this->uri->segment(1);
 		if ($controller !== 'auth')
@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller
 			{
 				redirect('/auth', 'refresh');
 			}
-			else 
+			else
 			{
 				$account_type = $this->accounts_model->get_type();
 				if (NULL === $account_type)
@@ -34,7 +34,7 @@ class MY_Controller extends CI_Controller
 			}
 		}
 	}
-
+	
 	protected function force_admin()
 	{
 		if(!$this->is_admin())
@@ -42,7 +42,7 @@ class MY_Controller extends CI_Controller
 			redirect('/');
 		}
 	}
-
+	
 	protected function check_expired_account()
 	{
 		$id = $this->session->userdata('account_id');
@@ -52,7 +52,7 @@ class MY_Controller extends CI_Controller
 			redirect('auth/logout');
 			return ;
 		}
-    }
+	}
 
 	protected function is_admin()
 	{
@@ -78,9 +78,24 @@ class MY_Controller extends CI_Controller
 	
 	protected function load_view($view, $data = NULL)
 	{
-		$this->load->view('template', [
+		$this->load->view('template_no_container_fluid', [
 				'is_admin'	 => $this->is_admin(),
-				'content'	 => $this->load->view($view, $data, true)
+				'content'	 => $this->load->view($view, $data, TRUE)
 		]);
+	}
+
+	protected function is_post_request()
+	{
+		return $this->is_http_request('POST');
+	}
+
+	protected function is_get_request()
+	{
+		return $this->is_http_request('GET');
+	}
+
+	private function is_http_request($method)
+	{
+		return $this->input->method(TRUE) === $method;
 	}
 }

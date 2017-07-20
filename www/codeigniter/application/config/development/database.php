@@ -74,10 +74,10 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=production_mysql; dbname=production; charset=utf8;',
+	'dsn'	=> 'mysql:host=mysql; dbname=oomuneshoji; charset=utf8;',
 	'hostname' => '',
 	'username' => 'root',
-	'password' => 'production',
+	'password' => 'docker',
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',

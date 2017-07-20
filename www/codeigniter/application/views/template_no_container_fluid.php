@@ -18,7 +18,7 @@
 			<?= $this->load->view('menu', ['is_admin' => $is_admin], true) ?>
 		<?php endif; ?>
 		
-		<div class="container-fluid">
+		<div class="content">
 			<?= $content ?>
 		</div>
 		
