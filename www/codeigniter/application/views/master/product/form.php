@@ -1,3 +1,4 @@
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">
 			<h1>商品登録・編集</h1>
@@ -175,5 +176,6 @@
 			</form>
 		</div>
 	</div>
+</div>
 <script src="<?= site_url('assets/js/master-product.js'); ?>"></script>
 <link href="<?= site_url('assets/css/master-product.css'); ?>" rel="stylesheet">

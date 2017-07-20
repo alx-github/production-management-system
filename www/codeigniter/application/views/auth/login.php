@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
 				<div class="well">
-					<?php if ($this->session->has_userdata('error_message')): ?>
+					<?php if ($this->session->flashdata('error_message')): ?>
 						<div class="alert alert-dismissible alert-danger">
 							<button type="button" class="close" data-dismiss="alert">×</button>
 							<strong>エラー</strong>

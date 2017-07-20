@@ -94,7 +94,7 @@
 												<input type="radio" name="options" id="option1" autocomplete="off">発注
 											</label>
 											<label class="btn btn-default">
-												<input type="radio" name="options" id="option2" autocomplete="off">返却
+												<input type="radio" name="options" id="option2" autocomplete="off">入荷
 											</label>
 											<label class="btn btn-default">
 												<input type="radio" name="options" id="option3" autocomplete="off">転送

@@ -1,6 +1,6 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-require (BASEPATH . '../application/models/Base_model.php');
+require_once (BASEPATH . '../application/models/Base_model.php');
 
 class Accounts_model extends Base_model
 {
@@ -15,14 +15,10 @@ class Accounts_model extends Base_model
 	public function get_type()
 	{
 		$username = $this->session->userdata('username');
-		$this->db->select('*');
-		$this->db->from($this->table_name);
-		$this->db->where('username', $username);
-		$this->db->where('deleted_at', NULL);
-		$query = $this->db->get();
-		$account = $query->first_row();
-		return ($account === NULL ? NULL : $account->auth);
+		$account = $this->get_one_by_condition(['username' => $username]);
+		return $account['auth'] ?? NULL;
 	}
+
 	/**
      * ログインする
      *
@@ -31,61 +27,31 @@ class Accounts_model extends Base_model
      */
 	public function login($username, $password)
 	{
-		$this->db->select('*');
-		$this->db->from($this->table_name);
-
-		$this->db->where('username', $username);
-		$this->db->where('password', $password);
-		$this->db->where('deleted_at', NULL);
-
-		$result = $this->db->get();
-
-		$this->db->trans_complete();
-		if ( ! $result)
-		{
-			log_message('error', $this->db->error()['message']);
-			return FALSE;
-		}
-		if (count($result->result()) === 0)
+		$condition = [
+			'username' => $username,
+			'password' => $password
+		];
+		$result = $this->get_by_condition($condition);
+		if (count($result) === 0)
 		{
 			return FALSE;
 		}
-		return $result->result()[0];
+		return $result[0];
 	}
 
 	public function check_username_exists($username)
 	{
-		$this->db->select('account_id');
-		$this->db->from($this->table_name);
-		$this->db->where('username', $username);
-		$query = $this->db->get();
-
-		return (count($query->result_array()) > 0);
+		$result = $this->get_by_condition(['username' => $username], FALSE);
+		return (count($result) > 0);
 	}
 
 	public function count_by_keyword($keyword = NULL)
 	{
-		$this->db->where('deleted_at',NULL);
-		$this->db->like('username',$keyword);
-		$this->db->from($this->table_name);
-		return $this->db->count_all_results();
+		return $this->get_list_count(NULL, ['username' => $keyword]);
 	}
 
-	public function get_list($limit,$start,$keyword = NULL)
+	public function get_list_account($keyword = NULL, $limit = NULL, $start = NULL)
 	{
-		$this->db->limit($limit,$start);
-		$this->db->where('deleted_at',NULL);
-		$this->db->like('username',$keyword);
-		$result = $this->db->get($this->table_name);
-		if ( ! $result)
-		{
-			log_message('error', $this->db->error()['message']);
-			return FALSE;
-		}
-		if (count($result->result()) === 0)
-		{
-			return FALSE;
-		}
-		return $result->result_array();
+		return $this->get_list(NULL, ['username' => $keyword], $limit, $start);
 	}
 }

@@ -12,15 +12,16 @@ class Account extends MY_Controller
 
 	public function index()
 	{
-		$keyword =  $this->input->get('keyword');
+		$keyword = $this->input->get('keyword');
 		$count_by_keyword = $this->accounts_model->count_by_keyword($keyword);
-		$this->load_pagination('/master/account?keyword='.$keyword,$count_by_keyword);
+		$this->load_pagination(site_url('/master/account?keyword='.$keyword), $count_by_keyword);
 		$start = $this->input->get('start');
-		if($start > $this->pagination->get_last_page_start())
+		$last_page_start = $this->pagination->get_last_page_start();
+		if($start > $last_page_start)
 		{
-			$start = $this->pagination->get_last_page_start();	
+			$start = $last_page_start;
 		}
-		$this->data['list_accounts'] = $this->accounts_model->get_list($this->pagination->per_page, $start, $keyword);
+		$this->data['list_accounts'] = $this->accounts_model->get_list_account($keyword, $this->pagination->per_page, $start);
 		$this->data['keyword'] = $keyword;
 		$this->render_list_account();
 	}
@@ -33,8 +34,12 @@ class Account extends MY_Controller
 
 	public function insert()
 	{
-		$this->data['account'] =  $this->input->post();
-		if($this->validate_form(NULL) !== TRUE)
+		if (!$this->is_post_request())
+		{
+			redirect('/master/account');
+		}
+		$this->data['account'] =  $this->input->post(NULL, TRUE);
+		if($this->validate_form() !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -44,12 +49,10 @@ class Account extends MY_Controller
 		if($new_account_id)
 		{
 			$this->session->set_flashdata('message', "アカウントを作成しました");
+			redirect('master/account');
 		}
-		else
-		{
-			$this->session->set_flashdata('error_message', 'アカウントを作成することができません');
-		}
-		redirect('master/account');
+		$this->session->set_flashdata('error_message', 'アカウントを作成することができません');
+		$this->render_form_account();
 	}
 
 	public function edit()
@@ -60,20 +63,21 @@ class Account extends MY_Controller
 			redirect('/master/account');
 		}
 		$this->data['account'] = $this->accounts_model->get_by_id($account_id);
-		if($this->data['account'])
-		{
-			$this->render_form_account();
-		}
-		else
+		if(!$this->data['account'])
 		{
 			redirect('/master/account');
 		}
+		$this->render_form_account();
 	}
 
 	public function update()
 	{
-		$this->data['account'] = $this->create_updated_data($this->input->post());
-		if($this->validate_form($this->data['account']) !== TRUE)
+		if (!$this->is_post_request())
+		{
+			redirect('/master/account');
+		}
+		$this->data['account'] = $this->create_updated_data($this->input->post(NULL, TRUE));
+		if($this->validate_form(FORM_MODE_UPDATE) !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -96,6 +100,10 @@ class Account extends MY_Controller
 
 	public function delete()
 	{
+		if (!$this->is_post_request())
+		{
+			redirect('/master/account');
+		}
 		$delete_id = $this->input->post('id');
 		if(empty($delete_id) || $delete_id == $this->session->userdata('account_id') )
 		{
@@ -105,7 +113,6 @@ class Account extends MY_Controller
 		if($result)
 		{
 			$this->session->set_flashdata('message','ユーザーを削除しました');
-			redirect('/master/account');
 		}
 		else
 		{
@@ -136,14 +143,14 @@ class Account extends MY_Controller
 	private function create_updated_data($input)
 	{
 		return [
-			'account_id'=> $input['account_id'],
-			'auth'      => $input['auth']
+			'account_id'=> $input['account_id'] ?? NULL,
+			'auth'      => $input['auth'] ?? NULL
 		];
 	}
 
-	private function validate_form($account_id)
+	private function validate_form($mode = FORM_MODE_INSERT)
 	{
-		if(!$account_id)
+		if($mode === FORM_MODE_INSERT)
 		{
 			$this->form_validation->set_rules('username','ユーザー名','trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]|callback_username_check');
 			$this->form_validation->set_rules('password','パスワード','trim|required|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
@@ -155,17 +162,13 @@ class Account extends MY_Controller
         if(!$this->form_validation->run())
         {
             $this->session->set_flashdata('error_message',validation_errors());
-            return false;
+            return FALSE;
         }
-        return true;
+        return TRUE;
 	}
 
 	public function username_check($str)
 	{
-		if($this->accounts_model->check_username_exists($str))
-		{
-			return false;
-		}
-		return true;
+		return !$this->accounts_model->check_username_exists($str);
 	}
 }
