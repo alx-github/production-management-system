@@ -66,7 +66,10 @@ class Base_model extends CI_Model
 		}
 		if ($like != NULL)
 		{
-			$this->db->like($like);
+			$this->db->group_start();
+			$this->db->or_like($like);
+			$this->db->group_end();
+			
 		}
 		return $this->db->count_all_results();
 	}
@@ -85,7 +88,9 @@ class Base_model extends CI_Model
 		}
 		if ($like != NULL)
 		{
-			$this->db->like($like);
+			$this->db->group_start();
+			$this->db->or_like($like);
+			$this->db->group_end();
 		}
 		if ($limit !== NULL)
 		{

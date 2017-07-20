@@ -142,8 +142,10 @@ class Account extends MY_Controller
 
 	private function create_updated_data($input)
 	{
+		print_r ($input);
 		return [
 			'account_id'=> $input['account_id'] ?? NULL,
+			'username'  => $this->accounts_model->get_by_id($input['account_id'])['username'] ?? NULL,
 			'auth'      => $input['auth'] ?? NULL
 		];
 	}
