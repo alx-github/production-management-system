@@ -29,5 +29,6 @@
 		<script src="<?= base_url('assets/libs/umi/js/jquery-ui-timepicker-ja.js'); ?>"></script>
 		<script src="<?= base_url('assets/libs/select2/js/select2.min.js'); ?>"></script>
 		<script src="<?= base_url('assets/libs/select2/js/i18n/ja.js'); ?>"></script>
+		<script src="<?= base_url('assets/js/app.js'); ?>"></script>
 	</body>
 </html>

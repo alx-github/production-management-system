@@ -117,7 +117,7 @@ class Base_model extends CI_Model
 	 */
 	public function insert_data($data)
 	{
-		$data['created_at'] = date('Y-m-d H:i:s');
+		$data['created_at'] = date(DATE_FORMAT_DEFAULT);
 		$query = $this->db->insert_string($this->table_name, $data);
 		$result = $this->db->query($query);
 		if ( ! $result)
@@ -135,7 +135,7 @@ class Base_model extends CI_Model
 	 */
 	public function update_data($id, $update_data)
 	{
-		$update_data['updated_at'] = date('Y-m-d H:i:s');
+		$update_data['updated_at'] = date(DATE_FORMAT_DEFAULT);
 		$this->db->where($this->primary_key_name, $id);
 		return $this->db->update($this->table_name, $update_data);
 	}
@@ -147,6 +147,6 @@ class Base_model extends CI_Model
 	public function delete($id)
 	{
 		$this->db->where($this->primary_key_name, $id);
-		return $this->db->update($this->table_name, ['deleted_at' => date('Y-m-d H:i:s')]);
+		return $this->db->update($this->table_name, ['deleted_at' => date(DATE_FORMAT_DEFAULT)]);
 	}
 }

@@ -17,7 +17,7 @@ if ( ! function_exists('format_datetime'))
 		{
 			return NULL;
 		}
-		$date = date_create_from_format('Y-m-d H:i:s', $datetime);
+		$date = date_create_from_format(DATE_FORMAT_DEFAULT, $datetime);
 		return date($format, $date->getTimestamp());
 	}
 }
@@ -39,5 +39,56 @@ if ( ! function_exists('empty_to_default'))
 			return $default;
 		}
 		return $value;
+	}
+}
+
+if ( ! function_exists('render_select_html'))
+{
+	function render_select_html($name, $data, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
+	{
+		$html = '<select class="form-control" name="' . $name . '">';
+		if ($has_unspecified) {
+			$html .= '<option value="">' . $unspecified_text . '</option>';
+		}
+		foreach ($data as $key => $value)
+		{
+			$select = ($key == $selected_value) ? 'selected' : '';
+			$html .= '<option value="' . $key . '" ' . $select . '>' . $value . '</option>';
+		}
+		$html .= '</select>';
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_radio_html'))
+{
+	function render_radio_html($name, $data, $selected_value)
+	{
+		$html = '<div class="btn-group" data-toggle="buttons">';
+		foreach ($data as $key => $value)
+		{
+			$html .= '<label class="btn btn-default'. (($key == $selected_value) ? ' active"':'"') . '>';
+			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off" checked>' . $value . '</label>';
+		}
+		$html .= '</div>';
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_select_html_from_database'))
+{
+	function render_select_html_from_database($name, $data, $key_column, $value_column, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
+	{
+		$html = '<select class="form-control" name="' . $name . '">';
+		if ($has_unspecified) {
+			$html .= '<option value="">' . $unspecified_text . '</option>';
+		}
+		foreach ($data as $value)
+		{
+			$select = ($value[$key_column] == $selected_value) ? 'selected' : '';
+			$html .= '<option value="' . $value[$key_column] . '" ' . $select . '>' . $value[$value_column] . '</option>';
+		}
+		$html .= '</select>';
+		return $html;
 	}
 }

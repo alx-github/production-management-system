@@ -11,19 +11,14 @@
 				<?php $this->session->unmark_flash('error_message') ?>
 			</div>
 		<?php } ?>
-			<form class="form-horizontal col-sm-12" method="POST" action="<?=site_url( (empty($material['material_id'])) ? '/master/stock/insert' : '/master/stock/update' )  ?>">
+			<form class="form-horizontal col-sm-12" method="POST" action="<?=site_url( (empty($material['material_id'])) ? '/master/stock/insert' : '/master/stock/update' ) ?>">
 				<input type="hidden" name="material_id" value="<?= empty($material['material_id']) ? NULL : $material['material_id'] ;?>" >
 				<div class="form-group">
 					<div class="col-sm-3">
 							<label for="" class="col-sm-offset-6 control-label">取引先名</label>
 					</div>
 					<div class="col-sm-2">
-						<select class="form-control" name="receive_order_customer_id">
-							<option value="">指定なし</option>
-						<?php foreach ($list_customers as $customer) { ?>
-							<option value="<?=$customer['customer_id']?>" <?= ($customer['customer_id'] == $material['receive_order_customer_id']) ? 'selected':'' ?>><?=$customer['name']?></option>
-						<?php }?>
-						</select>
+						<?=render_select_html_from_database('receive_order_customer_id',$list_customers, 'customer_id', 'name', $material['receive_order_customer_id'], TRUE) ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -31,11 +26,7 @@
 							<label for="" class="col-sm-offset-6 control-label">在庫カテコリ</label>
 					</div>
 					<div class="col-sm-2">
-						<select class="form-control" name="category">
-							<?php foreach ($this->config->item('category') as $key => $value){?>
-								<option value="<?=$key?>" <?= ($key == $material['category']) ? 'selected':''?>><?=$value?></option>
-							<?php }?>
-						</select>	
+						<?=render_select_html('category', config_item('category'), $material['category'], FALSE) ?>
 					</div>
 				</div>
 				
@@ -84,26 +75,15 @@
 							<label for="" class="col-sm-offset-6 control-label">表示区分</label>
 					</div>
 					<div class="col-sm-9">
-						<div class="btn-group" data-toggle="buttons">
-						<?php foreach ($this->config->item('display_type') as $key => $value){?>
-							<label class="btn btn-default <?= ($key == $material['display_type']) ? 'active':'' ?>">
-								<input type="radio" name="display_type" value="<?=$key?>" autocomplete="off"><?=$value?>
-							</label>
-						<?php }?>
-						</div>
+						<?=render_radio_html('display_type', config_item('display_type'), $material['display_type']) ?>
 					</div>	
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="" class="col-sm-offset-6 control-label">発注先</label>
+						<label for="" class="col-sm-offset-6 control-label">発注先</label>
 					</div>
 					<div class="col-sm-2">
-						<select class="form-control" name="send_order_customer_id" required>
-							<option value="">指定なし</option>
-						<?php foreach ($list_customers as $customer) { ?>
-							<option value="<?=$customer['customer_id']?>" <?= ($customer['customer_id'] == $material['send_order_customer_id']) ? 'selected':'' ?>><?=$customer['name']?></option>
-						<?php }?>
-						</select>	
+						<?=render_select_html_from_database('send_order_customer_id',$list_customers, 'customer_id', 'name', $material['send_order_customer_id'], TRUE) ?>
 					</div>
 				</div>
 				<div class="form-group">

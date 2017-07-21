@@ -30,12 +30,7 @@
 						<label class="control-label">取引先</label>
 					</div>
 					<div class="col-sm-9">
-						<select class="form-control" name="receive_order_customer_id">
-							<option value="">指定なし</option>
-						<?php foreach ($list_customers as $customer) { ?>
-							<option value="<?=$customer['customer_id']?>" <?= ($customer['customer_id'] == $receive_order_customer_id) ? 'selected':'' ?>><?=$customer['name']?></option>
-						<?php }?>
-						</select>
+						<?=render_select_html_from_database('receive_order_customer_id',$list_customers, 'customer_id', 'name', $receive_order_customer_id, TRUE) ?>					
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -43,12 +38,7 @@
 						<label class="control-label">発注先</label>
 					</div>
 					<div class="col-sm-9">
-						<select class="form-control" name="send_order_customer_id">
-							<option value="">指定なし</option>
-						<?php foreach ($list_customers as $customer) { ?>
-							<option value="<?=$customer['customer_id']?>" <?= ($customer['customer_id'] == $send_order_customer_id) ? 'selected':'' ?>><?=$customer['name']?></option>
-						<?php }?>
-						</select>
+						<?=render_select_html_from_database('send_order_customer_id',$list_customers, 'customer_id', 'name', $send_order_customer_id, TRUE) ?>
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -72,7 +62,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-		<?php if ($list_materials){  ?>
+		<?php if ($list_materials){ ?>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -118,7 +108,6 @@
 			</div>
 			<div class="modal-body">
 				削除してよろしいですか。<br>
-				<!-- 一度削除したアカウントは元に戻すことはできません。 -->
 			</div>
 			<form class="form-horizontal" method="post" action="<?= site_url('/master/stock/delete') ?>">
 				<input type="hidden" id="deleted_id" name="id" value="">
