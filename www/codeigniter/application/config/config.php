@@ -558,7 +558,8 @@ $config['display_type'] =  [
 | 
 */
 
-$config['category'] =  [ 
+$config['category'] =  [
+    '0'  => '指定なし',
     '1'  => '生地',
     '2'  => 'パイピング',
     '3'  => 'ライン'

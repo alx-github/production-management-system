@@ -32,7 +32,6 @@
 					</div>
 					<div class="col-sm-2">
 						<select class="form-control" name="category">
-							<option value="">指定なし</option>
 							<?php foreach ($this->config->item('category') as $key => $value){?>
 								<option value="<?=$key?>" <?= ($key == $material['category']) ? 'selected':''?>><?=$value?></option>
 							<?php }?>
