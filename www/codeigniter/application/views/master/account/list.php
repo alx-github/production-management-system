@@ -99,4 +99,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>

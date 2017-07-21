@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<h1>アカウント登録・編集</h1>
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-sm-12">
 			<?php 
 				if($this->session->flashdata('error_message')):
 			 ?>
@@ -19,15 +19,20 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-offset-3 ">
+		<div class="col-sm-offset-3 col-sm-9">
 			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
 			<input type="hidden" name="account_id" value="<?= (empty($account['account_id'])) ? '' : $account['account_id'] ?>" >
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="username" class="col-sm-offset-6 control-label">ユーザー名</label>
+							<label for="username" class="col-sm-offset-6 control-label">ログインID</label>
 					</div>
 					<div class="col-sm-3">
-						<input class="form-account form-control" type="text" name="username" id="username" placeholder="英数字記号" required="true" <?=(empty($account['account_id']))? '': 'disabled';?> value="<?= (empty($account['username'])) ? '' : $account['username'] ?>" >
+						<?php if (empty($account['account_id'])) { ?> 
+							<input class="form-account form-control" type="text" name="username" id="username" placeholder="英数字記号" required="true" value="<?=$account['username'] ?? '' ?>" >
+						<?php } else { ?> 
+							<input class="form-account form-control" type="text" disabled value="<?=$account['username'] ?>">
+							<input type="hidden" name="username" value="<?=$account['username'] ?>" >
+						<?php } ?> 
 					</div>	
 				</div>
 				<div class="form-group">
@@ -44,14 +49,10 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-3">
-							<label for="" class="col-sm-offset-6 control-label">権限</label>
+						<label for="" class="col-sm-offset-6 control-label">権限</label>
 					</div>
 					<div class="col-sm-2">
-						<select class="form-control" name="auth">
-							<?php foreach ($this->config->item('account_auth') as $key => $value){?>
-								<option value="<?=$key?>" <?=($account['auth'] == $key )? 'selected': '' ;?> > <?= $value?></option>
-							<?php }?>
-						</select>
+						<?=render_select_html('auth', config_item('account_auth'), $account['auth'], FALSE) ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -70,4 +71,3 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript" src="<?= site_url('assets/js/account.js'); ?>"></script>
