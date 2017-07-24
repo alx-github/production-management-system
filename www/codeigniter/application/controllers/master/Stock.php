@@ -116,14 +116,16 @@ class Stock extends MY_Controller
 
 	private function render_list_material()
 	{
-		$this->data['list_customers'] = $this->customers_model->get_list();
+		$this->data['list_receive_customers'] = $this->customers_model->get_combo_datas(TRUE);
+		$this->data['list_send_customers'] = $this->customers_model->get_combo_datas(FALSE);
 		$this->load_view('master/stock/list', $this->data);
 	
 	}
 
 	private function render_form_material()
 	{
-		$this->data['list_customers'] = $this->customers_model->get_list();
+		$this->data['list_receive_customers'] = $this->customers_model->get_combo_datas(TRUE);
+		$this->data['list_send_customers'] = $this->customers_model->get_combo_datas(FALSE);
 		$this->load_view('master/stock/form', $this->data);
 	}
 

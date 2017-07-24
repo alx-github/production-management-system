@@ -30,7 +30,7 @@
 						<label class="control-label">取引先</label>
 					</div>
 					<div class="col-sm-9">
-						<?=render_select_html_from_database('receive_order_customer_id',$list_customers, 'customer_id', 'name', $receive_order_customer_id, TRUE) ?>					
+						<?=render_select_html_from_database('receive_order_customer_id',$list_receive_customers, 'customer_id', 'name', $receive_order_customer_id, TRUE) ?>					
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -38,7 +38,7 @@
 						<label class="control-label">発注先</label>
 					</div>
 					<div class="col-sm-9">
-						<?=render_select_html_from_database('send_order_customer_id',$list_customers, 'customer_id', 'name', $send_order_customer_id, TRUE) ?>
+						<?=render_select_html_from_database('send_order_customer_id',$list_send_customers, 'customer_id', 'name', $send_order_customer_id, TRUE) ?>
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
