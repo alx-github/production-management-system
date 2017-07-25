@@ -1,11 +1,12 @@
 <div class="container-fluid">
 	<h1>取引先一覧</h1>
+	<?= render_message_html(); ?>
+	<?= render_error_message_html(); ?>
 	<div class="row">
-		<?php echo form_open("master/customer/search", ["class" => "form-horizontal", "role" => "form"]); ?>
+		<?php echo form_open("master/customer/index", ["class" => "form-horizontal", "role" => "form", 'method' => 'get']); ?>
 			<div class="form-group col-xs-12">
 				<div class="col-sm-4">
-					<input type = "text" class="form-control input" placeholder="キーワード" 
-						id="" name="" value="">
+					<?= render_input_html('keyword', $keyword, 'キーワード'); ?>
 				</div>
 				<div class="col-sm-1">
 					<input type="submit" class="btn btn-primary" value="検索" />
@@ -14,26 +15,11 @@
         <?php echo form_close(); ?>
 	</div>
 	
-	<div class="text-right">
-		<?= $this->pagination->create_links(); ?>
-	</div>
-	
 	<div class="row">
-		<div class="col-sm-10">
-			<ul class="pagination" style="margin-bottom:0%;">
-				<li><a href=""><<</a></li>
-				<li class="active"><a href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li><a href="">3</a></li>
-				<li><a href="">4</a></li>
-				<li><a href="">5</a></li>
-				<li><a href="">6</a></li>
-				<li><a href="">7</a></li>
-				<li><a href="">8</a></li>
-				<li><a href="">>></a></li>
-			</ul>
+		<div class="col-sm-10 col-xs-8">
+			<?= $this->pagination->create_links(); ?>
 		</div>
-		<div class="pagination col-sm-2">
+		<div class="pagination col-sm-2 col-xs-4">
 			<a class="btn btn-success btn-block" 
 				href="<?php echo site_url('master/customer/create') ?>"><i class="fa fa-plus fa-fw"></i>新規登録</a>
 		</div>
@@ -41,6 +27,9 @@
 	<div class="row">
 		<div class="col-sm-12 table-responsive">
 			<table class="table table-hover">
+				<?php if (count($customers) <= 0): ?>
+            		<tr><td colspan="12" rowspan="3" class="text-center">データは登録されていません。<td></tr>
+				<?php else: ?>
 	            <thead>
 	              <tr>
 	                <th class="col-sm-2">取引先名</th>
@@ -52,53 +41,35 @@
 	              </tr>
 	            </thead>
 	            <tbody>
-					<tr>
-		                <td>AAA</td>
-		                <td>〒999-9999 <br>◯◯県◯◯市◯◯1・2・3</td>
-		                <td>090-999-999<br>test@example.com</td>
-		                <td>メモメモメモメモメモメモメモ</td>
-		                <td><a class="btn btn-info btn-block" href="<?= site_url("master/customer/update/1"); ?>">編集</a></td>
-		                <td>
-		                	<a class="btn btn-warning btn-block" href="#" data-toggle="modal" data-target="#delete-modal">削除</a>
-		                </td>
-	        		</tr>
-	        		<tr>
-		                <td>BBBB</td>
-		                <td>〒999-9999 <br>◯◯県◯◯市◯◯1・2・3</td>
-		                <td>090-999-999<br>test@example.com</td>
-		                <td>メモメモメモメモメモメモメモ</td>
-		                <td><a class="btn btn-info btn-block" href="<?= site_url("master/customer/update/1"); ?>">編集</a></td>
-		                <td>
-		                	<a class="btn btn-warning btn-block" href="#" data-toggle="modal" data-target="#delete-modal">削除</a>
-		                </td>
-	        		</tr>
-	        		<tr>
-		                <td>CCCC</td>
-		                <td>〒999-9999 <br>◯◯県◯◯市◯◯1・2・3</td>
-		                <td>090-999-999<br>test@example.com</td>
-		                <td>メモメモメモメモメモメモメモ</td>
-		                <td><a class="btn btn-info btn-block" href="<?= site_url("master/customer/update/1"); ?>">編集</a></td>
-		                <td>
-		                	<a class="btn btn-warning btn-block" href="#" data-toggle="modal" data-target="#delete-modal">削除</a>
-		                </td>
-	        		</tr>
+	        		<?php foreach ($customers as $data): ?>
+						<tr>
+							<td><?= $data['name']; ?></td>
+							<td>
+								<?= $data['postal_code']; ?>
+								<br><?= $data['address_1']; ?>
+								<br><?= $data['address_2']; ?>
+							</td>
+							<td>
+								<?= $data['phone_number']; ?>
+								<br><?= $data['email_1']; ?>
+								<br><?= $data['email_2']; ?>
+							</td>
+							<td><?= $data['memo']; ?></td>
+							<td>
+								<a class="btn btn-info btn-block" href="<?= site_url("master/customer/update/{$data['customer_id']}"); ?>">編集</a>
+							</td>
+							<td>
+		                		<a class="btn btn-warning btn-block" href="#" data-delete-id="<?= $data['customer_id']; ?>"
+		                			data-toggle="modal" data-target="#delete-modal">削除</a>
+		                	</td>
+						</tr>
+					<?php endforeach; ?>
 	            </tbody>
 		  	</table>
+		  	<?php endif; ?>
 		 </div>
 	 </div>
-	 <ul class="pagination col-sm-12" style="margin-bottom:0%;">
-				<li><a href=""><<</a></li>
-				<li class="active"><a href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li><a href="">3</a></li>
-				<li><a href="">4</a></li>
-				<li><a href="">5</a></li>
-				<li><a href="">6</a></li>
-				<li><a href="">7</a></li>
-				<li><a href="">8</a></li>
-				<li><a href="">>></a></li>
-		</ul>
-	 <div class="text-right">
+	 <div>
 		<?= $this->pagination->create_links(); ?>
 	</div>
 </div>
@@ -116,7 +87,7 @@
 			</div>
 
 			<form class="form-horizontal" method="post" action="<?= site_url('master/customer/delete') ?>">
-				<input type="hidden" name="id" value="0">
+				<input type="hidden" name="delete_id" value="">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
 					<button type="submit" class="btn btn-danger js-disabled">削除する</button>

@@ -23,7 +23,6 @@
 	margin-bottom: 2px;
 }
 
-
 .btn-outline-info {
     color: #3498db;
     background-color: #fff;
@@ -52,4 +51,25 @@
     -webkit-transition-property: all;
     -o-transition-property: all;
     transition-property: all;
+}
+
+.scrollable-x {
+    overflow-x: auto;
+}
+
+.table-fixed {
+    table-layout: fixed;
+}
+
+.form-horizontal .control-label {
+	text-align: left;
+}
+/* set height bigger */
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 38px;
+    user-select: none;
+    -webkit-user-select: none;
 }

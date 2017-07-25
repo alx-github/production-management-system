@@ -6,20 +6,14 @@
 		<div class="row">
 			<div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
 				<div class="well">
-					<?php if ($this->session->flashdata('error_message')): ?>
-						<div class="alert alert-dismissible alert-danger">
-							<button type="button" class="close" data-dismiss="alert">×</button>
-							<strong>エラー</strong>
-							<p><?= $this->session->flashdata('error_message') ?></p>
-							<?php $this->session->unmark_flash('error_message'); ?>
-						</div>
-					<?php endif; ?>
-					<div class="form-group">
-						<input id="username" name="username" class="form-control" 
-							placeholder="ユーザー名" value="<?= isset($username) ? $username : '' ?>" required autofocus>
+					<div class="row">
+						<?=render_error_message_html() ?>
 					</div>
 					<div class="form-group">
-						<input type="password" id="password" name="password" class="form-control" placeholder="パスワード" required>
+						<?= render_input_html('username', (isset($username) ? $username : ''), 'ユーザー名', NULL, 'required autofocus') ?>
+					</div>
+					<div class="form-group">
+						<?= render_input_html('password', NULL, 'パスワード', NULL, 'required', 'password') ?>
 					</div>
 					<button class="btn btn-lg btn-success btn-block" type="submit">ログイン</button>
 				</div>

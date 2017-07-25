@@ -33,8 +33,8 @@ class Account extends MY_Controller
 		{
 			redirect('/master/account');
 		}
-		$this->data['account'] = $this->input->post(NULL, TRUE);
-		if ($this->validate_form() !== TRUE)
+		$this->data['account'] =  $this->input->post(NULL, TRUE);
+		if($this->validate_form() !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -43,7 +43,7 @@ class Account extends MY_Controller
 		$this->db->trans_start();
 		$this->accounts_model->insert_data($this->data['account']);
 		$this->db->trans_complete();
-		if ($this->db->trans_status() !== FALSE)
+		if($this->db->trans_status() !== FALSE)
 		{
 			$this->session->set_flashdata('message', "アカウントを作成しました");
 			redirect('master/account');
@@ -55,12 +55,12 @@ class Account extends MY_Controller
 	public function edit()
 	{
 		$account_id = $this->input->get('id');
-		if (!$account_id)
+		if(!$account_id)
 		{
 			redirect('/master/account');
 		}
 		$this->data['account'] = $this->accounts_model->get_by_id($account_id);
-		if (!$this->data['account'])
+		if(!$this->data['account'])
 		{
 			redirect('/master/account');
 		}
@@ -74,19 +74,19 @@ class Account extends MY_Controller
 			redirect('/master/account');
 		}
 		$this->data['account'] = $this->create_updated_data($this->input->post(NULL, TRUE));
-		if ($this->validate_form(FORM_MODE_UPDATE) !== TRUE)
+		if($this->validate_form(FORM_MODE_UPDATE) !== TRUE)
 		{
 			$this->render_form_account();
 			return;
 		}
-		if ($this->input->post('password'))
+		if($this->input->post('password'))
 		{
 			$this->data['account']['password'] = hash_password($this->input->post('password'));
 		}
 		$this->db->trans_start();
 		$this->accounts_model->update_data($this->data['account']['account_id'], $this->data['account']);
 		$this->db->trans_complete();
-		if ($this->db->trans_status() !== FALSE)
+		if($this->db->trans_status() !== FALSE)
 		{
 			$this->session->set_flashdata('message', "アカウント情報を更新しました");
 		}
@@ -104,14 +104,14 @@ class Account extends MY_Controller
 			redirect('/master/account');
 		}
 		$delete_id = $this->input->post('id');
-		if (empty($delete_id) OR $delete_id == $this->session->userdata('account_id') )
+		if(empty($delete_id) OR $delete_id == $this->session->userdata('account_id') )
 		{
 			redirect('/master/account');
 		}
 		$this->db->trans_start();
 		$this->accounts_model->delete($delete_id);
 		$this->db->trans_complete();
-		if ($this->db->trans_status() !== FALSE)
+		if($this->db->trans_status() !== FALSE)
 		{
 			$this->session->set_flashdata('message', 'ユーザーを削除しました');
 		}
@@ -152,7 +152,7 @@ class Account extends MY_Controller
 
 	private function validate_form($mode = FORM_MODE_INSERT)
 	{
-		if ($mode === FORM_MODE_INSERT)
+		if($mode === FORM_MODE_INSERT)
 		{
 			$this->form_validation->set_rules('username', 'ユーザー名', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]|callback_username_check');
 			$this->form_validation->set_rules('password', 'パスワード', 'trim|required|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
@@ -161,7 +161,7 @@ class Account extends MY_Controller
 		{
 			$this->form_validation->set_rules('password', 'パスワード', 'trim|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
 		}
-		if (!$this->form_validation->run())
+		if(!$this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());
 			return FALSE;
