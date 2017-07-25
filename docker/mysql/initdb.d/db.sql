@@ -159,6 +159,10 @@ create table `customers` (
 create index `customers_idx_1`
   on `customers`(`deleted_at`,`display_type`);
 
+INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer1','1');
+INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer2','1');
+INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer3','2');
+INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer4','2');
 -- 商品
 drop table if exists `products` cascade;
 
@@ -203,6 +207,21 @@ create table `materials` (
 create index `materials_idx_1`
   on `materials`(`material_id`,`deleted_at`,`receive_order_customer_id`,`part_number`,`color_number_code`,`color_number_tint`,`display_type`);
 
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '3', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '3', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
 -- アカウント
 drop table if exists `accounts` cascade;
 

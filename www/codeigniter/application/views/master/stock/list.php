@@ -1,20 +1,36 @@
 <div class="container-fluid">
 	<h1>在庫一覧</h1>
 	<div class="row">
+		<?php if ($this->session->flashdata('message')) { ?>
+			<div class="col-sm-12">
+				<div class="alert alert-dismissible alert-info">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>メッセージ</strong>
+					<p><?= $this->session->flashdata('message') ?></p>
+				</div>
+			</div>
+			<?php $this->session->unmark_flash('message'); ?>
+		<?php } ?>
+		<?php if ($this->session->flashdata('error_message')){ ?>
+			<div class="col-sm-12">	
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					<strong>エラー</strong>
+					<p><?= $this->session->flashdata('error_message') ?></p>
+				</div>
+			</div>
+			<?php $this->session->unmark_flash('error_message'); ?>
+		<?php } ?>
+	</div>
+	<div class="row">
 		<div class="col-sm-12">
-			<form class="form-horizontal" method="GET" action="">
+			<form class="form-horizontal" method="GET" action="<?= site_url('/master/stock')?>">
 				<div class="form-group col-sm-4">
 					<div class="col-sm-3 text-right">
 						<label class="control-label">取引先</label>
 					</div>
 					<div class="col-sm-9">
-						<select class="form-control">
-							<option>指定なし</option>
-							<option selected>瀧本</option>
-							<option>A株式会社</option>
-							<option>△△</option>
-							<option>△△△△</option>
-						</select>
+						<?=render_select_html_from_database('receive_order_customer_id',$list_receive_customers, 'customer_id', 'name', $receive_order_customer_id, TRUE) ?>					
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -22,18 +38,12 @@
 						<label class="control-label">発注先</label>
 					</div>
 					<div class="col-sm-9">
-						<select class="form-control">
-							<option>指定なし</option>
-							<option selected>瀧本</option>
-							<option>A株式会社</option>
-							<option>△△</option>
-							<option>△△△△</option>
-						</select>
+						<?=render_select_html_from_database('send_order_customer_id',$list_send_customers, 'customer_id', 'name', $send_order_customer_id, TRUE) ?>
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name=""   placeholder="キーワード">
+						<input class="form-control" type="text" name="keyword" placeholder="キーワード" value="<?=$keyword?>">
 					</div>
 					<div class="col-sm-3">
 						<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
@@ -44,23 +54,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-10">
-			<ul class="pagination">
-				<li><a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-					</a></li>
-					<li><a href="">1</a></li>
-					<li  class="active"><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">4</a></li>
-					<li><a href="">5</a></li>
-					<li><a href="">6</a></li>
-					<li><a href="">7</a></li>
-					<li><a href="">8</a></li>
-					<li><a href="">9</a></li>
-					<li><a href="#" aria-label="Previous">
-					<span aria-hidden="true">&raquo;</span>
-					</a></li>
-			</ul>
+			<?php echo $this->pagination->create_links() ?>
 		</div>
 		<div class="col-sm-2">
 			<a href="<?= site_url('/master/stock/create') ?>" class="btn btn-success btn-block pagination">新規登録</a>
@@ -68,6 +62,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
+		<?php if ($list_materials){ ?>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -80,67 +75,27 @@
 					</tr>
 				</thead>
 				<tbody>
+				<?php foreach ($list_materials as $material){ ?>
 					<tr>
-						<td>ライン</td>
-						<td>KNT18</td>
-						<td>黒 x プルー</td>
-						<td>巾: 18</td>
-						<td>2017/06/30</td>
+						<td><?=$this->config->item('category')[$material['category']]?></td>
+						<td><?=$material['part_number']?></td>
+						<td><?=$material['color_number_code'].' '.$material['color_number_tint'] ?></td>	
+						<td><?=$material['spec']?></td>
+						<td><?=format_datetime($material['updated_at'],'Y/m/d')?></td>
 						<td>
-							<a href="<?= site_url('/master/stock/edit/1') ?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>
+							<a href="<?= site_url('/master/stock/edit')?>?id=<?=$material['material_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
+							<a href="#" id="<?=$material['material_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-material"  data-toggle="modal" data-target="#delete-modal">削除</a>
 						</td>
 					</tr>
-						<td>ライン</td>
-						<td>E-13</td>
-						<td>S: サッワス</td>
-						<td>巾: 13</td>
-						<td>2017/07/07</td>
-						<td>
-							<a href="<?= site_url('/master/stock/edit/1') ?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>
-						</td>
-					</tr>
-					<tr>
-						<td>パイ匕ング</td>
-						<td>?</td>
-						<td>K41: 赤</td>
-						<td>巾: 10.0、巻m: 50.0</td>
-						<td>2017/07/20</td>
-						<td>
-							<a href="<?= site_url('/master/stock/edit/1') ?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>
-						</td>
-					</tr>
+				<?php }?>
 				</tbody>
 			</table>
+		<?php }?>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<nav aria-label="Page navigation">
-			<ul class="pagination">
-				<li>
-				<a href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-				</li>
-				<li><a href="#">1</a></li>
-				<li class="active"><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li>
-				<a href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-				</a>
-				</li>
-			</ul>
-			</nav>
+			<?php echo $this->pagination->create_links() ?>
 		</div>
 	</div>
 </div>
@@ -153,10 +108,9 @@
 			</div>
 			<div class="modal-body">
 				削除してよろしいですか。<br>
-				<!-- 一度削除したアカウントは元に戻すことはできません。 -->
 			</div>
 			<form class="form-horizontal" method="post" action="<?= site_url('/master/stock/delete') ?>">
-				<input type="hidden" name="id" value="">
+				<input type="hidden" id="deleted_id" name="id" value="">
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
 					<button type="submit" class="btn btn-danger">削除する</button>
@@ -165,3 +119,12 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	$('.delete-material').each(function(){
+		$(this).click(function(event){
+			$('#deleted_id').val(event.target.id);
+		});
+	});
+});
+</script>

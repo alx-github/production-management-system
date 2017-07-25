@@ -56,9 +56,11 @@ class Auth extends MY_Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			$this->data['username'] = $username;
+			$message = '';
 			
 			$this->load->model('accounts_model');
-			$result = $this->accounts_model->login($username, hash_password($password));
+			$password_hash = hash_password($password);
+			$result = $this->accounts_model->login($username, $password_hash);
 			if ($result !== FALSE)
 			{
 				$this->session->set_userdata('username', $username);

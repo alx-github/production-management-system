@@ -14,8 +14,11 @@ class MY_Controller extends CI_Controller
 		$this->load->helper(['url', 'language', 'common', 'array']);
 		$this->load->model([
 			'accounts_model',
+			'materials_model',
+			'customers_model'
+
 		]);
-		$controller  = $this->uri->segment(1);
+		$controller = $this->uri->segment(1);
 		if ($controller !== 'auth')
 		{
 			if (!$this->session->userdata('username'))
