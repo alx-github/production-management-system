@@ -41,6 +41,16 @@ class Materials_model extends Base_model
 		return $this->get_list($where_clause, $like_clause, $limit, $start);
 	}
 
+	public function get_validation()
+	{
+		$rules = [];
+		$rules[] = ['field' => 'part_number', 'label' => '品番', 'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+		$rules[] = ['field' => 'unit', 'label' => '単位', 'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+		$rules[] = ['field' => 'send_order_customer_id', 'label' => '発注先', 'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+
+		return $rules;
+	}
+
 	private function create_like_clause($keyword = NULL)
 	{
 		return [

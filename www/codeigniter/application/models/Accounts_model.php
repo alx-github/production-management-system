@@ -54,4 +54,20 @@ class Accounts_model extends Base_model
 	{
 		return $this->get_list(NULL, ['username' => $keyword], $limit, $start);
 	}
+
+	public function get_validation($mode = FORM_MODE_INSERT)
+	{
+		$rules = [];
+		if($mode === FORM_MODE_INSERT)
+		{
+			$rules[] = ['field' => 'username', 'label' => 'ユーザー名', 'rules' => 'trim|required|callback_username_check|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+			$rules[] = ['field' => 'password', 'label' => 'パスワード', 'rules' => 'trim|required|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+		}
+		else
+		{
+			$rules[] = ['field' => 'password', 'label' => 'パスワード', 'rules' => 'trim|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+		}
+
+		return $rules;
+	}
 }

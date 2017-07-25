@@ -34,7 +34,7 @@ class Account extends MY_Controller
 			redirect('/master/account');
 		}
 		$this->data['account'] =  $this->input->post(NULL, TRUE);
-		if($this->validate_form() !== TRUE)
+		if($this->validate_form(FORM_MODE_INSERT) !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -152,15 +152,7 @@ class Account extends MY_Controller
 
 	private function validate_form($mode = FORM_MODE_INSERT)
 	{
-		if($mode === FORM_MODE_INSERT)
-		{
-			$this->form_validation->set_rules('username', 'ユーザー名', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]|callback_username_check');
-			$this->form_validation->set_rules('password', 'パスワード', 'trim|required|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
-		}
-		else
-		{
-			$this->form_validation->set_rules('password', 'パスワード', 'trim|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
-		}
+		$this->form_validation->set_rules($this->accounts_model->get_validation($mode));
 		if(!$this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());

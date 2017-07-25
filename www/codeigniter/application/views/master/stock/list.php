@@ -1,26 +1,8 @@
 <div class="container-fluid">
 	<h1>在庫一覧</h1>
 	<div class="row">
-		<?php if ($this->session->flashdata('message')) { ?>
-			<div class="col-sm-12">
-				<div class="alert alert-dismissible alert-info">
-					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>メッセージ</strong>
-					<p><?= $this->session->flashdata('message') ?></p>
-				</div>
-			</div>
-			<?php $this->session->unmark_flash('message'); ?>
-		<?php } ?>
-		<?php if ($this->session->flashdata('error_message')){ ?>
-			<div class="col-sm-12">	
-				<div class="alert alert-dismissible alert-danger">
-					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>エラー</strong>
-					<p><?= $this->session->flashdata('error_message') ?></p>
-				</div>
-			</div>
-			<?php $this->session->unmark_flash('error_message'); ?>
-		<?php } ?>
+		<?=render_message_html() ?>
+		<?=render_error_message_html() ?>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
@@ -43,7 +25,7 @@
 				</div>
 				<div class="form-group col-sm-4">
 					<div class="col-sm-9">
-						<input class="form-control" type="text" name="keyword" placeholder="キーワード" value="<?=$keyword?>">
+						<?=render_input_html('keyword', $keyword, 'キーワード', NULL, NULL) ?>
 					</div>
 					<div class="col-sm-3">
 						<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
@@ -77,11 +59,11 @@
 				<tbody>
 				<?php foreach ($list_materials as $material){ ?>
 					<tr>
-						<td><?=$this->config->item('category')[$material['category']]?></td>
+						<td><?=$this->config->item('material')['category'][$material['category']]?></td>
 						<td><?=$material['part_number']?></td>
 						<td><?=$material['color_number_code'].' '.$material['color_number_tint'] ?></td>	
 						<td><?=$material['spec']?></td>
-						<td><?=format_datetime($material['updated_at'],'Y/m/d')?></td>
+						<td><?=format_datetime($material['updated_at'],DATE_FORMAT_EVENT)?></td>
 						<td>
 							<a href="<?= site_url('/master/stock/edit')?>?id=<?=$material['material_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
 							<a href="#" id="<?=$material['material_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-material"  data-toggle="modal" data-target="#delete-modal">削除</a>
@@ -119,12 +101,3 @@
 		</div>
 	</div>
 </div>
-<script>
-$(document).ready(function(){
-	$('.delete-material').each(function(){
-		$(this).click(function(event){
-			$('#deleted_id').val(event.target.id);
-		});
-	});
-});
-</script>

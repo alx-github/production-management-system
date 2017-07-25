@@ -11,7 +11,7 @@ if ( ! function_exists('hash_password'))
 
 if ( ! function_exists('format_datetime'))
 {
-	function format_datetime($datetime, $format = 'Y/m/d H:i:s')
+	function format_datetime($datetime, $format = DATE_FORMAT_DEFAULT)
 	{
 		if ($datetime === NULL)
 		{

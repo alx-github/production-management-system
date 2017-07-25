@@ -85,6 +85,7 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 defined('DATE_FORMAT_DEFAULT') OR define('DATE_FORMAT_DEFAULT', 'Y-m-d H:i:s');
+defined('DATE_FORMAT_EVENT') OR define('DATE_FORMAT_EVENT', 'Y/m/d');
 
 // アカウント - 権限
 //0:指定なし、 10:裁断 20:縫製 30:出荷 80:事務 100:管理者

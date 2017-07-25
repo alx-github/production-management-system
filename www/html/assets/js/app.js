@@ -22,4 +22,9 @@ $(document).ready(function() {
 	    $(e.currentTarget).find('input[name="delete_id"]').val(delete_id);
 	});
 
+	$('.delete-material').each(function(){
+		$(this).click(function(event){
+			$('#deleted_id').val(event.target.id);
+		});
+	});
 });

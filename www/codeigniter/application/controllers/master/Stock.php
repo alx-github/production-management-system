@@ -146,9 +146,7 @@ class Stock extends MY_Controller
 
 	private function validate_form()
 	{
-		$this->form_validation->set_rules('part_number', '品番', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
-		$this->form_validation->set_rules('unit', '単位', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
-		$this->form_validation->set_rules('send_order_customer_id', '発注先', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]');
+		$this->form_validation->set_rules($this->materials_model->get_validation());
 		if (!$this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());
