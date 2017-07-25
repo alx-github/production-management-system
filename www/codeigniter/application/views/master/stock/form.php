@@ -20,7 +20,7 @@
 							<label for="" class="col-sm-offset-6 control-label">在庫カテコリ</label>
 					</div>
 					<div class="col-sm-2">
-						<?=render_select_html('category', config_item('material')['category'], $material['category'], FALSE) ?>
+						<?=render_select_html('category', config_item('material')['category'], $material['category'], TRUE) ?>
 					</div>
 				</div>
 				
@@ -50,7 +50,7 @@
 						<label for="" class="col-sm-offset-6 control-label">単位</label>
 					</div>
 					<div class="col-sm-1">
-						<?=render_select_html('unit', config_item('material')['unit'], $material['unit'], FALSE) ?>
+						<?=render_select_html('unit', config_item('material')['unit'], $material['unit'], TRUE) ?>
 					</div>
 				</div>
 				<div class="form-group">

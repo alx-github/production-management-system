@@ -59,7 +59,7 @@
 				<tbody>
 				<?php foreach ($list_materials as $material){ ?>
 					<tr>
-						<td><?=$this->config->item('material')['category'][$material['category']]?></td>
+						<td><?=$this->config->item('material')['category'][$material['category']] ?? '' ?></td>
 						<td><?=$material['part_number']?></td>
 						<td><?=$material['color_number_code'].' '.$material['color_number_tint'] ?></td>	
 						<td><?=$material['spec']?></td>

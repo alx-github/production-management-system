@@ -139,6 +139,7 @@ class Stock extends MY_Controller
 			'color_number_code'=> NULL,
 			'color_number_tint'=> NULL,
 			'spec'=> NULL,
+			'unit'=> NULL,
 			'display_type'=> NULL,
 			'send_order_customer_id'=> NULL
 		];
