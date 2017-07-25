@@ -13,7 +13,7 @@ class MY_Controller extends CI_Controller
 		$this->load->library(['session', 'form_validation', 'pagination']);
 		$this->load->helper(['url', 'language', 'common', 'array']);
 		$this->load->model([
-				'accounts_model',
+			'accounts_model',
 		]);
 		$controller  = $this->uri->segment(1);
 		if ($controller !== 'auth')
@@ -35,7 +35,7 @@ class MY_Controller extends CI_Controller
 		}
 	}
 	
-	protected function force_admin()
+	protected function check_admin_account()
 	{
 		if(!$this->is_admin())
 		{
@@ -47,7 +47,7 @@ class MY_Controller extends CI_Controller
 	{
 		$id = $this->session->userdata('account_id');
 		$userinfo = $this->accounts_model->get_by_id($id);
-		if(!$userinfo)
+		if (!$userinfo)
 		{
 			redirect('auth/logout');
 			return ;
@@ -74,6 +74,17 @@ class MY_Controller extends CI_Controller
 			'base_url' 		=> $url,
 			'total_rows' 	=> $count
 		]);
+	}
+
+	protected function get_start_value()
+	{
+		$start = $this->input->get('start');
+		$last_page_start = $this->pagination->get_last_page_start();
+		if($start > $last_page_start)
+		{
+			$start = $last_page_start;
+		}
+		return $start;
 	}
 	
 	protected function load_view($view, $data = NULL)

@@ -276,6 +276,7 @@ class My_Pagination extends CI_Pagination {
 	public function get_last_page_start()
 	{
 		$remainder = $this->total_rows % $this->per_page;
+		$remainder = ($remainder == 0) ? $this->per_page : $remainder;
 		return $this->total_rows - $remainder;
 	}
 }

@@ -17,7 +17,7 @@ if ( ! function_exists('format_datetime'))
 		{
 			return NULL;
 		}
-		$date = date_create_from_format('Y-m-d H:i:s', $datetime);
+		$date = date_create_from_format(DATE_FORMAT_DEFAULT, $datetime);
 		return date($format, $date->getTimestamp());
 	}
 }
@@ -39,5 +39,23 @@ if ( ! function_exists('empty_to_default'))
 			return $default;
 		}
 		return $value;
+	}
+}
+
+if ( ! function_exists('render_select_html'))
+{
+	function render_select_html($name, $data, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
+	{
+		$html = '<select class="form-control" name="' . $name . '">';
+		if ($has_unspecified) {
+			$html .= '<option>' . $unspecified_text . '</option>';
+		}
+		foreach ($data as $key => $value)
+		{
+			$select = ($key == $selected_value) ? 'selected' : '';
+			$html .= '<option value="' . $key . '" ' . $select . '>' . $value . '</option>';
+		}
+		$html .= '</select>';
+		return $html;
 	}
 }
