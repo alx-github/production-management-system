@@ -162,7 +162,7 @@ if ( ! function_exists('render_radio_html'))
 		foreach ($data as $key => $value)
 		{
 			$html .= '<label class="btn btn-default ' . (($key == $selected_value) ? ' active"' : '"') . '>';
-			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off" checked>' . $value . '</label>';
+			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off">' . $value . '</label>';
 		}
 		$html .= '</div>';
 		return $html;
