@@ -78,7 +78,7 @@
 									<div class="form-group">
 										<label for="" class="col-sm-3 control-label">入庫日</label>
 										<div class="col-sm-4">
-											<input type="text" class="form-control datetime" value="2017/07/20" />
+											<input type="text" class="form-control datetime" readonly value="2017/07/20" />
 										</div>
 									</div>
 									<div class="form-group">

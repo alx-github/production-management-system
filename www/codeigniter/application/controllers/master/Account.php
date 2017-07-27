@@ -13,11 +13,12 @@ class Account extends MY_Controller
 	public function index()
 	{
 		$keyword = $this->input->get('keyword');
+		$order_by = $this->get_order_by();
 		$count_by_keyword = $this->accounts_model->count_by_keyword($keyword);
-		$this->load_pagination(site_url('/master/account?keyword='.$keyword), $count_by_keyword);
-		$start = $this->get_start_value();
-		$this->data['list_accounts'] = $this->accounts_model->get_list_account($keyword, $this->pagination->per_page, $start);
 		$this->data['keyword'] = $keyword;
+		$this->load_pagination(site_url('/master/account?' . http_build_query($this->data)), $count_by_keyword);
+		$start = $this->get_start_value();
+		$this->data['list_accounts'] = $this->accounts_model->get_list_account($keyword, $this->pagination->per_page, $start, $order_by);
 		$this->render_list_account();
 	}
 
@@ -34,7 +35,7 @@ class Account extends MY_Controller
 			redirect('/master/account');
 		}
 		$this->data['account'] =  $this->input->post(NULL, TRUE);
-		if($this->validate_form(FORM_MODE_INSERT) !== TRUE)
+		if($this->validate_form() !== TRUE)
 		{
 			$this->render_form_account();
 			return;
@@ -146,7 +147,7 @@ class Account extends MY_Controller
 		return [
 			'account_id'=> $input['account_id'] ?? NULL,
 			'username'	=> $input['username'] ?? NULL,
-			'auth'		=> $input['auth'] ?? NULL
+			'auth'      => $input['auth'] ?? NULL
 		];
 	}
 
@@ -161,7 +162,6 @@ class Account extends MY_Controller
 		{
 			$this->form_validation->set_rules('password', 'パスワード', 'trim|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
 		}
-
 		if(!$this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());

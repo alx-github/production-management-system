@@ -22,21 +22,37 @@
 		<div class="col-lg-12">
 			<form method="post">
 			<table class="table table-hover ">
+				<colgroup>
+					<col style="width:100px;">
+					<col style="width:100px;">
+					<col style="width:100px;">
+					<col style="width:100px;">
+					<col style="width:80px;">
+					<col style="width:80px;">
+					<col style="width:120px;">
+					<col style="width:120px;">
+					<col style="width:60px;">
+					<col style="width:60px;">
+					<col style="width:60px;">
+					<col style="width:60px;">
+					<col style="width:60px;">
+					<col style="">
+				</colgroup>
 				<thead>
 				<tr>
-					<th>取引先</th>
+					<th>取引先<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
 					<th>商品名</th>
 					<th>アイテム名</th>
-					<th>指図</th>
+					<th>指図<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
 					<th>品番</th>
 					<th>数量</th>
-					<th>依頼日</th>
+					<th>依頼日<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+					<th>出荷予定日<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
 					<th>人荷</th>
 					<th>裁断</th>
 					<th>中断</th>
 					<th>縫製</th>
 					<th>出荷</th>
-					<th>出荷予定日</th>
 					<th>備考</th>
 				</tr>
 				</thead>
@@ -49,12 +65,12 @@
 					<td>L3344</td>
 					<td class="text-right">100</td>
 					<td>2017/07/01</td>
+					<td><input type="text" class="form-control text-center datetime" size="10" value=""/></td>
 					<td><button type="submit" class="btn btn-default btn-block">未</button></td>
 					<td><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#cutting-model">未</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">-</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">未</button></td>
 					<td><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#shipment-not-yet-model">未</button></td>
-					<td><input type="text" class="form-control datetime" size="10" value=""/></td>
 					<td><input type="text" class="form-control" value=""/></td>
 				</tr>
 				<tr>
@@ -65,12 +81,12 @@
 					<td>S9999</td>
 					<td class="text-right">258</td>
 					<td>2017/07/01</td>
+					<td><input type="text" class="form-control text-center datetime" size="10" value=""/></td>
 					<td><button type="submit" class="btn btn-info btn-block">済み</button></td>
 					<td><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#cutting-model">済み</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">-</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">未</button></td>
 					<td><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#shipment-not-yet-model">未</button></td>
-					<td><input type="text" class="form-control datetime" size="10" value=""/></td>
 					<td><input type="text" class="form-control" value=""/></td>
 				</tr>
 				<tr>
@@ -81,12 +97,12 @@
 					<td>99</td>
 					<td class="text-right">50</td>
 					<td>2017/06/30</td>
+					<td><input type="text" class="form-control text-center datetime" size="10" value="2017/07/10"/></td>
 					<td><button type="submit" class="btn btn-info btn-block">済み</button></td>
 					<td><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#cutting-model">済み</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">-</button></td>
 					<td><button type="submit" class="btn btn-info btn-block">済み</button></td>
 					<td><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#shipment-not-yet-model">未</button></td>
-					<td><input type="text" class="form-control datetime" size="10" value="2017/07/10"/></td>
 					<td><input type="text" class="form-control" value=""/></td>
 				</tr>
 				<tr>
@@ -97,12 +113,12 @@
 					<td>98</td>
 					<td class="text-right">50</td>
 					<td>2017/06/30</td>
+					<td><input type="text" class="form-control text-center datetime" size="10" value=""/></td>
 					<td><button type="submit" class="btn btn-info btn-block">済み</button></td>
 					<td><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#cutting-model">済み</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">-</button></td>
 					<td><button type="submit" class="btn btn-info btn-block">済み</button></td>
 					<td><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#shipment-already-model">済み</button></td>
-					<td><input type="text" class="form-control datetime" size="10" value=""/></td>
 					<td><input type="text" class="form-control" value=""/></td>
 				</tr>
 				<tr>
@@ -113,12 +129,12 @@
 					<td>C333</td>
 					<td class="text-right">1000</td>
 					<td>2017/06/01</td>
+					<td><input type="text" class="form-control text-center datetime" size="10" value=""/></td>
 					<td><button type="submit" class="btn btn-info btn-block">済み</button></td>
 					<td><button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#cutting-model">済み</button></td>
 					<td><button type="submit" class="btn btn-info btn-block">中断</button></td>
 					<td><button type="submit" class="btn btn-default btn-block">未</button></td>
 					<td><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#shipment-not-yet-model">未</button></td>
-					<td><input type="text" class="form-control datetime" size="10" value=""/></td>
 					<td><input type="text" class="form-control" value=""/></td>
 				</tr>
 				</tbody>

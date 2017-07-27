@@ -46,10 +46,10 @@
 			<table class="table table-hover">
 	            <thead>
 	              <tr>
-	                <th class="col-sm-1">発注ID</th>
-	                <th class="col-sm-3">取引先</th>
-	                <th class="col-sm-2">発注日</th>
-	                <th class="col-sm-2">ステータス</th>
+	                <th class="col-sm-1">発注ID<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+	                <th class="col-sm-3">取引先<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+	                <th class="col-sm-2">発注日<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+	                <th class="col-sm-2">ステータス<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
 	                <th class="col-sm-2">更新日</th>
 	                <th class="col-sm-1"></th>
 	                <th class="col-sm-1"></th>

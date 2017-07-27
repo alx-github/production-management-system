@@ -50,8 +50,8 @@ class Accounts_model extends Base_model
 		return $this->get_list_count(NULL, ['username' => $keyword]);
 	}
 
-	public function get_list_account($keyword = NULL, $limit = NULL, $start = NULL)
+	public function get_list_account($keyword = NULL, $limit = NULL, $start = NULL, $order_by = NULL)
 	{
-		return $this->get_list(NULL, ['username' => $keyword], $limit, $start);
+		return $this->get_list(NULL, ['username' => $keyword], $limit, $start, $order_by);
 	}
 }

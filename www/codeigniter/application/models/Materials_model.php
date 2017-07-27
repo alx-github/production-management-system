@@ -63,4 +63,34 @@ class Materials_model extends Base_model
 			'part_number' => $keyword
 		];
 	}
+
+	public function get_part_number_combo_datas()
+	{
+		$where = ['display_type' => MATERIAL_DISPLAY];
+		return $this->get_by_condition($where, NULL, 'part_number', TRUE);
+	}
+
+	public function get_color_combo_datas($part_number)
+	{
+		$where = [
+			'part_number'  => $part_number,
+			'display_type' => MATERIAL_DISPLAY
+		];
+		return $this->get_by_condition($where, NULL, ['material_id', 'CONCAT(color_number_code, ": ", color_number_tint) AS color'], TRUE);
+	}
+
+	public function get_product_materials($product_id)
+	{
+		$this->db->select('M.*, PM.required_scale');
+		$this->db->from($this->table_name . ' AS M');
+		$this->db->join('product_materials AS PM', 'PM.material_id = M.material_id', 'INNER');
+		$this->db->where([
+			'M.deleted_at'   => NULL,
+			'M.display_type' => MATERIAL_DISPLAY,
+			'PM.deleted_at'  => NULL,
+			'PM.product_id'  => $product_id,
+		]);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
 }

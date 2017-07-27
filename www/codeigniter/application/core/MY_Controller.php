@@ -11,11 +11,13 @@ class MY_Controller extends CI_Controller
 		
 		$this->load->database();
 		$this->load->library(['session', 'form_validation', 'pagination']);
-		$this->load->helper(['url', 'language', 'common', 'array', 'form']);
+		$this->load->helper(['url', 'language', 'common', 'array']);
 		$this->load->model([
 				'accounts_model',
 				'customers_model',
+				'products_model',
 				'materials_model',
+				'product_materials_model',
 		]);
 		$controller = $this->uri->segment(1);
 		if ($controller !== 'auth')
@@ -111,4 +113,16 @@ class MY_Controller extends CI_Controller
 	{
 		return $this->input->method(TRUE) === $method;
 	}
+
+	protected function get_order_by()
+	{
+		if (!$this->input->get('sort_column'))
+		{
+			return NULL;
+		}
+		$this->data['sort_column'] = $this->input->get('sort_column');
+		$this->data['sort_direction'] = $this->input->get('sort_direction') ?? COLUMN_SORT_ASC;
+		return $this->data['sort_column'] . ' ' . $this->data['sort_direction'];
+	}
+
 }

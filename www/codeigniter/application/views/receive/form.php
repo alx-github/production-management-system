@@ -72,8 +72,6 @@
 				<col style="width:140px;">
 				<col style="width:100px;">
 				<col style="width:160px;">
-				<col style="width:120px;">
-				<col style="width:140px;">
 			</colgroup>
 			<thead>
 				<tr>
@@ -93,8 +91,6 @@
 					<th>加工費</th>
 					<th>請求金額</th>
 					<th>運送料</th>
-					<th>送り先</th>
-					<th>運送便</th>
 					<th>メモ</th>
 				</tr>
 			</thead>
@@ -147,8 +143,6 @@
 						</select>
 					</td>
 					<td><input type="text" class="form-control" id=""></td>
-					<td><input type="text" class="form-control" id=""></td>
-					<td><input type="text" class="form-control" id=""></td>
 				</tr>
 				<tr id="tr_2">
 					<td>
@@ -198,8 +192,6 @@
 						</select>
 					</td>
 					<td><input type="text" class="form-control" id=""></td>
-					<td><input type="text" class="form-control" id=""></td>
-					<td><input type="text" class="form-control" id=""></td>
 				</tr>
 				<tr id="tr_3">
 					<td>
@@ -248,8 +240,6 @@
 							<option>負担</option>
 						</select>
 					</td>
-					<td><input type="text" class="form-control" id=""></td>
-					<td><input type="text" class="form-control" id=""></td>
 					<td><input type="text" class="form-control" id=""></td>
 				</tr>
 			</tbody>
@@ -348,8 +338,6 @@
 				'			<option>負担</option>' +
 				'		</select>' +
 				'	</td>' +
-				'	<td><input type="text" class="form-control" id=""></td>' +
-				'	<td><input type="text" class="form-control" id=""></td>' +
 				'	<td><input type="text" class="form-control" id=""></td>' +
 				'</tr>';
 	};
