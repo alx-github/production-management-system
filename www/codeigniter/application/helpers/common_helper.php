@@ -49,7 +49,7 @@ if ( ! function_exists('render_select_html'))
 		$html = '<select class="form-control" name="' . $name . '">';
 		if ($has_unspecified) 
 		{
-			$html .= '<option>' . $unspecified_text . '</option>';
+			$html .= '<option value="">' . $unspecified_text . '</option>';
 		}
 		foreach ($options as $key => $value)
 		{

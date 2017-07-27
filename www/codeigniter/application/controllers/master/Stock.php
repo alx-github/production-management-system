@@ -43,7 +43,6 @@ class Stock extends MY_Controller
 			redirect('/master/stock');
 		}
 		$this->data['material'] = $this->input->post();
-		print_r ($this->data['material']);
 		if ($this->validate_form() !== TRUE)
 		{
 			$this->render_form_material();
