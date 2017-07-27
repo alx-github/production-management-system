@@ -5,14 +5,14 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-offset-3">
-			<form class="form-horizontal col-sm-12" method="POST" action="<?=site_url( (empty($material['material_id'])) ? '/master/stock/insert' : '/master/stock/update' ) ?>">
+			<?php echo form_open(site_url( (empty($material['material_id'])) ? '/master/stock/insert' : '/master/stock/update' ), 'class="form-horizontal col-sm-12"')?>
 				<?=render_input_hidden_html('material_id', $material['material_id'] ?? '') ?>
 				<div class="form-group">
 					<div class="col-sm-3">
 							<label for="" class="col-sm-offset-6 control-label">取引先名</label>
 					</div>
 					<div class="col-sm-2">
-						<?=render_select_html_from_database('receive_order_customer_id', $list_receive_customers, 'customer_id', 'name', $material['receive_order_customer_id'], TRUE) ?>
+						<?=render_select_html_from_database('receive_order_customer_id', $list_receive_customers, 'customer_id', 'name', $material['receive_order_customer_id']) ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -20,7 +20,7 @@
 							<label for="" class="col-sm-offset-6 control-label">在庫カテコリ</label>
 					</div>
 					<div class="col-sm-2">
-						<?=render_select_html('category', config_item('material')['category'], $material['category'], TRUE) ?>
+						<?=render_select_html('category', config_item('material')['categories'], $material['category']) ?>
 					</div>
 				</div>
 				
@@ -38,10 +38,10 @@
 					</div>
 					<div>
 						<div class="col-sm-2">
-							<?=render_input_html('color_number_code', $material['color_number_code'] ?? '', 'コード（例：GL）', NULL, NULL) ?>
+							<?=render_input_html('color_number_code', $material['color_number_code'] ?? '', 'コード（例：GL）') ?>
 						</div>
 						<div class="col-sm-2">
-							<?=render_input_html('color_number_tint', $material['color_number_tint'] ?? '', '色合い（例：ゴールド）', NULL, NULL) ?>
+							<?=render_input_html('color_number_tint', $material['color_number_tint'] ?? '', '色合い（例：ゴールド）') ?>
 						</div>	
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 						<label for="" class="col-sm-offset-6 control-label">単位</label>
 					</div>
 					<div class="col-sm-1">
-						<?=render_select_html('unit', config_item('material')['unit'], $material['unit'], TRUE) ?>
+						<?=render_select_html('unit', config_item('material')['units'], $material['unit']) ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -58,7 +58,7 @@
 							<label for="" class="col-sm-offset-6 control-label">仕様</label>
 					</div>
 					<div class="col-sm-4">
-						<?=render_input_html('spec', $material['spec'], '巾：10.0、巻m：50.0', NULL, NULL) ?>	
+						<?=render_input_html('spec', $material['spec'], '巾：10.0、巻m：50.0') ?>	
 					</div>
 				</div>
 				<div class="form-group">
@@ -74,7 +74,7 @@
 						<label for="" class="col-sm-offset-6 control-label">発注先</label>
 					</div>
 					<div class="col-sm-2">
-						<?=render_select_html_from_database('send_order_customer_id', $list_send_customers, 'customer_id', 'name', $material['send_order_customer_id'], TRUE) ?>
+						<?=render_select_html_from_database('send_order_customer_id', $list_send_customers, 'customer_id', 'name', $material['send_order_customer_id']) ?>
 					</div>
 				</div>
 				<div class="form-group">
@@ -94,7 +94,7 @@
 						</div>	
 					</div>
 				</div>
-			</form>
+			<?php echo form_close() ?>
 		</div>
 	</div>
 </div>

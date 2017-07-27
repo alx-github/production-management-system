@@ -12,7 +12,7 @@
 						<label class="control-label">取引先</label>
 					</div>
 					<div class="col-sm-9">
-						<?=render_select_html_from_database('receive_order_customer_id',$list_receive_customers, 'customer_id', 'name', $receive_order_customer_id, TRUE) ?>					
+						<?=render_select_html_from_database('receive_order_customer_id',$list_receive_customers, 'customer_id', 'name', $receive_order_customer_id) ?>					
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -20,7 +20,7 @@
 						<label class="control-label">発注先</label>
 					</div>
 					<div class="col-sm-9">
-						<?=render_select_html_from_database('send_order_customer_id',$list_send_customers, 'customer_id', 'name', $send_order_customer_id, TRUE) ?>
+						<?=render_select_html_from_database('send_order_customer_id',$list_send_customers, 'customer_id', 'name', $send_order_customer_id) ?>
 					</div>
 				</div>
 				<div class="form-group col-sm-4">
@@ -59,14 +59,14 @@
 				<tbody>
 				<?php foreach ($list_materials as $material){ ?>
 					<tr>
-						<td><?=$this->config->item('material')['category'][$material['category']] ?? '' ?></td>
+						<td><?=$this->config->item('material')['categories'][$material['category']] ?? '' ?></td>
 						<td><?=$material['part_number']?></td>
 						<td><?=$material['color_number_code'].' '.$material['color_number_tint'] ?></td>	
 						<td><?=$material['spec']?></td>
-						<td><?=format_datetime($material['updated_at'],DATE_FORMAT_EVENT)?></td>
+						<td><?=format_datetime($material['updated_at'],DATE_FORMAT_YMD)?></td>
 						<td>
 							<a href="<?= site_url('/master/stock/edit')?>?id=<?=$material['material_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" id="<?=$material['material_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-material"  data-toggle="modal" data-target="#delete-modal">削除</a>
+							<a href="#" data-delete-id="<?=$material['material_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5"  data-toggle="modal" data-target="#delete-modal">削除</a>
 						</td>
 					</tr>
 				<?php }?>

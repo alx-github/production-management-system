@@ -44,9 +44,12 @@ class Materials_model extends Base_model
 	public function get_validation()
 	{
 		$rules = [];
-		$rules[] = ['field' => 'part_number', 'label' => '品番', 'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
-		$rules[] = ['field' => 'unit', 'label' => '単位', 'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
-		$rules[] = ['field' => 'send_order_customer_id', 'label' => '発注先', 'rules' => 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]'];
+		$rules[] = ['field' => 'part_number', 'label' => '品番', 'rules' => 'trim|required|max_length[50]'];
+		$rules[] = ['field' => 'unit', 'label' => '単位', 'rules' => 'required'];
+		$rules[] = ['field' => 'send_order_customer_id', 'label' => '発注先', 'rules' => 'required'];
+		$rules[] = ['field' => 'color_number_code', 'label' => '色番.コード', 'rules' => 'max_length[20]'];
+		$rules[] = ['field' => 'color_number_tint', 'label' => '色番.色合い', 'rules' => 'max_length[50]'];
+		$rules[] = ['field' => 'spec', 'label' => '仕様', 'rules' => 'max_length[100]'];
 
 		return $rules;
 	}

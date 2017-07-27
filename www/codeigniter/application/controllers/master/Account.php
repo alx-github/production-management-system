@@ -146,13 +146,22 @@ class Account extends MY_Controller
 		return [
 			'account_id'=> $input['account_id'] ?? NULL,
 			'username'	=> $input['username'] ?? NULL,
-			'auth'      => $input['auth'] ?? NULL
+			'auth'		=> $input['auth'] ?? NULL
 		];
 	}
 
 	private function validate_form($mode = FORM_MODE_INSERT)
 	{
-		$this->form_validation->set_rules($this->accounts_model->get_validation($mode));
+		if($mode === FORM_MODE_INSERT)
+		{
+			$this->form_validation->set_rules('username', 'ユーザー名', 'trim|required|regex_match[/^[a-zA-Z0-9_\-]+$/]|callback_username_check');
+			$this->form_validation->set_rules('password', 'パスワード', 'trim|required|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
+		}
+		else
+		{
+			$this->form_validation->set_rules('password', 'パスワード', 'trim|min_length[6]|regex_match[/^[a-zA-Z0-9_\-]+$/]');
+		}
+
 		if(!$this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());

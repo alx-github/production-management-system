@@ -43,7 +43,7 @@
 							<td><?= $this->config->item('account_auth')[$account['auth']] ?></td>
 						<td>
 							<a href="<?= site_url('/master/account/edit')?>?id=<?=$account['account_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
+							<a href="#" data-delete-id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
 						</td>
 					</tr>
 				<?php } ?>

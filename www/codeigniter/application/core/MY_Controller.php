@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller
 		
 		$this->load->database();
 		$this->load->library(['session', 'form_validation', 'pagination']);
-		$this->load->helper(['url', 'language', 'common', 'array']);
+		$this->load->helper(['url', 'language', 'common', 'array', 'form']);
 		$this->load->model([
 				'accounts_model',
 				'customers_model',

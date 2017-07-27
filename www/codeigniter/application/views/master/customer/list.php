@@ -12,7 +12,7 @@
 					<input type="submit" class="btn btn-primary" value="検索" />
 				</div>
 			</div>
-        <?php echo form_close(); ?>
+		<?php echo form_close(); ?>
 	</div>
 	
 	<div class="row">
@@ -28,20 +28,20 @@
 		<div class="col-sm-12 table-responsive">
 			<table class="table table-hover">
 				<?php if (count($customers) <= 0): ?>
-            		<tr><td colspan="12" rowspan="3" class="text-center">データは登録されていません。<td></tr>
+					<tr><td colspan="12" rowspan="3" class="text-center">データは登録されていません。<td></tr>
 				<?php else: ?>
-	            <thead>
-	              <tr>
-	                <th class="col-sm-2">取引先名</th>
-	                <th class="col-sm-3">住所</th>
-	                <th class="col-sm-2">連絡先</th>
-	                <th class="col-sm-3">メモ</th>
-	                <th class="col-sm-1"></th>
-	                <th class="col-sm-1"></th>
-	              </tr>
-	            </thead>
-	            <tbody>
-	        		<?php foreach ($customers as $data): ?>
+				<thead>
+					<tr>
+						<th class="col-sm-2">取引先名</th>
+						<th class="col-sm-3">住所</th>
+						<th class="col-sm-2">連絡先</th>
+						<th class="col-sm-3">メモ</th>
+						<th class="col-sm-1"></th>
+						<th class="col-sm-1"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($customers as $data): ?>
 						<tr>
 							<td><?= $data['name']; ?></td>
 							<td>
@@ -59,17 +59,17 @@
 								<a class="btn btn-info btn-block" href="<?= site_url("master/customer/update/{$data['customer_id']}"); ?>">編集</a>
 							</td>
 							<td>
-		                		<a class="btn btn-warning btn-block" href="#" data-delete-id="<?= $data['customer_id']; ?>"
-		                			data-toggle="modal" data-target="#delete-modal">削除</a>
-		                	</td>
+								<a class="btn btn-warning btn-block" href="#" data-delete-id="<?= $data['customer_id']; ?>"
+									data-toggle="modal" data-target="#delete-modal">削除</a>
+							</td>
 						</tr>
 					<?php endforeach; ?>
-	            </tbody>
-		  	</table>
-		  	<?php endif; ?>
-		 </div>
-	 </div>
-	 <div>
+				</tbody>
+			</table>
+			<?php endif; ?>
+		</div>
+	</div>
+	<div>
 		<?= $this->pagination->create_links(); ?>
 	</div>
 </div>

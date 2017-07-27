@@ -16,7 +16,12 @@ class Stock extends MY_Controller
 		$send_order_customer_id = $this->input->get('send_order_customer_id');
 
 		$count = $this->materials_model->count_by_filter($receive_order_customer_id, $send_order_customer_id, $keyword);
-		$this->load_pagination('/master/stock?receive_order_customer_id='.$receive_order_customer_id.'&send_order_customer_id='.$send_order_customer_id.'&keyword='.$keyword, $count);
+		$params = [
+			'receive_order_customer_id' => $receive_order_customer_id,
+			'send_order_customer_id'	=> $send_order_customer_id,
+			'keyword'					=> $keyword
+		];
+		$this->load_pagination('/master/stock?' . http_build_query($params), $count);
 		$start = $this->get_start_value();
 		$this->data['list_materials'] = $this->materials_model->get_list_material($receive_order_customer_id, $send_order_customer_id, $keyword, $this->pagination->per_page, $start);
 		$this->data['keyword'] = $keyword;
@@ -33,7 +38,12 @@ class Stock extends MY_Controller
 
 	public function insert()
 	{
+		if (!$this->is_post_request())
+		{
+			redirect('/master/stock');
+		}
 		$this->data['material'] = $this->input->post();
+		print_r ($this->data['material']);
 		if ($this->validate_form() !== TRUE)
 		{
 			$this->render_form_material();
@@ -73,6 +83,10 @@ class Stock extends MY_Controller
 
 	public function update()
 	{
+		if (!$this->is_post_request())
+		{
+			redirect('/master/stock');
+		}
 		$this->data['material'] = $this->input->post();
 		if ($this->validate_form() !== TRUE)
 		{
@@ -95,6 +109,10 @@ class Stock extends MY_Controller
 
 	public function delete()
 	{
+		if (!$this->is_post_request())
+		{
+			redirect('/master/stock');
+		}
 		$delete_id = $this->input->post('id');
 		if (empty($delete_id))
 		{
@@ -132,16 +150,16 @@ class Stock extends MY_Controller
 	private function create_empty_material()
 	{
 		return [
-			'material_id'=> NULL,
-			'receive_order_customer_id'=> NULL,
-			'category'=> NULL,
-			'part_number'=> NULL,
-			'color_number_code'=> NULL,
-			'color_number_tint'=> NULL,
-			'spec'=> NULL,
-			'unit'=> NULL,
-			'display_type'=> NULL,
-			'send_order_customer_id'=> NULL
+			'material_id'				=> NULL,
+			'receive_order_customer_id'	=> NULL,
+			'category'					=> NULL,
+			'part_number'				=> NULL,
+			'color_number_code'			=> NULL,
+			'color_number_tint'			=> NULL,
+			'spec'						=> NULL,
+			'unit'						=> NULL,
+			'display_type'				=> NULL,
+			'send_order_customer_id'	=> NULL
 		];
 	}
 
@@ -151,8 +169,8 @@ class Stock extends MY_Controller
 		if (!$this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());
-			return false;
+			return FALSE;
 		}
-		return true;
+		return TRUE;
 	}
 }
