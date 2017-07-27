@@ -1,9 +1,4 @@
-$(document).ready(function(){
-	$('.delete-account').each(function(){
-		$(this).click(function(event){
-			$('#deleted_id').val(event.target.id);
-		});
-	});
+$(document).ready(function() {
 	var isGettingPassword = false;
 	$('#generate-password').click(function(e){
 		e.preventDefault();
@@ -14,5 +9,11 @@ $(document).ready(function(){
 				isGettingPassword = false;
 			});
 		}
+	});
+
+	//取引先一覧
+	$('#delete-modal').on('show.bs.modal', function(e) {
+		var delete_id = $(e.relatedTarget).data('delete-id');
+		$(e.currentTarget).find('input[name="id"]').val(delete_id);
 	});
 });

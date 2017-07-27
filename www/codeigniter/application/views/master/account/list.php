@@ -1,32 +1,14 @@
 <div class="container-fluid">
 	<h1>アカウント一覧</h1>
 	<div class="row">
-		<?php if ($this->session->flashdata('message')) { ?>
-			<div class="col-sm-12">
-				<div class="alert alert-dismissible alert-info">
-					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>メッセージ</strong>
-					<p><?= $this->session->flashdata('message') ?></p>
-				</div>
-			</div>
-			<?php $this->session->unmark_flash('message'); ?>
-		<?php } ?>
-		<?php if ($this->session->flashdata('error_message')){ ?>
-			<div class="col-sm-12">	
-				<div class="alert alert-dismissible alert-danger">
-					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong>エラー</strong>
-					<p><?= $this->session->flashdata('error_message') ?></p>
-				</div>
-			</div>
-			<?php $this->session->unmark_flash('error_message'); ?>
-		<?php } ?>
+		<?=render_message_html() ?>
+		<?=render_error_message_html() ?>
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
 			<form class="" method="GET" action="">
 				<div class="form-group col-sm-2">
-					<input class="form-control" type="text" name="keyword" placeholder="キーワード" value="<?=(empty($keyword))? '':$keyword ?>">
+					<?=render_input_html('keyword', $keyword ?? '', 'キーワード')?>
 				</div>
 				<div class="form-group col-sm-1">
 					<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
@@ -61,7 +43,7 @@
 							<td><?= $this->config->item('account_auth')[$account['auth']] ?></td>
 						<td>
 							<a href="<?= site_url('/master/account/edit')?>?id=<?=$account['account_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
+							<a href="#" data-delete-id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
 						</td>
 					</tr>
 				<?php } ?>

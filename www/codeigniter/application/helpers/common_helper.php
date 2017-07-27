@@ -11,7 +11,7 @@ if ( ! function_exists('hash_password'))
 
 if ( ! function_exists('format_datetime'))
 {
-	function format_datetime($datetime, $format = 'Y/m/d H:i:s')
+	function format_datetime($datetime, $format = DATE_FORMAT_DEFAULT)
 	{
 		if ($datetime === NULL)
 		{
@@ -44,18 +44,112 @@ if ( ! function_exists('empty_to_default'))
 
 if ( ! function_exists('render_select_html'))
 {
-	function render_select_html($name, $data, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
+	function render_select_html($name, $options, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
 	{
 		$html = '<select class="form-control" name="' . $name . '">';
-		if ($has_unspecified) {
-			$html .= '<option value="">' . $unspecified_text . '</option>';
+		if ($has_unspecified) 
+		{
+			$html .= '<option>' . $unspecified_text . '</option>';
 		}
-		foreach ($data as $key => $value)
+		foreach ($options as $key => $value)
 		{
 			$select = ($key == $selected_value) ? 'selected' : '';
 			$html .= '<option value="' . $key . '" ' . $select . '>' . $value . '</option>';
 		}
 		$html .= '</select>';
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_select_html_from_database'))
+{
+	function render_select_html_from_database($name, $options, $key_column, $value_column, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
+	{
+		$html = '<select class="form-control" name="' . $name . '">';
+		if ($has_unspecified) 
+		{
+			$html .= '<option value="">' . $unspecified_text . '</option>';
+		}
+		foreach ($options as $value)
+		{
+			$select = ($value[$key_column] == $selected_value) ? 'selected' : '';
+			$html .= '<option value="' . $value[$key_column] . '" ' . $select . '>' . $value[$value_column] . '</option>';
+		}
+		$html .= '</select>';
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_input_html'))
+{
+	function render_input_html($name, $value = NULL, $placeholder = NULL, $custom_class = NULL, $custom_attribute = NULL, $type = 'text')
+	{
+		$html = '<input class="form-control ' . $custom_class . '" type="' . $type . '" name="' . $name . '" id="' . $name . '" ';
+		if ($value) 
+		{
+			$html .= 'value="' . $value . '" ';
+		}
+		if ($placeholder) 
+		{
+			$html .= 'placeholder="' . $placeholder . '" ';
+		}
+		if ($custom_attribute) 
+		{
+			$html .= $custom_attribute;
+		}
+		$html .= '/>';
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_input_hidden_html'))
+{
+	function render_input_hidden_html($name, $value = NULL)
+	{
+		return '<input type="hidden" name="' . $name . '" value="' . $value . '"/>';
+	}
+}
+
+if ( ! function_exists('render_message_html'))
+{
+	function render_message_html()
+	{
+		$CI = get_instance();
+		$CI->load->library('session');
+		if ( ! $CI->session->flashdata('message')) 
+		{
+			return '';
+		}
+		$html = '<div class="col-sm-12">';
+		$html .=	'<div class="alert alert-dismissible alert-info">';
+		$html .=		'<button type="button" class="close" data-dismiss="alert">×</button>';
+		$html .=		'<strong>メッセージ</strong>';
+		$html .=		'<p>' . $CI->session->flashdata('message') . '</p>';
+		$html .=	'</div>';
+		$html .= '</div>';
+		$CI->session->unmark_flash('message');
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_error_message_html'))
+{
+	function render_error_message_html()
+	{
+		$CI = get_instance();
+		$CI->load->library('session');
+		if ( ! $CI->session->flashdata('error_message'))
+		{
+			return '';
+		}
+		$html = '<div class="col-sm-12">';
+		$html .=	'<div class="alert alert-dismissible alert-danger">';
+		$html .=		'<button type="button" class="close" data-dismiss="alert">×</button>';
+		$html .=		'<strong>エラー</strong>';
+		$html .=		'<p>' . $CI->session->flashdata('error_message') . '</p>';
+		$html .=	'</div>';
+		$html .= '</div>';
+		$CI->session->unmark_flash('error_message');
 		return $html;
 	}
 }
@@ -67,28 +161,10 @@ if ( ! function_exists('render_radio_html'))
 		$html = '<div class="btn-group" data-toggle="buttons">';
 		foreach ($data as $key => $value)
 		{
-			$html .= '<label class="btn btn-default'. (($key == $selected_value) ? ' active"':'"') . '>';
-			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off" checked>' . $value . '</label>';
+			$html .= '<label class="btn btn-default ' . (($key == $selected_value) ? ' active"' : '"') . '>';
+			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off"' .(($key == $selected_value) ? 'checked' : '') .'>' . $value . '</label>';
 		}
 		$html .= '</div>';
-		return $html;
-	}
-}
-
-if ( ! function_exists('render_select_html_from_database'))
-{
-	function render_select_html_from_database($name, $data, $key_column, $value_column, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
-	{
-		$html = '<select class="form-control" name="' . $name . '">';
-		if ($has_unspecified) {
-			$html .= '<option value="">' . $unspecified_text . '</option>';
-		}
-		foreach ($data as $value)
-		{
-			$select = ($value[$key_column] == $selected_value) ? 'selected' : '';
-			$html .= '<option value="' . $value[$key_column] . '" ' . $select . '>' . $value[$value_column] . '</option>';
-		}
-		$html .= '</select>';
 		return $html;
 	}
 }

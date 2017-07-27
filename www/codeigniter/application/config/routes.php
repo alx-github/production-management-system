@@ -52,3 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'production';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['master/customer/update/(:num)']   = 'master/customer/show_form/$1';
+$route['master/customer/create']          = 'master/customer/show_form';

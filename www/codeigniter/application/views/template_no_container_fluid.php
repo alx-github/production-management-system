@@ -12,6 +12,7 @@
 		<link href="<?= base_url('assets/libs/select2/css/select2.min.css'); ?>" rel="stylesheet">
 		<link href="<?= base_url('assets/css/app.css'); ?>" rel="stylesheet">
 		<script src="<?= base_url('assets/libs/jquery.min.js'); ?>"></script>
+		<script src="<?= base_url('assets/js/ajaxzip3.js'); ?>"></script>
 	</head>
 	<body>
 		<?php if (strpos(current_url(), '/auth') === false): ?>
