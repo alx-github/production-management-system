@@ -26,7 +26,7 @@ class Materials_model extends Base_model
 		return $this->get_list_count($where_clause, $like_clause);
 	}
 
-	public function get_list_material($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL, $limit = NULL, $start = NULL)
+	public function get_list_material($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL, $limit = NULL, $start = NULL, $order_by = NULL)
 	{
 		$where_clause = NULL;
 		if(!empty($receive_order_customer_id))
@@ -38,7 +38,7 @@ class Materials_model extends Base_model
 			$where_clause['send_order_customer_id'] = $send_order_customer_id;
 		}
 		$like_clause = $this->create_like_clause($keyword);
-		return $this->get_list($where_clause, $like_clause, $limit, $start);
+		return $this->get_list($where_clause, $like_clause, $limit, $start, $order_by);
 	}
 
 	public function get_validation()

@@ -68,7 +68,7 @@ if (strpos($current_url, '/order') !== false)
 						<ul class="dropdown-menu">
 							<li><a href="/master/customer">取引先一覧</a><li>
 							<li><a href="/master/product">商品一覧</a><li>
-							<li><a href="/master/stock">在庫一覧</a><li>
+							<li><a href="/master/material">在庫一覧</a><li>
 							<li><a href="/master/account">アカウント一覧</a><li>
 						</ul>
 					</li>
