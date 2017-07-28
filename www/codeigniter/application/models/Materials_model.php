@@ -1,5 +1,5 @@
 <?php
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once (BASEPATH . '../application/models/Base_model.php');
 class Materials_model extends Base_model
 {
@@ -14,11 +14,11 @@ class Materials_model extends Base_model
 	public function count_by_filter($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL)
 	{
 		$where_clause = NULL;
-		if(!empty($receive_order_customer_id))
+		if( ! empty($receive_order_customer_id))
 		{
 			$where_clause['receive_order_customer_id'] = $receive_order_customer_id;
 		}
-		if(!empty($send_order_customer_id))
+		if( ! empty($send_order_customer_id))
 		{
 			$where_clause['send_order_customer_id'] = $send_order_customer_id;
 		}
@@ -29,11 +29,11 @@ class Materials_model extends Base_model
 	public function get_list_material($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL, $limit = NULL, $start = NULL, $order_by = NULL)
 	{
 		$where_clause = NULL;
-		if(!empty($receive_order_customer_id))
+		if( ! empty($receive_order_customer_id))
 		{
 			$where_clause['receive_order_customer_id'] = $receive_order_customer_id;
 		}
-		if(!empty($send_order_customer_id))
+		if( ! empty($send_order_customer_id))
 		{
 			$where_clause['send_order_customer_id'] = $send_order_customer_id;
 		}

@@ -16,17 +16,12 @@ class Material extends MY_Controller
 		$send_order_customer_id = $this->input->get('send_order_customer_id');
 		$order_by = $this->get_order_by();
 		$count = $this->materials_model->count_by_filter($receive_order_customer_id, $send_order_customer_id, $keyword);
-		$params = [
-			'receive_order_customer_id' => $receive_order_customer_id,
-			'send_order_customer_id'	=> $send_order_customer_id,
-			'keyword'					=> $keyword
-		];
-		$this->load_pagination('/master/material?' . http_build_query($params), $count);
-		$start = $this->get_start_value();
-		$this->data['list_materials'] = $this->materials_model->get_list_material($receive_order_customer_id, $send_order_customer_id, $keyword, $this->pagination->per_page, $start, $order_by);
 		$this->data['keyword'] = $keyword;
 		$this->data['receive_order_customer_id'] = $receive_order_customer_id;
 		$this->data['send_order_customer_id'] = $send_order_customer_id;
+		$this->load_pagination('/master/material?' . http_build_query($this->data), $count);
+		$start = $this->get_start_value();
+		$this->data['list_materials'] = $this->materials_model->get_list_material($receive_order_customer_id, $send_order_customer_id, $keyword, $this->pagination->per_page, $start, $order_by);
 		$this->render_list_material();
 	}
 
@@ -38,7 +33,7 @@ class Material extends MY_Controller
 
 	public function insert()
 	{
-		if (!$this->is_post_request())
+		if ( ! $this->is_post_request())
 		{
 			redirect('/master/material');
 		}
@@ -65,12 +60,12 @@ class Material extends MY_Controller
 	public function edit()
 	{
 		$material_id = $this->input->get('id');
-		if (!$material_id)
+		if ( ! $material_id)
 		{
 			redirect('/master/material');
 		}
 		$this->data['material'] = $this->materials_model->get_by_id($material_id);
-		if (!empty($this->data['material']))
+		if ( ! empty($this->data['material']))
 		{
 			$this->render_form_material();
 		}
@@ -82,7 +77,7 @@ class Material extends MY_Controller
 
 	public function update()
 	{
-		if (!$this->is_post_request())
+		if ( ! $this->is_post_request())
 		{
 			redirect('/master/material');
 		}
@@ -108,7 +103,7 @@ class Material extends MY_Controller
 
 	public function delete()
 	{
-		if (!$this->is_post_request())
+		if ( ! $this->is_post_request())
 		{
 			redirect('/master/material');
 		}
@@ -165,7 +160,7 @@ class Material extends MY_Controller
 	private function validate_form()
 	{
 		$this->form_validation->set_rules($this->materials_model->get_validation());
-		if (!$this->form_validation->run())
+		if ( ! $this->form_validation->run())
 		{
 			$this->session->set_flashdata('error_message', validation_errors());
 			return FALSE;
