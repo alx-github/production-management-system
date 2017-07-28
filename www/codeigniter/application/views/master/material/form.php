@@ -5,7 +5,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-offset-3">
-			<?php echo form_open(site_url( (empty($material['material_id'])) ? '/master/material/insert' : '/master/material/update' ), 'class="form-horizontal col-sm-12"')?>
+			<?=form_open(site_url( (empty($material['material_id'])) ? '/master/material/insert' : '/master/material/update' ), 'class="form-horizontal col-sm-12"')?>
 				<?=render_input_hidden_html('material_id', $material['material_id'] ?? '') ?>
 				<div class="form-group">
 					<div class="col-sm-3">
@@ -94,7 +94,7 @@
 						</div>	
 					</div>
 				</div>
-			<?php echo form_close() ?>
+			<?=form_close()?>
 		</div>
 	</div>
 </div>

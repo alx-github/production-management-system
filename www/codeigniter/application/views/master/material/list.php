@@ -93,13 +93,13 @@
 			<div class="modal-body">
 				削除してよろしいですか。<br>
 			</div>
-			<form class="form-horizontal" method="post" action="<?= site_url('/master/material/delete') ?>">
-				<input type="hidden" id="deleted_id" name="delete_id" value="">
+			<?=form_open(site_url('/master/material/delete'), 'class="form-horizontal"')?>
+				<?=render_input_hidden_html('delete_id')?>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
 					<button type="submit" class="btn btn-danger">削除する</button>
 				</div>
-			</form>
+			<?=form_close()?>
 		</div>
 	</div>
 </div>
