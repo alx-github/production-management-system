@@ -11,6 +11,19 @@ class Materials_model extends Base_model
 		$this->primary_key_name = 'material_id';
 	}
 
+	public function get_validation()
+	{
+		$rules = [];
+		$rules[] = ['field' => 'part_number', 'label' => '品番', 'rules' => 'trim|required|max_length[50]'];
+		$rules[] = ['field' => 'unit', 'label' => '単位', 'rules' => 'required'];
+		$rules[] = ['field' => 'send_order_customer_id', 'label' => '発注先', 'rules' => 'required'];
+		$rules[] = ['field' => 'color_number_code', 'label' => '色番.コード', 'rules' => 'max_length[20]'];
+		$rules[] = ['field' => 'color_number_tint', 'label' => '色番.色合い', 'rules' => 'max_length[50]'];
+		$rules[] = ['field' => 'spec', 'label' => '仕様', 'rules' => 'max_length[100]'];
+
+		return $rules;
+	}
+
 	public function count_by_filter($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL)
 	{
 		$where_clause = NULL;
@@ -41,29 +54,6 @@ class Materials_model extends Base_model
 		return $this->get_list($where_clause, $like_clause, $limit, $start, $order_by);
 	}
 
-	public function get_validation()
-	{
-		$rules = [];
-		$rules[] = ['field' => 'part_number', 'label' => '品番', 'rules' => 'trim|required|max_length[50]'];
-		$rules[] = ['field' => 'unit', 'label' => '単位', 'rules' => 'required'];
-		$rules[] = ['field' => 'send_order_customer_id', 'label' => '発注先', 'rules' => 'required'];
-		$rules[] = ['field' => 'color_number_code', 'label' => '色番.コード', 'rules' => 'max_length[20]'];
-		$rules[] = ['field' => 'color_number_tint', 'label' => '色番.色合い', 'rules' => 'max_length[50]'];
-		$rules[] = ['field' => 'spec', 'label' => '仕様', 'rules' => 'max_length[100]'];
-
-		return $rules;
-	}
-
-	private function create_like_clause($keyword = NULL)
-	{
-		return [
-			'spec' => $keyword,
-			'color_number_code' => $keyword,
-			'color_number_tint' => $keyword,
-			'part_number' => $keyword
-		];
-	}
-
 	public function get_part_number_combo_datas()
 	{
 		$where = ['display_type' => MATERIAL_DISPLAY];
@@ -92,5 +82,15 @@ class Materials_model extends Base_model
 		]);
 		$result = $this->db->get();
 		return $result->result_array();
+	}
+
+	private function create_like_clause($keyword = NULL)
+	{
+		return [
+			'spec'              => $keyword,
+			'color_number_code' => $keyword,
+			'color_number_tint' => $keyword,
+			'part_number'       => $keyword,
+		];
 	}
 }

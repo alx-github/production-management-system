@@ -6,30 +6,22 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<?= form_open('', ['method' => 'GET', 'id' => 'frm-search']) ?>
-				<?= render_input_hidden_html('sort_column', $sort_column ?? NULL) ?>
-				<?= render_input_hidden_html('sort_direction', $sort_direction ?? NULL) ?>
-				<div class="form-group col-sm-4">
-					<div class="col-sm-3 text-right">
-						<label class="control-label">取引先</label>
-					</div>
-					<div class="col-sm-9">
+			<?= form_open('', ['method' => 'GET', 'id' => 'frm-search', 'class' => 'form-horizontal']) ?>
+			<?= render_input_hidden_html('sort_column', $sort_column ?? NULL) ?>
+			<?= render_input_hidden_html('sort_direction', $sort_direction ?? NULL) ?>
+				<div class="form-group">
+					<label class="col-sm-1 control-label">取引先</label>
+					<div class="col-sm-2">
 						<?= render_select_html_from_database('receive_order_customer_id',$list_receive_customers, 'customer_id', 'name', $receive_order_customer_id) ?>					
 					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<div class="col-sm-3 text-right">
-						<label class="control-label">発注先</label>
-					</div>
-					<div class="col-sm-9">
+					<label class="col-sm-1 control-label">発注先</label>
+					<div class="col-sm-2">
 						<?= render_select_html_from_database('send_order_customer_id',$list_send_customers, 'customer_id', 'name', $send_order_customer_id) ?>
 					</div>
-				</div>
-				<div class="form-group col-sm-4">
-					<div class="col-sm-9">
+					<div class="col-sm-2">
 						<?= render_input_html('keyword', $keyword, 'キーワード', NULL, NULL) ?>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-1">
 						<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
 					</div>
 				</div>		
