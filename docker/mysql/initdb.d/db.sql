@@ -153,6 +153,7 @@ create table `customers` (
   , `email_1` VARCHAR(255) comment 'メールアドレス1'
   , `email_2` VARCHAR(255) comment 'メールアドレス2'
   , `display_type` TINYINT UNSIGNED comment '表示区分'
+  , `memo` TEXT comment 'メモ'
   , constraint `customers_pkc` primary key (`customer_id`)
 ) comment '取引先' ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
@@ -225,27 +226,34 @@ INSERT INTO `accounts` (`username`, `password`, `auth`) VALUES ('admin', '8c6976
 -- user/test
 INSERT INTO `accounts` (`username`, `password`, `auth`) VALUES ('user', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', '0');
 
+-- insert data customers
+INSERT INTO `customers` VALUES ('1', '2017-07-25 13:37:03', '2017-07-26 12:45:08', null, 'customer 1 受注先 ', '担当者名 1', '1000013', '東京都', '千代田区霞が関', '0809999999', 'eyemovic@gmail.com', '', '1', 'メモメモメモメモメモメモメモメモメモ');
+INSERT INTO `customers` VALUES ('2', '2017-07-25 13:37:11', '2017-07-26 12:08:20', null, 'customer 2 両方', '', '', '', '', '', '', '', '3', '');
+INSERT INTO `customers` VALUES ('3', '2017-07-25 13:37:21', '2017-07-26 12:45:16', null, 'customer 3 発注先', '', '', '', '', '', '', '', '2', '');
+INSERT INTO `customers` VALUES ('4', '2017-07-25 13:37:59', '2017-07-26 12:08:42', null, 'customer 4  両方', '', '1030016', '東京都', '中央区日本橋小網町 123', '', 'test1@gmail.com', 'test2@gmail.com', '3', '');
+INSERT INTO `customers` VALUES ('5', '2017-07-26 12:17:31', '2017-07-26 12:45:27', null, 'customer 5 表示しない', '', '', '', '', '', '', '', '0', '');
 
+-- Materials
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'R', 'レッド', '1', 'width:18', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'GL', 'ゴールド', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '3', 'E-14', 'OR', 'オレンジ', '1', 'volume: 50.0', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'G', 'グリーン', '1', 'width:18', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'B', 'ブルー', '1', 'width:13', '3', '3');
+INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'PU', 'パープル', '1', 'volume: 50.0', '3', '4');
 
--- customers
-INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer1','1');
-INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer2','1');
-INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer3','2');
-INSERT INTO `customers` (`name`, `display_type`) VALUES ('customer4','2');
-
--- materials
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '3', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '3', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '2', 'KNT18', 'S', 'tint', '1', 'width:18', '0', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('2', '1', 'E-13', 'S', 'tint', '1', 'width:13', '3', '3');
-INSERT INTO `materials` (`receive_order_customer_id`, `category`, `part_number`, `color_number_code`, `color_number_tint`, `unit`, `spec`, `display_type`, `send_order_customer_id`) VALUES ('1', '0', 'E-14', 'K:', '41', '1', 'volume: 50.0', '3', '4');
+-- Products
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品1', 'A00001', '0', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品2', 'A00001', '1', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('2', '商品3', 'B90099', '1', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品4', 'B90099', '1', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('2', '商品5', 'A00001', '0', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品6', 'A00001', '1', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('3', '商品7', 'A00001', '1', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品8', 'B90099', '0', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('4', '商品9', 'B90099', '1', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('4', '商品10', 'B90099', '1', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('3', '商品11', 'B90099', '0', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('3', '商品12', 'A00001', '1', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品13', 'A00001', '0', '2', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('5', '商品14', 'B90099', '1', '1', '100');
+INSERT INTO `products` (`category`, `name`, `part_number`, `display_type`, `unit`, `processing_fee`) VALUES ('1', '商品15', 'B90099', '0', '1', '100');

@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1>取引先・商品ごとの出荷一覧</h1>
+			<h1>請求管理（取引先・商品ごとの出荷一覧）</h1>
 			<form class="form-horizontal">
 			<div class="form-group">
 				<label for="" class="col-sm-1 control-label">取引先</label>
@@ -128,8 +128,8 @@
 				<span class="col-sm-6">95</span>
 				</div>
 			</div>
-      	</div>
-        <div class="row">
+		</div>
+		<div class="row">
 			<div class="col-sm-12">
 				<table class="table table-hover ">
 					<thead>
@@ -159,17 +159,39 @@
 				</table>
 			</div>
 		</div>
-	  </div>
-      <div class="modal-footer">
-		<div class="col-sm-offset-2 col-sm-3">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label for="" class="control-label">請求状況</label>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<div class="btn-group" data-toggle="buttons">
+						<label class="btn btn-default">
+							<input type="radio" name="options1" id="option11" autocomplete="off">未
+						</label>
+						<label class="btn btn-info active">
+							<input type="radio" name="options1" id="option21" autocomplete="off">済み
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	 </div>
+	 <div class="modal-footer">
+		<div class="col-sm-offset-1 col-sm-3">
         	<button type="button" class="btn btn-default btn-block" data-dismiss="modal">閉じる</button>
 		</div>
-		<div class="col-sm-offset-2 col-sm-3">
 		<form method="post" action="<?= site_url('stock') ?>">
 			<input type="hidden" name="id" value="">
-			<button type="submit" class="btn btn-info btn-block">編集</button>
+			<div class="col-sm-offset-1 col-sm-3">
+				<button type="submit" class="btn btn-success btn-block">保存</button>
+			</div>
+			<div class="col-sm-offset-1 col-sm-3">
+				<button type="submit" class="btn btn-info btn-block">編集</button>
+			</div>
 		</form>
-		</div>
       </div>
     </div>
   </div>

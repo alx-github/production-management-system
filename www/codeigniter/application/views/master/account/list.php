@@ -6,14 +6,16 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12">
-			<form class="" method="GET" action="">
+			<?=form_open('', ['method' => 'GET', 'id' => 'frm-search'])?>
+			<?=render_input_hidden_html('sort_column', $sort_column ?? NULL)?>
+			<?=render_input_hidden_html('sort_direction', $sort_direction ?? NULL)?>
 				<div class="form-group col-sm-2">
 					<?=render_input_html('keyword', $keyword ?? '', 'キーワード')?>
 				</div>
 				<div class="form-group col-sm-1">
 					<button id="btn-search" class="btn btn-primary" type="submit">検索</button>
 				</div>
-			</form>
+			<?=form_close()?>
 		</div>
 	</div>
 	<div class="row">
@@ -31,8 +33,8 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>ログインID</th>
-						<th>権限</th>
+						<th class="col-sm-5">ログインID<?=render_sort_column('username')?></th>
+						<th class="col-sm-5">権限<?=render_sort_column('auth')?></th>
 						<th class="col-sm-2"></th>
 					</tr>
 				</thead>
@@ -43,7 +45,7 @@
 							<td><?= $this->config->item('account_auth')[$account['auth']] ?></td>
 						<td>
 							<a href="<?= site_url('/master/account/edit')?>?id=<?=$account['account_id']?>" class="btn btn-info col-sm-offset-1 col-sm-5">編集</a>
-							<a href="#" data-delete-id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
+							<a href="#" id="<?=$account['account_id']?>" class="btn btn-warning col-sm-offset-1 col-sm-5 delete-account <?= ($this->session->userdata('account_id') == $account['account_id'])? 'hidden' :'' ?>"  data-toggle="modal" data-target="#delete-modal">削除</a>
 						</td>
 					</tr>
 				<?php } ?>

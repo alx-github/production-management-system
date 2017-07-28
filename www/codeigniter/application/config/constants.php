@@ -85,6 +85,8 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 defined('DATE_FORMAT_DEFAULT') OR define('DATE_FORMAT_DEFAULT', 'Y-m-d H:i:s');
+defined('DATE_FORMAT_YMDHIS')  OR define('DATE_FORMAT_YMDHIS', 'Y/m/d H:i:s');
+defined('DATE_FORMAT_Y_M_D')   OR define('DATE_FORMAT_Y_M_D', 'Y-m-d');
 defined('DATE_FORMAT_YMD')     OR define('DATE_FORMAT_YMD', 'Y/m/d');
 
 // アカウント - 権限
@@ -98,3 +100,8 @@ defined('ACCOUNT_ADMIN')		OR define('ACCOUNT_ADMIN', '100');
 
 defined('FORM_MODE_UPDATE')		OR define('FORM_MODE_UPDATE', '1');
 defined('FORM_MODE_INSERT')		OR define('FORM_MODE_INSERT', '0');
+
+defined('COLUMN_SORT_ASC')		OR define('COLUMN_SORT_ASC', 'ASC');
+defined('COLUMN_SORT_DESC')		OR define('COLUMN_SORT_DESC', 'DESC');
+
+defined('MATERIAL_DISPLAY')		OR define('MATERIAL_DISPLAY', '3');

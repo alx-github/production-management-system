@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['master/customer/update/(:num)']   = 'master/customer/show_form/$1';
 $route['master/customer/create']          = 'master/customer/show_form';
+$route['api/generate_colors/(:any)']      = 'api/generate_colors/$1';
+$route['api/generate_unit/(:any)']        = 'api/generate_unit/$1';

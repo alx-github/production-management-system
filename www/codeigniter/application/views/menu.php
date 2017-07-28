@@ -12,9 +12,9 @@ if (strpos($current_url, '/receive') !== false)
 {
 	$current = 'receive';
 }
-if (strpos($current_url, '/request') !== false)
+if (strpos($current_url, '/shipping') !== false)
 {
-	$current = 'request';
+	$current = 'shipping';
 }
 if (strpos($current_url, 'stock') !== false)
 {
@@ -43,18 +43,15 @@ if (strpos($current_url, '/order') !== false)
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<ul class="nav navbar-nav">
-				<li class="dropdown <?= ($current ?? '') === 'production' ? 'active' : '' ?>">
-					<a href="<?= site_url('production') ?>">生産管理 <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="/shipping">取引先・商品ごとの出荷一覧</a><li>
-					</ul>
+				<li <?= ($current ?? '') === 'production' ? 'class="active"' : '' ?>>
+					<a href="<?= site_url('production') ?>">生産管理</a>
 				</li>
 				<?php if ($is_admin): ?>
 					<li <?= ($current ?? '') === 'receive' ? 'class="active"' : '' ?>>
 						<a href="<?= site_url('receive') ?>">受注管理</a>
 					</li>
-					<li <?= ($current ?? '') === 'request' ? 'class="active"' : '' ?>>
-						<a href="<?= site_url('request') ?>">請求管理</a>
+					<li <?= ($current ?? '') === 'shipping' ? 'class="active"' : '' ?>>
+						<a href="<?= site_url('shipping') ?>">請求管理</a>
 					</li>
 					<li <?= ($current ?? '') === 'stock' ? 'class="active"' : '' ?>>
 						<a href="<?= site_url('stock') ?>">在庫管理</a>
@@ -71,7 +68,7 @@ if (strpos($current_url, '/order') !== false)
 						<ul class="dropdown-menu">
 							<li><a href="/master/customer">取引先一覧</a><li>
 							<li><a href="/master/product">商品一覧</a><li>
-							<li><a href="/master/stock">在庫一覧</a><li>
+							<li><a href="/master/material">在庫一覧</a><li>
 							<li><a href="/master/account">アカウント一覧</a><li>
 						</ul>
 					</li>

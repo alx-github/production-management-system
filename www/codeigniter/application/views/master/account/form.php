@@ -5,7 +5,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-offset-3 col-sm-9">
-			<form class="form-horizontal" method="POST" action="<?=site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' )  ?>">
+			<?=form_open(site_url( (empty($account['account_id'])) ? '/master/account/insert' : '/master/account/update' ), ['method' => 'POST', 'class' => 'form-horizontal'])?>
 			<?=render_input_hidden_html('account_id', $account['account_id'] ?? '') ?>
 				<div class="form-group">
 					<div class="col-sm-3">
@@ -51,7 +51,7 @@
 						</div>	
 					</div>
 				</div>
-			</form>
+			<?=form_close()?>
 		</div>
 	</div>
 </div>

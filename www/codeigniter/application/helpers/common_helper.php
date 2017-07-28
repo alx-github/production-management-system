@@ -11,13 +11,13 @@ if ( ! function_exists('hash_password'))
 
 if ( ! function_exists('format_datetime'))
 {
-	function format_datetime($datetime, $format = DATE_FORMAT_DEFAULT)
+	function format_datetime($datetime, $format = DATE_FORMAT_YMDHIS, $curent_format = DATE_FORMAT_DEFAULT)
 	{
 		if ($datetime === NULL)
 		{
 			return NULL;
 		}
-		$date = date_create_from_format(DATE_FORMAT_DEFAULT, $datetime);
+		$date = date_create_from_format($curent_format, $datetime);
 		return date($format, $date->getTimestamp());
 	}
 }
@@ -49,7 +49,7 @@ if ( ! function_exists('render_select_html'))
 		$html = '<select class="form-control" name="' . $name . '">';
 		if ($has_unspecified) 
 		{
-			$html .= '<option>' . $unspecified_text . '</option>';
+			$html .= '<option value="">' . $unspecified_text . '</option>';
 		}
 		foreach ($options as $key => $value)
 		{
@@ -63,9 +63,14 @@ if ( ! function_exists('render_select_html'))
 
 if ( ! function_exists('render_select_html_from_database'))
 {
-	function render_select_html_from_database($name, $options, $key_column, $value_column, $selected_value, $has_unspecified = TRUE, $unspecified_text = '指定なし')
+	function render_select_html_from_database($name, $options, $key_column, $value_column, $selected_value, $custom_attribute = NULL, $has_unspecified = TRUE, $unspecified_text = '指定なし')
 	{
-		$html = '<select class="form-control" name="' . $name . '">';
+		$html = '<select class="form-control" name="' . $name . '" ';
+		if ($custom_attribute) 
+		{
+			$html .= $custom_attribute;
+		}
+		$html .= '>';
 		if ($has_unspecified) 
 		{
 			$html .= '<option value="">' . $unspecified_text . '</option>';
@@ -162,9 +167,28 @@ if ( ! function_exists('render_radio_html'))
 		foreach ($data as $key => $value)
 		{
 			$html .= '<label class="btn btn-default ' . (($key == $selected_value) ? ' active"' : '"') . '>';
-			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off"' .(($key == $selected_value) ? 'checked' : '') .'>' . $value . '</label>';
+			$html .= '<input type="radio" name="' . $name . '" value="' . $key . '" autocomplete="off" ' .(($key == $selected_value) ? 'checked' : '') .'>' . $value . '</label>';
 		}
 		$html .= '</div>';
+		return $html;
+	}
+}
+
+if ( ! function_exists('render_sort_column'))
+{
+	function render_sort_column($column)
+	{
+		$CI = get_instance();
+		$curent_column = $CI->input->get('sort_column');
+		$curent_direction = $CI->input->get('sort_direction');
+		$html = '<a href="#" data-column="' . $column . '" ';
+		$html .= 'data-curent-column="' . $curent_column . '" data-curent-direction="' . $curent_direction . '" ';
+		$html .= 'class="sort-column glyphicon glyphicon-sort-by-attributes';
+		if ($column == $curent_column && $curent_direction == COLUMN_SORT_DESC)
+		{
+			$html .= '-alt';
+		}
+		$html .= '" aria-hidden="true"></a>';
 		return $html;
 	}
 }

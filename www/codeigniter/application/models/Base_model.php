@@ -19,12 +19,12 @@ class Base_model extends CI_Model
 	 */
 	public function get_by_id($id, $has_delete_column = TRUE)
 	{
-		return $this->get_one_by_condition([$this->primary_key_name => $id], $has_delete_column);
+		return $this->get_one_by_condition([$this->primary_key_name => $id], NULL, $has_delete_column);
 	}
 
-	public function get_one_by_condition($where, $has_delete_column = TRUE)
+	public function get_one_by_condition($where, $select = NULL, $has_delete_column = TRUE)
 	{
-		$this->db->select('*');
+		$this->db->select($select ?? '*');
 		$this->db->from($this->table_name);
 		$this->db->where($where);
 		if ($has_delete_column)
@@ -36,14 +36,24 @@ class Base_model extends CI_Model
 		return $query->row_array();
 	}
 
-	public function get_by_condition($where, $order_by = NULL, $has_delete_column = TRUE)
+	public function get_by_condition($where, $like = NULL, $select = NULL, $distinct = FALSE, $order_by = NULL, $has_delete_column = TRUE)
 	{
-		$this->db->select('*');
+		if ($distinct)
+		{
+			$this->db->distinct();
+		}
+		$this->db->select($select ?? '*');
 		$this->db->from($this->table_name);
 		$this->db->where($where);
 		if ($has_delete_column)
 		{
 			$this->db->where('deleted_at', NULL);
+		}
+		if ($like != NULL)
+		{
+			$this->db->group_start();
+			$this->db->or_like($like);
+			$this->db->group_end();
 		}
 		if ($order_by !== NULL)
 		{
@@ -53,7 +63,7 @@ class Base_model extends CI_Model
 		return $query->result_array();
 	}
 	
-	public function get_list_count($where = [], $like = [], $has_delete_column = TRUE)
+	public function get_list_count($where = NULL, $like = NULL, $has_delete_column = TRUE)
 	{
 		$this->db->from($this->table_name);
 		if ($has_delete_column)

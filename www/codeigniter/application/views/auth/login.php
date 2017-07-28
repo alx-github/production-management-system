@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<form class="form-signin" method="post" action="<?= site_url('/auth/login') ?>">
+	<?=form_open(site_url('/auth/login'), ['method' => 'POST', 'class' => 'form-signin'])?>
 		<h2 class="form-signin-heading text-center" style="margin: 20px 0 30px;">
 			生産管理システム
 		</h2>
@@ -19,5 +19,5 @@
 				</div>
 			</div>
 		</div>
-	</form>
+	<?=form_close()?>
 </div>

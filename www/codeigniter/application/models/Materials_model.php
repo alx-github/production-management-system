@@ -1,5 +1,5 @@
 <?php
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 require_once (BASEPATH . '../application/models/Base_model.php');
 class Materials_model extends Base_model
 {
@@ -9,36 +9,6 @@ class Materials_model extends Base_model
 		parent::__construct();
 		$this->table_name = 'materials';
 		$this->primary_key_name = 'material_id';
-	}
-
-	public function count_by_filter($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL)
-	{
-		$where_clause = NULL;
-		if(!empty($receive_order_customer_id))
-		{
-			$where_clause['receive_order_customer_id'] = $receive_order_customer_id;
-		}
-		if(!empty($send_order_customer_id))
-		{
-			$where_clause['send_order_customer_id'] = $send_order_customer_id;
-		}
-		$like_clause = $this->create_like_clause($keyword);
-		return $this->get_list_count($where_clause, $like_clause);
-	}
-
-	public function get_list_material($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL, $limit = NULL, $start = NULL)
-	{
-		$where_clause = NULL;
-		if(!empty($receive_order_customer_id))
-		{
-			$where_clause['receive_order_customer_id'] = $receive_order_customer_id;
-		}
-		if(!empty($send_order_customer_id))
-		{
-			$where_clause['send_order_customer_id'] = $send_order_customer_id;
-		}
-		$like_clause = $this->create_like_clause($keyword);
-		return $this->get_list($where_clause, $like_clause, $limit, $start);
 	}
 
 	public function get_validation()
@@ -54,13 +24,73 @@ class Materials_model extends Base_model
 		return $rules;
 	}
 
+	public function count_by_filter($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL)
+	{
+		$where_clause = NULL;
+		if( ! empty($receive_order_customer_id))
+		{
+			$where_clause['receive_order_customer_id'] = $receive_order_customer_id;
+		}
+		if( ! empty($send_order_customer_id))
+		{
+			$where_clause['send_order_customer_id'] = $send_order_customer_id;
+		}
+		$like_clause = $this->create_like_clause($keyword);
+		return $this->get_list_count($where_clause, $like_clause);
+	}
+
+	public function get_list_material($receive_order_customer_id = NULL, $send_order_customer_id = NULL, $keyword = NULL, $limit = NULL, $start = NULL, $order_by = NULL)
+	{
+		$where_clause = NULL;
+		if( ! empty($receive_order_customer_id))
+		{
+			$where_clause['receive_order_customer_id'] = $receive_order_customer_id;
+		}
+		if( ! empty($send_order_customer_id))
+		{
+			$where_clause['send_order_customer_id'] = $send_order_customer_id;
+		}
+		$like_clause = $this->create_like_clause($keyword);
+		return $this->get_list($where_clause, $like_clause, $limit, $start, $order_by);
+	}
+
+	public function get_part_number_combo_datas()
+	{
+		$where = ['display_type' => MATERIAL_DISPLAY];
+		return $this->get_by_condition($where, NULL, 'part_number', TRUE);
+	}
+
+	public function get_color_combo_datas($part_number)
+	{
+		$where = [
+			'part_number'  => $part_number,
+			'display_type' => MATERIAL_DISPLAY
+		];
+		return $this->get_by_condition($where, NULL, ['material_id', 'CONCAT(color_number_code, ": ", color_number_tint) AS color'], TRUE);
+	}
+
+	public function get_product_materials($product_id)
+	{
+		$this->db->select('M.*, PM.required_scale');
+		$this->db->from($this->table_name . ' AS M');
+		$this->db->join('product_materials AS PM', 'PM.material_id = M.material_id', 'INNER');
+		$this->db->where([
+			'M.deleted_at'   => NULL,
+			'M.display_type' => MATERIAL_DISPLAY,
+			'PM.deleted_at'  => NULL,
+			'PM.product_id'  => $product_id,
+		]);
+		$result = $this->db->get();
+		return $result->result_array();
+	}
+
 	private function create_like_clause($keyword = NULL)
 	{
 		return [
-			'spec' => $keyword,
+			'spec'              => $keyword,
 			'color_number_code' => $keyword,
 			'color_number_tint' => $keyword,
-			'part_number' => $keyword
+			'part_number'       => $keyword,
 		];
 	}
 }

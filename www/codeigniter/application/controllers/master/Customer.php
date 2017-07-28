@@ -6,14 +6,15 @@ class Customer extends MY_Controller
 	public function index()
 	{
 		$keyword = $this->input->get('keyword');
-		$url = "master/customer/index?keyword={$keyword}";
+		$order_by = $this->get_order_by();
+		$this->data['keyword'] = $keyword;
+		$url = 'master/customer/index?' . http_build_query($this->data);
 		
 		$offset = is_null($this->input->get('start')) ? 0 : $this->input->get('start');
 		$limit = $this->pagination->per_page;
-		$this->data['customers'] = $this->get_datas($keyword, $limit, $offset);
+		$this->data['customers'] = $this->get_datas($keyword, $limit, $offset, $order_by);
 		$this->load_pagination(site_url($url), count($this->get_datas($keyword)));
 		
-		$this->data['keyword'] = $keyword;
 		$this->load_view('master/customer/list', $this->data);
 	}
 	
@@ -22,9 +23,9 @@ class Customer extends MY_Controller
 		$this->load_view('master/customer/form', $this->data);
 	}
 	
-	private function get_datas($keyword = NULL, $limit = NULL, $offset = NULL)
+	private function get_datas($keyword = NULL, $limit = NULL, $offset = NULL, $order_by = NULL)
 	{
-		return $this->customers_model->get_datas($keyword, $limit, $offset);
+		return $this->customers_model->get_datas($keyword, $limit, $offset, $order_by);
 	}
 	
 	/**

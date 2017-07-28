@@ -14,9 +14,9 @@
 				<div class="col-sm-6">
 					<div class="input-group">
 						<div class="input-group-addon">依頼日</div>
-						<input type="text" class="form-control date" id="date-start" size="10">
+						<input type="text" class="form-control datetime" readonly id="date-start" size="10">
 						<div class="input-group-addon addon-to">～</div>
-						<input type="text" class="form-control date" id="date-end" size="10">
+						<input type="text" class="form-control datetime" readonly id="date-end" size="10">
 					</div>
 				</div>
 				<div class="col-sm-1">
@@ -55,10 +55,11 @@
 			<table class="table table-hover">
 	            <thead>
 	              <tr style="vertical-align: middle;">
-	                <th style="vertical-align: middle;" class="col-sm-1">受注ID<br>指図No</th>
-	                <th class="col-sm-2">取引先</th>
-	                <th class="col-sm-2">依頼日</th>
-	                <th class="col-sm-2">ステータス</th>
+					<th style="vertical-align: middle;" class="col-sm-1">受注ID<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a><br>
+					指図No<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+	                <th class="col-sm-2">取引先<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+	                <th class="col-sm-2">依頼日<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
+	                <th class="col-sm-2">ステータス<a class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></a></th>
 	                <th class="col-sm-2">更新日</th>
 	                <th class="col-sm-1"></th>
 	                <th class="col-sm-1"></th>
@@ -136,13 +137,13 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#date-start').datepicker({
-		dateFormat: 'yy/mm/dd',
-	});
-	$('#date-end').datepicker({
-		dateFormat: 'yy/mm/dd',
-		useCurrent: false
-	});
+	// $('#date-start').datepicker({
+	// 	dateFormat: 'yy/mm/dd',
+	// });
+	// $('#date-end').datepicker({
+	// 	dateFormat: 'yy/mm/dd',
+	// 	useCurrent: false
+	// });
 	$('#date-start').on('change', function () {
 		$('#date-end').datepicker('option', 'minDate', $('#date-start').val());
 	});

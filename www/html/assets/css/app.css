@@ -1,26 +1,30 @@
+body {
+    font-size: 14px;
+}
+
 @media (min-width: 768px) {
-	.navbar-nav>li>a {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
+    .navbar-nav>li>a {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
 }
 
 .navbar-brand {
-	padding: 7px 15px;
+    padding: 7px 15px;
 }
 
 .navbar {
-	min-height: 38px;
-	margin-bottom: 0;
+    min-height: 38px;
+    margin-bottom: 0;
 }
 
 .navbar-brand {
-	height: 38px;
+    height: 38px;
 }
 
 .navbar-toggle {
-	margin-top: 2px;
-	margin-bottom: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .btn-outline-info {
@@ -62,8 +66,9 @@
 }
 
 .form-horizontal .control-label {
-	text-align: left;
+    text-align: left;
 }
+
 /* set height bigger */
 .select2-container .select2-selection--single {
     box-sizing: border-box;
@@ -72,4 +77,26 @@
     height: 38px;
     user-select: none;
     -webkit-user-select: none;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    padding: 4px;
+    vertical-align: middle;
+}
+
+.borderless th, .borderless tr, .borderless td {
+    border: none !important;
+}
+
+.ui-datepicker {
+    z-index: 9999 !important;
+}
+
+input[readonly] {
+    background-color:white !important;
 }

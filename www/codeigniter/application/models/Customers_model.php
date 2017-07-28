@@ -46,7 +46,7 @@ class Customers_model extends Base_model
 	 * @param $limit
 	 * @param $offset
 	 */
-	public function get_datas($keyword = NULL, $limit = NULL, $offset = NULL)
+	public function get_datas($keyword = NULL, $limit = NULL, $offset = NULL, $order_by = NULL)
 	{
 		$keyword = trim($keyword);
 		
@@ -76,7 +76,14 @@ class Customers_model extends Base_model
 		{
 			$this->db->offset($offset);
 		}
-		$this->db->order_by('customer_id', 'ASC');
+		if ($order_by !== NULL)
+		{
+			$this->db->order_by($order_by);
+		}
+		else 
+		{
+			$this->db->order_by('customer_id', 'ASC');
+		}
 
 		$result = $this->db->get();
 		return $result->result_array();
