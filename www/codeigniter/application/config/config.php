@@ -577,3 +577,17 @@ $config['material'] = [
 				'1' => '反',
 		],
 ];
+
+$config['email'] = [
+		'newline'   => "\r\n",
+		'charset'   => 'utf-8',
+		'protocol'  => 'smtp',
+		'smtp_host' => 'ssl://smtp.googlemail.com',
+		'smtp_user' => 'tranthienhoang14@gmail.com',
+		'smtp_pass' => 'malmalmalmal',
+		'smtp_port' => '465',
+		'from' 		=> 'tranthienhoang14@gmail.com',
+		'to' 		=> 'tdlam123@gmail.com',
+		'subject' 	=> 'tieu de',
+		'message' 	=> 'noi dung',
+];

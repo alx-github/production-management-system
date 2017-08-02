@@ -1,4 +1,22 @@
+<style>
+    @font-face {
+      font-family: 'Firefly Sung';
+      font-style: normal;
+    }
+    *{
+      font-family: Firefly Sung, DejaVu Sans, roboto;
+    }
+    @page {                
+    size: A4;
+    margin: 5mm;
+  }
+}
+</style>
 <div class="container-fluid">
+	<div class="row">
+		<?=render_message_html() ?>
+		<?=render_error_message_html() ?>
+	</div>
 	<div class="form-group">
 		<?php echo form_open("/receive", ["class" => "form-horizontal", "role" => "form"]); ?>
 			<h1>在庫状況チェック</h1>

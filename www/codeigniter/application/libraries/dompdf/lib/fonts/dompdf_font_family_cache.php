@@ -83,4 +83,22 @@
   'roboto' => array(
     'normal' => $fontDir . '/8f6378dd584071c9f5f58902960ddec1',
   ),
+  'firefly sung' => array(
+    'bold' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+    'bold_italic' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+    'italic' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+    'normal' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+  ),
+  'firefly' => array(
+    'bold' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+    'bold_italic' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+    'italic' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+    'normal' => $fontDir . '/fbe0d3322808aed4540a9fbbf02fdc78',
+  ),
+  'sazanami-mincho' => array(
+    'bold' => $fontDir . '/19cb7d56aefe71680a776d4b8badda64',
+    'bold_italic' => $fontDir . '/19cb7d56aefe71680a776d4b8badda64',
+    'italic' => $fontDir . '/19cb7d56aefe71680a776d4b8badda64',
+    'normal' => $fontDir . '/19cb7d56aefe71680a776d4b8badda64',
+  ),
 ) ?>

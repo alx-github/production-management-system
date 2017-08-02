@@ -43,4 +43,6 @@ class Pdf extends Dompdf
 
 		$this->load_html($html);
 	}
+
+	
 }

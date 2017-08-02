@@ -1,0 +1,61 @@
+@page {
+		font-family: sazanami-mincho;
+		size: A4;
+		margin-left: 10mm;
+		margin-top: 0mm;
+		margin-bottom: 0mm;
+		margin-right: 10mm;
+	}
+
+	h1{
+		text-align: center;
+	}
+
+	p{
+		font-size: 20px;
+	}
+		
+	.table-content{
+		border: 1px solid #BCBCBC;
+	}
+
+	.table-content th{
+		width: 90;
+		text-align: center;
+		border: 1px solid #BCBCBC;
+		padding: 10px;
+		}
+	th {
+		color: darkgray;
+	}
+
+	.table-content td{
+    width: 90;
+    height: 20;
+		text-align: center;
+		border: 1px solid #BCBCBC;
+		padding: 10px;
+		padding-bottom: 20px;
+	}
+	.table-content .quantity{
+		text-align: right;
+		padding-right: 15px;
+	}
+	.table-content .category{
+		text-align: left;
+		padding-left: 15px;
+	}
+	.foot-content tr{
+		text-align: left;
+		padding-left: 0;
+		font-size: 15px;
+	}
+	.content{
+		width: 500px;
+	}
+	.hidden{
+		display: none;
+	}
+	.page-break{ 
+		page-break-after: always; 
+	}
