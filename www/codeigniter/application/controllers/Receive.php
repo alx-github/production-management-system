@@ -56,7 +56,7 @@ class Receive extends MY_Controller
 		$pdf_output = $this->pdf->output();
 		$pdfroot = dirname(dirname(__FILE__)) . '/third_party/pdf/' . date('Ymdhis') . '.pdf';
 		$file = file_put_contents($pdfroot, $pdf_output);
-		// $this->pdf->stream(date('Ymdhis') . '.pdf');
+		$this->pdf->stream(date('Ymdhis') . '.pdf');
 		return $pdfroot;
 	}
 
@@ -64,7 +64,7 @@ class Receive extends MY_Controller
 	{
 		$config = $this->config->item('email');
 		$this->email->initialize($config);
-		$this->email->from($config['from']);
+		$this->email->from($config['from'], $config['from_name']);
 		$this->email->to($config['to']);
 		$this->email->subject($config['subject']);
 		$this->email->message($config['message']);
@@ -88,7 +88,7 @@ class Receive extends MY_Controller
 	public function create_pdf()
 	{
 		$this->render_pdf();
-		redirect('/receive/save_confirm');
+		// redirect('/receive/save_confirm');
 	}
 	
 	/**
@@ -97,7 +97,7 @@ class Receive extends MY_Controller
 	public function create_pdf_send_mail()
 	{
 		$this->send_mail($this->render_pdf());
-		redirect('receive/save_confirm');
+		// redirect('receive/save_confirm');
 	}
 	
 	public function delete()
