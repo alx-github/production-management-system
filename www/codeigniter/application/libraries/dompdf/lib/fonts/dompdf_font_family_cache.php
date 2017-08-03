@@ -101,4 +101,10 @@
     'italic' => $fontDir . '/19cb7d56aefe71680a776d4b8badda64',
     'normal' => $fontDir . '/19cb7d56aefe71680a776d4b8badda64',
   ),
+  'msmincho' => array(
+    'bold' => $fontDir . '/2303be169dc947180079de84d1f50f3c',
+    'bold_italic' => $fontDir . '/2303be169dc947180079de84d1f50f3c',
+    'italic' => $fontDir . '/2303be169dc947180079de84d1f50f3c',
+    'normal' => $fontDir . '/2303be169dc947180079de84d1f50f3c',
+  ),
 ) ?>
