@@ -11,7 +11,7 @@ class MY_Controller extends CI_Controller
 		
 		$this->load->database();
 		$this->load->library(['session', 'form_validation', 'pagination', 'pdf', 'email']);
-		$this->load->helper(['url', 'language', 'common', 'array']);
+		$this->load->helper(['url', 'language', 'common', 'array', 'download']);
 		$this->load->model([
 				'accounts_model',
 				'customers_model',
@@ -41,7 +41,7 @@ class MY_Controller extends CI_Controller
 	
 	protected function check_admin_account()
 	{
-		if(!$this->is_admin())
+		if (!$this->is_admin())
 		{
 			redirect('/');
 		}
@@ -84,7 +84,7 @@ class MY_Controller extends CI_Controller
 	{
 		$start = $this->input->get('start');
 		$last_page_start = $this->pagination->get_last_page_start();
-		if($start > $last_page_start)
+		if ($start > $last_page_start)
 		{
 			$start = $last_page_start;
 		}
@@ -123,6 +123,63 @@ class MY_Controller extends CI_Controller
 		$this->data['sort_column'] = $this->input->get('sort_column');
 		$this->data['sort_direction'] = $this->input->get('sort_direction') ?? COLUMN_SORT_ASC;
 		return $this->data['sort_column'] . ' ' . $this->data['sort_direction'];
+	}
+
+	protected function draw_page_number($canvas = NULL)
+	{
+		if ($canvas)
+		{
+			$font = NULL;
+			$size = 15;
+			$color = array(0, 0, 0);
+			$canvas->page_text(400, 10, "伝票番号:  00000000-{PAGE_NUM}", $font, $size, $color);
+			$canvas->page_text(400, 40, "発行日付:  2017年12月31日", $font, $size, $color);
+		}
+	}
+
+	protected function render_pdf($view, $data = NULL, $file_name)
+	{
+		if ( ! $file_name)
+		{
+			return;
+		}
+		$this->pdf->set_option('DOMPDF_ENABLE_PHP"', TRUE);
+		$GLOBALS['attachments'] = true;
+		$this->pdf->set_base_path("../html/assets/css/");
+		$this->pdf->set_option('enable_font_subsetting', TRUE);
+		$this->load->view($view,$data);
+		$this->pdf->load_html($this->output->get_output());
+		$this->pdf->render();
+		$this->draw_page_number($this->pdf->get_canvas());
+		$pdfroot = dirname(dirname(__FILE__)) . $this->config->item('pdf')['path'] . '/' . $file_name . '.pdf';
+		file_put_contents($pdfroot, $this->pdf->output());
+		return $pdfroot;
+	}
+
+	protected function send_mail($to = NULL, $link_file = NULL)
+	{
+		if ( ! $to)
+		{
+			return;
+		}
+		$config = $this->config->item('email');
+		$this->email->initialize($config);
+		$this->email->from($config['from'], $config['from_name']);
+		$this->email->to($to);
+		$this->email->subject($config['subject']);
+		$this->email->message($config['message']);
+		if ($link_file)
+		{
+			$this->email->attach($link_file);
+		}
+		if ( ! $this->email->send())
+		{
+			$this->session->set_flashdata('error_message', 'Sending email fail');
+		}
+		else
+		{
+			$this->session->set_flashdata('message', 'Sending email success');
+		}
 	}
 
 }

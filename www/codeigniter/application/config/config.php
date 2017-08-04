@@ -588,7 +588,10 @@ $config['email'] = [
 		'smtp_port' => '465',
 		'from' 		=> 'tranthienhoang14@gmail.com',
 		'from_name' => 'Allexceed Inc',
-		'to' 		=> 'tdlam123@gmail.com',
 		'subject' 	=> 'tieu de',
 		'message' 	=> 'noi dung',
+];
+
+$config['pdf'] = [
+		'path' 	=>'/third_party/pdf',
 ];

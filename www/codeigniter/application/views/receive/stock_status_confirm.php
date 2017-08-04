@@ -152,12 +152,3 @@
 	</div>
 </div>
 <link href="<?= site_url('assets/css/common.css'); ?>" rel="stylesheet">
-<script>
-$(document).ready(function(){
-	$('#create-pdf-send-email').click(function (e){
-		e.preventDefault();
-		window.open("/receive/create_pdf_send_mail");
-		location.replace('/receive/save_confirm');
-	});
-});
-</script>
