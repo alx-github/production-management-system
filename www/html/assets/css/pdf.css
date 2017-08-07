@@ -11,7 +11,9 @@
 		margin-bottom: 0mm;
 		margin-right: 10mm;
 	}
-
+	table {
+		width: 100%;
+	}
 	h1{
 		text-align: center;
 	}
@@ -29,7 +31,7 @@
 		text-align: center;
 		border: 1px solid #BCBCBC;
 		padding: 10px;
-		}
+	}
 	th {
 		color: darkgray;
 	}
@@ -52,15 +54,18 @@
 	}
 	.foot-content tr{
 		text-align: left;
-		padding-left: 0;
 		font-size: 15px;
 	}
-	.content{
-		width: 500px;
+	.header {
+		font-size: 18px;
 	}
-	.hidden{
-		display: none;
+	.col-4{
+		width: 33.33333%;
+	}
+	.col-8{
+		width: 66.66666%;
 	}
 	.page-break{ 
 		page-break-after: always; 
 	}
+	

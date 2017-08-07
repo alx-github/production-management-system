@@ -1,9 +1,23 @@
 <link rel="stylesheet" href="pdf.css" media="screen">
 <meta http-equiv='Content-Type' content='text/html;charset=utf-8'>
 <?php if ($count && $per_page) { ?>
-	<div class="hidden">伝票番号 発行日付 年月日 </div>
 	<?php for ($i = 0; $i < $count; $i += $per_page) { ?>
-		<h1>注文書</h1>
+		<table cellpadding="0" cellpadding="0">
+			<tbody class="header">
+				<tr >
+					<td rowspan="2" class="col-4"></td>
+					<td rowspan="2" class="col-4"> <h1>注文書</h1></td>
+					<td>
+						伝票番号: 00000000-<?= (($i/$per_page+1) <10) ? '0'.($i/$per_page+1) : ($i/$per_page+1)?>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						発行日付:  <?=date(DATE_FORMAT_Y年M月D日)?>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 		<div>
 			<p>取引先名が人ります。 担当者名が人ります。</p>
 			<label>いつもお世話になりありがとうございます。</label>
@@ -60,7 +74,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td rowspan="2" class="content">ここにメモ伝言が記載されます。ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。</td>
+					<td rowspan="2" class="col-8">ここにメモ伝言が記載されます。ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。</td>
 					<td>
 						株式会社大棟商事
 						<br>

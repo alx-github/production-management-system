@@ -125,18 +125,6 @@ class MY_Controller extends CI_Controller
 		return $this->data['sort_column'] . ' ' . $this->data['sort_direction'];
 	}
 
-	protected function draw_page_number($canvas = NULL)
-	{
-		if ($canvas)
-		{
-			$font = NULL;
-			$size = 15;
-			$color = array(0, 0, 0);
-			$canvas->page_text(400, 10, "伝票番号:  00000000-{PAGE_NUM}", $font, $size, $color);
-			$canvas->page_text(400, 40, "発行日付:  2017年12月31日", $font, $size, $color);
-		}
-	}
-
 	protected function render_pdf($view, $data = NULL, $file_name)
 	{
 		if ( ! $file_name)
@@ -150,7 +138,6 @@ class MY_Controller extends CI_Controller
 		$this->load->view($view,$data);
 		$this->pdf->load_html($this->output->get_output());
 		$this->pdf->render();
-		$this->draw_page_number($this->pdf->get_canvas());
 		$pdfroot = dirname(dirname(__FILE__)) . $this->config->item('pdf')['path'] . '/' . $file_name . '.pdf';
 		file_put_contents($pdfroot, $this->pdf->output());
 		return $pdfroot;
