@@ -4,68 +4,94 @@
 }
 
 @page {
+		margin: 250px 25px 175px;
 		font-family: MSMINCHO;
 		size: A4;
-		margin-left: 10mm;
-		margin-top: 0mm;
-		margin-bottom: 0mm;
-		margin-right: 10mm;
-	}
-	table {
-		width: 100%;
-	}
-	h1{
-		text-align: center;
 	}
 
-	p{
-		font-size: 20px;
-	}
-		
-	.table-content{
-		border: 1px solid #BCBCBC;
-	}
+header {
+	position: fixed;
+	top: -250px;
+	left: 0px;
+	right: 0px;
+	height: 150px; 
+}
+footer {
+	position: fixed;
+	bottom: -150px;
+	left: 0px;
+	right: 0px;
+	height: 150px; 
+}
 
-	.table-content th{
-		width: 90;
-		text-align: center;
-		border: 1px solid #BCBCBC;
-		padding: 10px;
-	}
-	th {
-		color: darkgray;
-	}
 
-	.table-content td{
-    width: 90;
-    height: 20;
-		text-align: center;
-		border: 1px solid #BCBCBC;
-		padding: 10px;
-		padding-bottom: 20px;
-	}
-	.table-content .quantity{
-		text-align: right;
-		padding-right: 15px;
-	}
-	.table-content .category{
-		text-align: left;
-		padding-left: 15px;
-	}
-	.foot-content tr{
-		text-align: left;
-		font-size: 15px;
-	}
-	.header {
-		font-size: 18px;
-	}
-	.col-4{
-		width: 33.33333%;
-	}
-	.col-8{
-		width: 66.66666%;
-	}
-	.page-break{ 
-		page-break-after: always; 
-	}
+table {
+	width: 100%;
+	table-layout:fixed;
+}
+h1{
+	text-align: center;
+}
+
+p{
+	font-size: 20px;
+}
 	
+.table-content{
+	border: 1px solid #BCBCBC;
+}
+
+.table-content th{
+	width: 90;
+	text-align: center;
+	border: 1px solid #BCBCBC;
+	padding: 10px;
+}
+th {
+	color: darkgray;
+}
+
+.table-content td{
+width: 90;
+height: 20;
+	text-align: center;
+	border: 1px solid #BCBCBC;
+	padding: 10px;
+	padding-bottom: 20px;
+}
+.table-content .quantity{
+	text-align: right;
+	padding-right: 15px;
+}
+.table-content .category{
+	text-align: left;
+	padding-left: 15px;
+}
+.foot-content tr{
+	text-align: left;
+	font-size: 15px;
+}
+.header {
+	font-size: 18px;
+}
+.col-4{
+	width: 33.33333%;
+}
+.col-8{
+	width: 66.66666%;
+}
+
+.wrap{
+	white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+	white-space: -webkit-pre-wrap; /*Chrome & Safari */ 
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	white-space: pre-wrap;       /* css-3 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	word-break: break-all;
+	white-space: normal;
+}
+
+.page-number:after {
+	content: counter(page, decimal-leading-zero);
+}

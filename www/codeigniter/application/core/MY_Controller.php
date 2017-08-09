@@ -133,7 +133,7 @@ class MY_Controller extends CI_Controller
 		}
 		$this->pdf->set_option('DOMPDF_ENABLE_PHP"', TRUE);
 		$GLOBALS['attachments'] = true;
-		$this->pdf->set_base_path("../html/assets/css/");
+		$this->pdf->set_base_path(FCPATH);
 		$this->pdf->set_option('enable_font_subsetting', TRUE);
 		$this->load->view($view,$data);
 		$this->pdf->load_html($this->output->get_output());

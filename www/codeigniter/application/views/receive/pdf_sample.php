@@ -1,24 +1,81 @@
 <html>
 <head>
+	<link rel="stylesheet" href="./assets/css/pdf.css" media="screen">
 	<meta http-equiv='Content-Type' content='text/html;charset=utf-8'>
-	<style>
-	@page { margin: 100px 25px; }
-	header { position: fixed; top: -60px; left: 0px; right: 0px; background-color: lightblue; height: 50px; }
-	footer { position: fixed; bottom: -60px; left: 0px; right: 0px; background-color: lightblue; height: 50px; }
-	p { page-break-after: always; }
-	p:last-child { page-break-after: never; }
-	</style>
 </head>
 <body>
-	<header>header on each page</header>
-	<footer>footer on each page</footer>
+	<header>
+		<table cellpadding="0" cellpadding="0">
+			<tbody class="header">
+				<tr >
+					<td class="col-4"></td>
+					<td class="col-4"> <h1>注文書</h1></td>
+					<td>
+						伝票番号: 00000000-<a class="page-number"></a>
+						<br>
+						発行日付:  <?=date(DATE_FORMAT_Y年M月D日)?>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>取引先名が人ります。 担当者名が人ります。</p>
+		<label>いつもお世話になりありがとうございます。</label>
+		<br/>
+		<label>下記内容にて注文をお願いいたします。</label>
+		<br>
+	</header>
+	<footer>
+		<table class="foot-content" cellpadding="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th>メモ・伝言</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2" class="col-8 wrap">ここにメモ伝言が記載されます。ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載 されます。 ここにメモ伝言が記載されます。ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。 ここにメモ伝言が記載されます。</td>
+					<td>
+						株式会社大棟商事
+						<br>
+						.796-003
+						<br>
+						愛媛県八幡浜市大平1-787-1
+					</td>
+				</tr>
+				<tr>
+					<td>
+						TEL: 0894-22-1585
+						<br>
+						FAX: 0894-24-7330
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</footer>
 	<main>
-		<p>
-			<?php for ($i=0;$i<100;$i++):?>
-				record <?= $i ?>
-				<br/>
-			<?php endfor; ?>
-		</p>
+		<table class="table-content" cellspacing="0">
+				<thead>
+					<tr>
+						<th>カテゴリ</th>
+						<th>品番</th>
+						<th>色番</th>
+						<th>数量</th>
+						<th>摘要</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php for ($i = 0 ; $i <$count; $i++) { ?>
+					<tr>
+						<td class="category wrap">生地ネーム</td>
+						<td class="wrap">品番が入ります品番が入ります品番が入ります品番が入ります</td>
+						<td class="wrap">色番が入ります</td>
+						<td class="quantity wrap">20反</td>
+						<td>指図Noが人ります</td>
+					</tr>
+				<?php } ?>
+				</tbody>
+			</table>
 	</main>
 </body>
 </html>
