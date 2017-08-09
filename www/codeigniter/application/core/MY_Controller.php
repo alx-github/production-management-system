@@ -138,7 +138,12 @@ class MY_Controller extends CI_Controller
 		$this->load->view($view,$data);
 		$this->pdf->load_html($this->output->get_output());
 		$this->pdf->render();
-		$pdfroot = dirname(dirname(__FILE__)) . $this->config->item('pdf')['path'] . '/' . $file_name . '.pdf';
+		$pdfroot = dirname(dirname(__FILE__)) . $this->config->item('pdf')['path'];
+		if(!is_dir($pdfroot))
+		{
+			mkdir($pdfroot, 0777, TRUE);
+		}
+		$pdfroot .='/' . $file_name . '.pdf';
 		file_put_contents($pdfroot, $this->pdf->output());
 		return $pdfroot;
 	}
