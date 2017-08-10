@@ -135,8 +135,7 @@ class MY_Controller extends CI_Controller
 		$GLOBALS['attachments'] = true;
 		$this->pdf->set_base_path(FCPATH);
 		$this->pdf->set_option('enable_font_subsetting', TRUE);
-		$this->load->view($view,$data);
-		$this->pdf->load_html($this->output->get_output());
+		$this->pdf->load_view($view,$data);
 		$this->pdf->render();
 		$pdfroot = dirname(dirname(__FILE__)) . $this->config->item('pdf')['path'];
 		if(!is_dir($pdfroot))
@@ -148,18 +147,22 @@ class MY_Controller extends CI_Controller
 		return $pdfroot;
 	}
 
-	protected function send_mail($to = NULL, $link_file = NULL)
+	protected function send_mail($to = NULL, $subject = NULL, $view, $data = NULL, $link_file = NULL)
 	{
-		if ( ! $to)
-		{
-			return;
-		}
 		$config = $this->config->item('email');
 		$this->email->initialize($config);
 		$this->email->from($config['from'], $config['from_name']);
 		$this->email->to($to);
-		$this->email->subject($config['subject']);
-		$this->email->message($config['message']);
+		if ($subject)
+		{
+			$this->email->subject($subject);
+		}
+		else
+		{
+			$this->email->subject($config['subject']);
+		}
+		$this->load->view($view, $data);
+		$this->email->message($this->output->get_output());
 		if ($link_file)
 		{
 			$this->email->attach($link_file);

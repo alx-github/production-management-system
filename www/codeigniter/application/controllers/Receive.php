@@ -50,7 +50,7 @@ class Receive extends MY_Controller
 	public function create_pdf_send_mail()
 	{
 		$file_path = $this->render_pdf('receive/pdf_default', $this->get_pdf_view_data(), date('YmdHis'));
-		$this->send_mail('tdlam123@gmail.com', $file_path);
+		$this->send_mail('tdlam123@gmail.com', 'SUBJECT', 'receive/mail_content', NULL, $file_path);
 		force_download($file_path, NULL);
 	}
 	

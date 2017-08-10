@@ -581,6 +581,7 @@ $config['material'] = [
 $config['email'] = [
 		'newline'   => "\r\n",
 		'charset'   => 'utf-8',
+		'mailtype'  => 'html',
 		'protocol'  => 'smtp',
 		'smtp_host' => 'ssl://smtp.googlemail.com',
 		'smtp_user' => 'tranthienhoang14@gmail.com',
