@@ -34,7 +34,7 @@ class Receive extends MY_Controller
 	 */
 	public function create_pdf()
 	{
-		$file_path = $this->render_pdf('receive/pdf_sample', $this->get_pdf_view_data(), date('YmdHis'));
+		$file_path = $this->render_pdf('receive/pdf_default', $this->get_pdf_view_data(), date('YmdHis'));
 		force_download($file_path, NULL);
 		return $file_path;
 	}
@@ -49,7 +49,7 @@ class Receive extends MY_Controller
 	 */
 	public function create_pdf_send_mail()
 	{
-		$file_path = $this->render_pdf('receive/pdf_sample', $this->get_pdf_view_data(), date('YmdHis'));
+		$file_path = $this->render_pdf('receive/pdf_default', $this->get_pdf_view_data(), date('YmdHis'));
 		$this->send_mail('tdlam123@gmail.com', $file_path);
 		force_download($file_path, NULL);
 	}
