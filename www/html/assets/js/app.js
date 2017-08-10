@@ -72,7 +72,15 @@ $(document).ready(function() {
 			}
 		},
 	});
-
+	$('#create-pdf-send-email').click(function (e){
+		e.preventDefault();
+		window.open("/receive/create_pdf_send_mail");
+		setTimeout(function(){
+			location.replace('/receive/save_confirm');
+		}, 3000);
+		
+		
+	});
 });
 
 function remove_row(id)

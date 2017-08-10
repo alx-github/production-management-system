@@ -88,6 +88,7 @@ defined('DATE_FORMAT_DEFAULT') OR define('DATE_FORMAT_DEFAULT', 'Y-m-d H:i:s');
 defined('DATE_FORMAT_YMDHIS')  OR define('DATE_FORMAT_YMDHIS', 'Y/m/d H:i:s');
 defined('DATE_FORMAT_Y_M_D')   OR define('DATE_FORMAT_Y_M_D', 'Y-m-d');
 defined('DATE_FORMAT_YMD')     OR define('DATE_FORMAT_YMD', 'Y/m/d');
+defined('DATE_FORMAT_Y年M月D日')     OR define('DATE_FORMAT_Y年M月D日', 'Y年m月d日');
 
 // アカウント - 権限
 //0:指定なし、 10:裁断 20:縫製 30:出荷 80:事務 100:管理者

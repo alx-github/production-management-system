@@ -10,8 +10,8 @@ class MY_Controller extends CI_Controller
 		parent::__construct();
 		
 		$this->load->database();
-		$this->load->library(['session', 'form_validation', 'pagination']);
-		$this->load->helper(['url', 'language', 'common', 'array']);
+		$this->load->library(['session', 'form_validation', 'pagination', 'pdf', 'email']);
+		$this->load->helper(['url', 'language', 'common', 'array', 'download']);
 		$this->load->model([
 				'accounts_model',
 				'customers_model',
@@ -41,7 +41,7 @@ class MY_Controller extends CI_Controller
 	
 	protected function check_admin_account()
 	{
-		if(!$this->is_admin())
+		if (!$this->is_admin())
 		{
 			redirect('/');
 		}
@@ -84,7 +84,7 @@ class MY_Controller extends CI_Controller
 	{
 		$start = $this->input->get('start');
 		$last_page_start = $this->pagination->get_last_page_start();
-		if($start > $last_page_start)
+		if ($start > $last_page_start)
 		{
 			$start = $last_page_start;
 		}
@@ -123,6 +123,58 @@ class MY_Controller extends CI_Controller
 		$this->data['sort_column'] = $this->input->get('sort_column');
 		$this->data['sort_direction'] = $this->input->get('sort_direction') ?? COLUMN_SORT_ASC;
 		return $this->data['sort_column'] . ' ' . $this->data['sort_direction'];
+	}
+
+	protected function render_pdf($view, $data = NULL, $file_name)
+	{
+		if ( ! $file_name)
+		{
+			return;
+		}
+		$this->pdf->set_option('DOMPDF_ENABLE_PHP"', TRUE);
+		$GLOBALS['attachments'] = true;
+		$this->pdf->set_base_path(FCPATH);
+		$this->pdf->set_option('enable_font_subsetting', TRUE);
+		$this->pdf->load_view($view,$data);
+		$this->pdf->render();
+		$pdfroot = dirname(dirname(__FILE__)) . $this->config->item('pdf')['path'];
+		if(!is_dir($pdfroot))
+		{
+			mkdir($pdfroot, 0777, TRUE);
+		}
+		$pdfroot .='/' . $file_name . '.pdf';
+		file_put_contents($pdfroot, $this->pdf->output());
+		return $pdfroot;
+	}
+
+	protected function send_mail($to = NULL, $subject = NULL, $view, $data = NULL, $link_file = NULL)
+	{
+		$config = $this->config->item('email');
+		$this->email->initialize($config);
+		$this->email->from($config['from'], $config['from_name']);
+		$this->email->to($to);
+		if ($subject)
+		{
+			$this->email->subject($subject);
+		}
+		else
+		{
+			$this->email->subject($config['subject']);
+		}
+		$this->load->view($view, $data);
+		$this->email->message($this->output->get_output());
+		if ($link_file)
+		{
+			$this->email->attach($link_file);
+		}
+		if ( ! $this->email->send())
+		{
+			$this->session->set_flashdata('error_message', 'Sending email fail');
+		}
+		else
+		{
+			$this->session->set_flashdata('message', 'Sending email success');
+		}
 	}
 
 }

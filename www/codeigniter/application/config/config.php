@@ -577,3 +577,22 @@ $config['material'] = [
 				'1' => '反',
 		],
 ];
+
+$config['email'] = [
+		'newline'   => "\r\n",
+		'charset'   => 'utf-8',
+		'mailtype'  => 'html',
+		'protocol'  => 'smtp',
+		'smtp_host' => 'ssl://smtp.googlemail.com',
+		'smtp_user' => 'tranthienhoang14@gmail.com',
+		'smtp_pass' => 'malmalmalmal',
+		'smtp_port' => '465',
+		'from' 		=> 'tranthienhoang14@gmail.com',
+		'from_name' => 'Allexceed Inc',
+		'subject' 	=> 'tieu de',
+		'message' 	=> 'noi dung',
+];
+
+$config['pdf'] = [
+		'path' 	=>'/third_party/pdf',
+];

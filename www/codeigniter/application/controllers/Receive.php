@@ -28,21 +28,30 @@ class Receive extends MY_Controller
 	{
 		$this->load_view('receive/stock_status_confirm', $this->data);
 	}
-	
+
 	/**
 	 * 発注書PDF
 	 */
 	public function create_pdf()
 	{
-		redirect('receive/save_confirm');
+		$file_path = $this->render_pdf('receive/pdf_default', $this->get_pdf_view_data(), date('YmdHis'));
+		force_download($file_path, NULL);
+		return $file_path;
 	}
-	
+
+	protected function get_pdf_view_data()
+	{
+		$this->data['count'] = 18;
+		return $this->data;
+	}
 	/**
 	 * 発注書PDFを送信する
 	 */
 	public function create_pdf_send_mail()
 	{
-		redirect('receive/save_confirm');
+		$file_path = $this->render_pdf('receive/pdf_default', $this->get_pdf_view_data(), date('YmdHis'));
+		$this->send_mail('tdlam123@gmail.com', 'SUBJECT', 'receive/mail_content', NULL, $file_path);
+		force_download($file_path, NULL);
 	}
 	
 	public function delete()

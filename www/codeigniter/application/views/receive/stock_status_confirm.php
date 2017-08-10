@@ -1,4 +1,8 @@
 <div class="container-fluid">
+	<div class="row">
+		<?=render_message_html() ?>
+		<?=render_error_message_html() ?>
+	</div>
 	<div class="form-group">
 		<?php echo form_open("/receive", ["class" => "form-horizontal", "role" => "form"]); ?>
 			<h1>在庫状況チェック</h1>
@@ -140,7 +144,7 @@
 						<a href="/receive/create_pdf" class="btn btn-success btn-block">発注書PDF</a>
 					</div>
 					<div class="col-sm-4 col-md-3">
-						<a href="/receive/create_pdf_send_mail" class="btn btn-success btn-block">発注書PDFを送信する</a>
+						<a id="create-pdf-send-email" href="/receive/create_pdf_send_mail" class="btn btn-success btn-block">発注書PDFを送信する</a>
 					</div>
 				</div>
 			</div>
